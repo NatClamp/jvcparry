@@ -13,7 +13,6 @@ import Blog from './pages/BlogPage';
 import BlogPost from './pages/BlogPostPage';
 import Header from './components/Header';
 import Cart from './components/Cart';
-import MobileNav from './components/MobileNav';
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 const engine = new Styletron();
