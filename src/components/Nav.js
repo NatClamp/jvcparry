@@ -1,13 +1,12 @@
-import React, { useContext } from 'react'
-import { Container, Anchor, Icon, Text, Div, Button } from 'atomize'
+import React from 'react'
+import { Div, Button } from 'atomize'
 import { Link } from 'react-router-dom'
-import { ShopContext } from '../context/shopContext'
 
 const Nav = () => {
 
   return (
     <>
-      <Div d="flex" flexDir="row" justify="space-around" align="center" w={{ xs: 'auto', md: '300px' }}>
+      <Div d={{ xs: 'none', md: 'flex' }} flexDir="row" justify="space-around" align="center" w={{ xs: 'auto', md: '300px' }}>
         <Link to='/products' style={{ textDecoration: 'none' }}>
           <Button
             h="2.5rem"
