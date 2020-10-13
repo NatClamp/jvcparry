@@ -13,6 +13,7 @@ import Blog from './pages/BlogPage';
 import BlogPost from './pages/BlogPostPage';
 import Header from './components/Header';
 import Cart from './components/Cart';
+import Footer from './components/Footer';
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 const engine = new Styletron();
@@ -46,6 +47,7 @@ const App = () => {
               <HomePage />
             </Route>
           </Switch>
+          <Footer />
         </Router>
       </StyletronProvider>
     </ShopProvider>
