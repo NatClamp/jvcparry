@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Div, SideDrawer, Text, Row, Col, Anchor, Button, Container, Icon, Span } from "atomize";
+import { Div, SideDrawer, Text, Row, Col, Anchor, Button, Container, Icon } from "atomize";
 import { ShopContext } from '../context/shopContext'
 
 const Cart = () => {
