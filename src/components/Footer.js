@@ -31,7 +31,7 @@ const Footer = () => {
             © {currentYear} JVC Parry - Built with React
           </Text>
         </Div>
-        <Div className='FooterLeft' w={{ xs: '80%', md: '40%' }} m={{ x: '20px' }}>
+        <Div className='FooterLeft' w={{ xs: '80%', md: '40%' }} m={{ x: '20px', b: '30px' }}>
           <NewsletterForm />
         </Div>
       </Container>

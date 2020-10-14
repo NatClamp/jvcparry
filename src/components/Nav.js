@@ -13,12 +13,12 @@ const Nav = () => {
             p={{ x: "1rem" }}
             textSize="body"
             textColor="white"
-            hoverTextColor="warning900"
+            hoverTextColor="hsla(217, 14%, 60%)"
             bg="black"
             hoverBg="grey600"
             border="1px solid"
             borderColor="white"
-            hoverBorderColor="warning900"
+            hoverBorderColor="hsla(217, 14%, 60%)"
             m={{ r: "0.5rem" }}
           >Products
                         </Button>
@@ -29,12 +29,12 @@ const Nav = () => {
             p={{ x: "1rem" }}
             textSize="body"
             textColor="white"
-            hoverTextColor="warning900"
+            hoverTextColor="hsla(217, 14%, 60%)"
             bg="black"
             hoverBg="grey600"
             border="1px solid"
             borderColor="white"
-            hoverBorderColor="warning900"
+            hoverBorderColor="hsla(217, 14%, 60%)"
             m={{ r: "0.5rem" }}
           >Hire Me
                         </Button>
@@ -45,12 +45,12 @@ const Nav = () => {
             p={{ x: "1rem" }}
             textSize="body"
             textColor="white"
-            hoverTextColor="warning900"
+            hoverTextColor="hsla(217, 14%, 60%)"
             bg="black"
             hoverBg="grey600"
             border="1px solid"
             borderColor="white"
-            hoverBorderColor="warning900"
+            hoverBorderColor="hsla(217, 14%, 60%)"
             m={{ r: "0.5rem" }}
           >Blog
                         </Button>
