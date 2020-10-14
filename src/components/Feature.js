@@ -22,12 +22,12 @@ const Feature = () => {
                 p={{ x: "1rem" }}
                 textSize="body"
                 textColor="black"
-                hoverTextColor="warning900"
+                hoverTextColor="hsla(217, 14%, 50%)"
                 bg="white"
                 hoverBg="grey600"
                 border="1px solid"
                 borderColor="black"
-                hoverBorderColor="warning900"
+                hoverBorderColor="hsla(217, 14%, 50%)"
                 m={{ t: '1rem', r: '0' }}
               >Buy on DMsGuild</Button>
             </Anchor>

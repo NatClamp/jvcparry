@@ -54,8 +54,8 @@ const NewsletterForm = () => {
           suffix={
             <Button
               pos="absolute"
-              bg="black300"
-              hoverBg="black400"
+              hoverBg="hsla(217, 14%, 43%)"
+              bg="hsla(217, 14%, 50%)"
               top="0"
               right="0"
               rounded={{ r: "md" }}

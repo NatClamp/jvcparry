@@ -24,12 +24,12 @@ const Bio = () => {
                 p={{ x: "1rem" }}
                 textSize="body"
                 textColor="black"
-                hoverTextColor="warning900"
+                hoverTextColor="hsla(217, 14%, 50%)"
                 bg="white"
                 hoverBg="grey600"
                 border="1px solid"
                 borderColor="black"
-                hoverBorderColor="warning900"
+                hoverBorderColor="hsla(217, 14%, 50%)"
               >Hire me</Button>
             </Anchor>
           </Div>
@@ -39,7 +39,7 @@ const Bio = () => {
           <img src={portrait} alt='' style={{ maxHeight: '300px' }} />
         </Col>
       </Row>
-    </Container>
+    </Container >
   )
 }
 
