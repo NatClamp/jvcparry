@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Container, Text, Anchor, Button, Div } from "atomize";
 
 
-const HomePage = () => {
+const Feature = () => {
 
   return (
     <Container className='featureContainer'>
@@ -14,9 +14,10 @@ const HomePage = () => {
           <Div m={{ t: '10px' }}>
             <Text textSize="heading" >Call from the Deep</Text>
             <Text textSize="title"><em>Assault from the Astral</em></Text>
-            <Text textSize="subheader">After crash-landing onto the Material Plane, a strange, otherworldly ship brings with it an unexpected wave of piracy, hideous creatures from the bottom of the Trackless Sea, and a notorious foe who has been awakened from the deep, intent on destroying the world as you know it.</Text>
-            <Anchor href="" style={{ textDecoration: 'none', color: 'white' }}>
+            <Text textSize={{ xs: 'paragraph', sm: 'subheader' }}>After crash-landing onto the Material Plane, a strange, otherworldly ship brings with it an unexpected wave of piracy, hideous creatures from the bottom of the Trackless Sea, and a notorious foe who has been awakened from the deep, intent on destroying the world as you know it.</Text>
+            <Anchor href="#" textDecoration='none' w='150px'>
               <Button
+                d="inline-block"
                 h="2.5rem"
                 p={{ x: "1rem" }}
                 textSize="body"
@@ -27,7 +28,7 @@ const HomePage = () => {
                 border="1px solid"
                 borderColor="black"
                 hoverBorderColor="warning900"
-                m={{ y: '1rem' }}
+                m={{ t: '1rem', r: '0' }}
               >Buy on DMsGuild</Button>
             </Anchor>
           </Div>
@@ -37,4 +38,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default Feature

@@ -50,6 +50,7 @@ const NewsletterForm = () => {
           ref={register({ required: true })}
           type='email'
           placeholder="Email"
+          m={{ b: '10px' }}
           suffix={
             <Button
               pos="absolute"
