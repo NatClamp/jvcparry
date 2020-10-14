@@ -1,8 +1,8 @@
 import React from 'react'
-import { Container, Div, Button, Text, Icon } from 'atomize'
+import { Container, Div, Button, Text } from 'atomize'
 import { Link } from 'react-router-dom'
 
-import bg from '../images/bg-fade.png';
+import bg from '../images/bg.jpg';
 
 const HomeHero = () => {
 
