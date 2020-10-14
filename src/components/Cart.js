@@ -32,7 +32,7 @@ const Cart = () => {
                                             <Text>Quantity: {item.quantity}</Text>
                                             <Text>{item.variant.price}{" "}<span style={{ fontSize: '12px', color: '#48556f' }}>{checkout.currencyCode}</span></Text>
 
-                                            <Text onClick={() => updateItemToCheckout(item.id, item.quantity)} textColor="danger800" cursor="pointer" p={{ t: '10px' }}>Remove</Text>
+                                            <Text textSize='body' onClick={() => updateItemToCheckout(item.id, item.quantity)} textColor="danger800" cursor="pointer" p={{ t: '10px' }}>Remove</Text>
                                         </Col>
                                     </Row>
                                 ))}
@@ -41,7 +41,7 @@ const Cart = () => {
                     </Row>
                     <Row border={{ t: '1px solid' }} p="0.7rem" borderColor="gray300" d='flex' flexDir='column'>
                         <Text tag='h5' textSize='paragraph'>Subtotal</Text>
-                        <Text tag='p' textSize='subheader'>{checkout.lineItemsSubtotalPrice.amount} <span style={{ fontSize: '12px', color: '#48556f' }}>{checkout.lineItemsSubtotalPrice.currencyCode}</span></Text>
+                        <Text tag='p' textSize='subheader'>{Number(checkout.lineItemsSubtotalPrice.amount).toFixed(2)} <span style={{ fontSize: '12px', color: '#48556f' }}>{checkout.lineItemsSubtotalPrice.currencyCode}</span></Text>
                     </Row>
                     <Row border={{ t: '1px solid' }} p="0.7rem" borderColor="gray300">
                         <Anchor w="100%" href={checkout.webUrl} target="_blank" rel="noopener noreferrer">

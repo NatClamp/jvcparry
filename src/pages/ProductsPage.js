@@ -33,8 +33,8 @@ const ProductsPage = () => {
                 m={{ b: "1.5rem" }}
               >
               </Div>
-              <Text tag="h1" textWeight="300" textSize="subheader" textDecor="none" textColor="black500">{product.title}</Text>
-              <Text tag="h2" textWeight="300" textSize="body" textDecor="none" textColor="gray500">${product.variants[0].price}</Text>
+              <Text tag="p" textWeight="300" textSize="subheader" textDecor="none" textColor="black500">{product.title}</Text>
+              <Text tag="p" textWeight="300" textSize="body" textDecor="none" textColor="gray800">{product.variants[0].price} {product.variants[0].priceV2.currencyCode}</Text>
             </Div>
           </Link>
         </Col>

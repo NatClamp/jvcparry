@@ -41,7 +41,6 @@ class ShopProvider extends Component {
       .fetch(checkoutId)
       .then((checkout) => {
         this.setState({ checkout: checkout });
-        console.log(checkout)
       })
       .catch((err) => console.log(err));
 
@@ -81,6 +80,7 @@ class ShopProvider extends Component {
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
     this.setState({ products: products });
+    console.log(products)
   };
 
   fetchProductWithId = async (id) => {
