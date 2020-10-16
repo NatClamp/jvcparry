@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Div, Input, Button, Text, Textarea, Icon } from 'atomize'
+import { Div, Input, Button, Text, Icon } from 'atomize'
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 const HireMeForm = () => {
   const { register, handleSubmit, reset, errors, formState: { isSubmitSuccessful } } = useForm();
   const [error, setError] = useState(false);
   const [submittedData, setSubmittedData] = useState({});
+  const [thanksMessage, setThanksMessage] = useState(false)
 
   const onSubmit = data => {
-    // jsonp(`${process.env.REACT_APP_MAILCHIMP_URL}&${params}`, { param: 'c' }, (err, data) => {
-    //   if (err) {
-    //     setError(true);
-    //     console.log(errorMessage);
-    //   } else {
-    //     setSubmittedData(data);
-    //   }
-    // });
-    console.log(data['message'])
+    axios.post(`${process.env.REACT_APP_JVCPARRY_API}/send`, data)
+      .then(data => {
+        setSubmittedData(data)
+        setThanksMessage(true);
+        console.log()
+      }
+
+      )
+      .catch(err => {
+        console.log('Message not sent due to error')
+        console.log(err)
+        setError(err)
+      })
   };
 
   useEffect(() => {
@@ -70,7 +76,8 @@ const HireMeForm = () => {
             type='submit'
             m={{ r: "1rem" }}
           >Contact Us</Button>
-          {error && <Text tag='p' textSize='body' textColor='white' p={{ t: '10px' }}>Sorry, an error occurred. Please try again later.</Text>}
+          {error && <Text tag='p' textSize='body' textColor='danger800' p={{ t: '10px' }}>Sorry, an error occurred. Please try again later.</Text>}
+          {thanksMessage && <Text tag='p' textSize='body' textColor='black300' p={{ t: '10px' }}>Thanks for your mail! I'll be in touch shortly.</Text>}
         </form>
       </Div>
     </>
