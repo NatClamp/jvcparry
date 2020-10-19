@@ -28,7 +28,7 @@ const Footer = () => {
             </Anchor>
           </Div>
           <Text tag='p' textSize='body' textAlign={{ xs: 'center' }} align={{ xs: 'center' }} justify={{ xs: 'center' }} p={{ t: '10px', l: '0', r: { xs: '20px', md: '0' } }} m={{ xs: '15px auto', md: 'auto' }} textColor='white'>
-            © {currentYear} JVC Parry - Built with React
+            © {currentYear} JVC Parry
           </Text>
         </Div>
         <Div className='FooterLeft' w={{ xs: '80%', md: '40%' }} m={{ x: '20px', b: '30px' }}>

@@ -3,6 +3,7 @@ import { Container, Div, Button, Text } from 'atomize'
 import { Link } from 'react-router-dom'
 
 import bg from '../images/bg.jpg';
+import logoInverted from '../images/logo-inverted.png'
 
 const HomeHero = () => {
 
@@ -11,7 +12,7 @@ const HomeHero = () => {
       <Container minW='100%' minH='100vh' d="flex" flexDir="column" justify="center" align="center" bg="black" p="2rem" bgImg={bg} bgSize="cover"
         bgPos="center">
         <Div d="flex" flexDir="row" justify="center" align="center" w={{ xs: 'auto', md: '300px' }} p={{ b: '30px' }}>
-          <img src="https://jvcparry.files.wordpress.com/2020/08/cropped-jvcp-logo-inverted.png" alt="" style={{ maxHeight: '120px' }} />
+          <img src={logoInverted} alt="" style={{ maxHeight: '120px' }} />
         </Div>
         <Text tag='h3' textSize='display1' textColor='white'>
           JVC Parry

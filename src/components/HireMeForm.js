@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 
 const HireMeForm = () => {
-  const { register, handleSubmit, reset, errors, formState: { isSubmitSuccessful } } = useForm();
+  const { register, handleSubmit, reset, formState: { isSubmitSuccessful } } = useForm();
   const [error, setError] = useState(false);
   const [submittedData, setSubmittedData] = useState({});
   const [thanksMessage, setThanksMessage] = useState(false)
