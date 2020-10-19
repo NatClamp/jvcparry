@@ -33,9 +33,9 @@ const HireMeForm = () => {
 
   return (
     <>
-      <Div d='flex' flexDir='column' w={{ xs: '100%', sm: '75%' }}>
+      <Div d='flex' flexDir='column' w={{ xs: '100%', lg: '100%' }} p={{ x: '2rem' }}>
         <Text tag="h5" textSize="title" p={{ b: '1rem' }}>Get in touch</Text>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} w='100%'>
           <Text tag='label' htmlFor='name'>Name</Text>
           <Input
             name='name'

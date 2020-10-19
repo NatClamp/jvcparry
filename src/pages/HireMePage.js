@@ -1,6 +1,7 @@
 import React from 'react'
 import { Row, Container, Text, Anchor, Col } from "atomize";
 import HireMeForm from '../components/HireMeForm';
+import PreviousWork from '../components/PreviousWork';
 
 import logo from '../images/logo.png';
 
@@ -27,10 +28,10 @@ const HireMePage = () => {
         </Col>
       </Row>
       <Row p={{ y: { xs: '2rem' }, x: { xs: '2rem', sm: '0' } }}>
-        <Text tag="h5" textSize="title">Previous work</Text>
+        <PreviousWork />
       </Row>
-      <Row p={{ y: { xs: '2rem', sm: '4rem' }, x: { xs: '2rem', sm: '0' } }}>
-        <HireMeForm />
+      <Row p={{ y: { xs: '2rem', sm: '4rem' }, x: { xs: '2rem', sm: '0' } }} d='flex' justify='center'>
+        <HireMeForm id='hire-form' />
       </Row>
     </Container>
   )
