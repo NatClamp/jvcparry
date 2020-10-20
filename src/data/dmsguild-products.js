@@ -843,7 +843,7 @@ module.exports = {
       image: 'https://www.dmsguild.com/images/8957/281618.jpg',
       price: '10.40',
       currencyCode: 'USD',
-      description: 'This special bundle product contains: Minotaur\s Bargain - The Minotaur Trilogy: Part 1, Minotaur\'s Betrayal - The Minotaur Trilogy: Part 2, and Minotaur\'s Bane - The Minotaur Trilogy: Part 3',
+      description: 'This special bundle product contains: Minotaur\'s Bargain - The Minotaur Trilogy: Part 1, Minotaur\'s Betrayal - The Minotaur Trilogy: Part 2, and Minotaur\'s Bane - The Minotaur Trilogy: Part 3',
       guildID: '281618',
       uri: 'https://www.dmsguild.com/product/281618/The-Minotaur-Trilogy-BUNDLE'
     },
