@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, Div, Row, Col, Container, Anchor } from "atomize";
+import { Text, Div, Row, Col, Container, Anchor, Input, Icon } from "atomize";
 import Loading from '../components/Loading'
 import Pagination from '../components/Pagination';
+
 
 import dmsguildProducts from '../data/dmsguild-products';
 
@@ -11,11 +12,11 @@ class DMsProductPage extends Component {
     allProducts: [],
     currentProducts: [],
     currentPage: null,
-    totalPages: null
+    totalPages: null,
+    searchValue: '',
   }
 
   componentDidMount = () => {
-
     const { products } = dmsguildProducts;
     this.setState({ allProducts: products });
   }
@@ -24,6 +25,32 @@ class DMsProductPage extends Component {
     window.scrollTo(0, 0);
   }
 
+  searchTitles = async term => {
+    let lowercaseTerm = term.toLowerCase();
+    const { allProducts } = this.state;
+    let products = await allProducts.filter((product) => {
+      let titleArray = product.title.toLowerCase().split(" ");
+      return titleArray.includes(lowercaseTerm)
+    })
+    let newTotal = products.length
+    console.log(newTotal)
+    this.setState({ currentProducts: products, totalProducts: newTotal })
+  }
+
+  handleChange = e => {
+    this.setState({ searchValue: e.target.value })
+  }
+
+  handleKeypress = e => {
+    if (e.keyCode === 13) {
+      this.handleSubmit();
+    }
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.searchTitles(this.state.searchValue)
+  }
 
   onPageChanged = data => {
     const { allProducts } = this.state;
@@ -33,9 +60,11 @@ class DMsProductPage extends Component {
     this.setState({ currentPage, currentProducts, totalPages });
   }
 
+
   render() {
     const { allProducts, currentProducts, currentPage, totalPages } = this.state;
     const totalProducts = allProducts.length;
+
 
     if (totalProducts === 0) return null;
     if (!dmsguildProducts) return <Loading />
@@ -49,8 +78,25 @@ class DMsProductPage extends Component {
             <Col size={{ xs: '12', md: '2' }} d='flex' justify='center'>
               {currentPage && <Text tag="p" textWeight="300" textSize="body" textAlign='center'>Page {currentPage} / {totalPages}</Text>}
             </Col>
-            <Col size={{ xs: '12', md: '5' }}>
-              <Text tag="p" textSize="paragraph" textAlign='right'>Search bar will go here</Text>
+            <Col size={{ xs: '12', md: '5' }} d='flex' align='center' justify='flex-end' w='100%'>
+              <Input
+                w='100%'
+                placeholder="Search"
+                onKeyPress={this.handleKeypress}
+                onChange={this.handleChange}
+                suffix={
+                  <Icon
+                    name="Search"
+                    size="20px"
+                    cursor="pointer"
+                    onClick={this.handleSubmit}
+                    pos="absolute"
+                    top="50%"
+                    right="1rem"
+                    transform="translateY(-50%)"
+                  />
+                }
+              />
             </Col>
           </Row>
           <Row>
