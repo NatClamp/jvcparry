@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Text, Div, Row, Col, Container, Anchor } from "atomize";
+import { Anchor } from "atomize";
 
 
 const LEFT_PAGE = 'LEFT';
