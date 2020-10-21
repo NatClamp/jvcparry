@@ -12,7 +12,7 @@ const NoProducts = (props) => {
           </Col>
           <Col size={{ xs: '12', md: '2' }} d='flex' justify='center'></Col>
           <Col size={{ xs: '12', md: '5' }} d='flex' align='center' justify={{ xs: 'center', md: 'flex-end' }}  >
-            <form style={{ width: '85%' }} onSubmit={this.handleSubmit}>
+            <form style={{ width: '85%' }} onSubmit={handleSubmit}>
               <Input
                 placeholder="Search"
                 onChange={handleChange}
