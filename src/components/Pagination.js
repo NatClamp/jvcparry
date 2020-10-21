@@ -33,6 +33,12 @@ class Pagination extends Component {
 
     this.state = { currentPage: 1 };
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.totalRecords !== prevProps.totalRecords) {
+      this.totalPages = Math.ceil(this.props.totalRecords / this.pageLimit);
+    }
+  }
+
   fetchPageNumbers = () => {
     const totalPages = this.totalPages;
     const currentPage = this.state.currentPage;
@@ -84,7 +90,6 @@ class Pagination extends Component {
 
       return [1, ...pages, totalPages];
     }
-
     return range(1, totalPages);
   }
 
@@ -93,6 +98,7 @@ class Pagination extends Component {
 
     const { currentPage } = this.state;
     const pages = this.fetchPageNumbers();
+
 
     return (
       <Fragment>

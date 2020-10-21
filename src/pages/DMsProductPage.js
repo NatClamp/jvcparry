@@ -3,7 +3,6 @@ import { Text, Div, Row, Col, Container, Anchor, Input, Icon } from "atomize";
 import Loading from '../components/Loading'
 import Pagination from '../components/Pagination';
 
-
 import dmsguildProducts from '../data/dmsguild-products';
 
 class DMsProductPage extends Component {
@@ -26,15 +25,21 @@ class DMsProductPage extends Component {
   }
 
   searchTitles = async term => {
-    let lowercaseTerm = term.toLowerCase();
-    const { allProducts } = this.state;
-    let products = await allProducts.filter((product) => {
-      let titleArray = product.title.toLowerCase().split(" ");
-      return titleArray.includes(lowercaseTerm)
-    })
-    let newTotal = products.length
-    console.log(newTotal)
-    this.setState({ currentProducts: products, totalProducts: newTotal })
+    if (term === '') {
+      this.setState({ allProducts: dmsguildProducts })
+    } else {
+      let lowercaseTerm = term.toLowerCase();
+      const { allProducts } = this.state;
+      let products = await allProducts.filter((product) => {
+        let titleArray = product.title.toLowerCase().split(" ");
+        return titleArray.includes(lowercaseTerm)
+      });
+      let pageLimit = 18;
+      let totalPages = Math.ceil(products.length / pageLimit)
+      this.setState({ allProducts: products, currentPage: 1, totalPages }, () => {
+        this.onPageChanged({ currentPage: 1, totalPages, pageLimit })
+      })
+    }
   }
 
   handleChange = e => {
@@ -50,6 +55,16 @@ class DMsProductPage extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.searchTitles(this.state.searchValue)
+  }
+
+  resetSearch = e => {
+    const { products } = dmsguildProducts;
+    this.setState({ allProducts: products, searchValue: '' }, () => {
+      let pageLimit = 18;
+      let totalPages = Math.ceil(products.length / pageLimit)
+      this.onPageChanged({ currentPage: 1, totalPages, pageLimit })
+
+    });
   }
 
   onPageChanged = data => {
@@ -79,11 +94,13 @@ class DMsProductPage extends Component {
               {currentPage && <Text tag="p" textWeight="300" textSize="body" textAlign='center'>Page {currentPage} / {totalPages}</Text>}
             </Col>
             <Col size={{ xs: '12', md: '5' }} d='flex' align='center' justify='flex-end' w='100%'>
+              <Text onClick={this.resetSearch} p={{ x: '1rem' }}>Reset</Text>
               <Input
                 w='100%'
                 placeholder="Search"
                 onKeyPress={this.handleKeypress}
                 onChange={this.handleChange}
+                value={this.state.searchValue}
                 suffix={
                   <Icon
                     name="Search"
