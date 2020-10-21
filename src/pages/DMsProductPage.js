@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, Div, Row, Col, Container, Anchor, Input, Icon } from "atomize";
+import { Text, Div, Row, Col, Container, Anchor, Input, Icon, Button } from "atomize";
 import Loading from '../components/Loading'
 import Pagination from '../components/Pagination';
+import NoSearchItems from '../components/NoSearchItems';
 
 import dmsguildProducts from '../data/dmsguild-products';
 
@@ -13,6 +14,7 @@ class DMsProductPage extends Component {
     currentPage: null,
     totalPages: null,
     searchValue: '',
+    searchActive: false,
   }
 
   componentDidMount = () => {
@@ -31,12 +33,29 @@ class DMsProductPage extends Component {
       let lowercaseTerm = term.toLowerCase();
       const { allProducts } = this.state;
       let products = await allProducts.filter((product) => {
-        let titleArray = product.title.toLowerCase().split(" ");
-        return titleArray.includes(lowercaseTerm)
+        let title = product.title.toLowerCase().replace(":", " ").replace("(", " ").replace(")", " ")
+        // let singleTermMatch = title.split(" ").includes(lowercaseTerm)
+        let multipleTermMatch = title.includes(lowercaseTerm);
+        let completeMatch = title === lowercaseTerm;
+        if (completeMatch) {
+          return completeMatch
+        }
+        // else if (singleTermMatch) {
+        //   return singleTermMatch;
+        // }
+        else if (multipleTermMatch) {
+          return multipleTermMatch
+        }
+
+        else {
+          return false
+        }
+
       });
+
       let pageLimit = 18;
       let totalPages = Math.ceil(products.length / pageLimit)
-      this.setState({ allProducts: products, currentPage: 1, totalPages }, () => {
+      this.setState({ allProducts: products, currentPage: 1, totalPages, searchActive: true }, () => {
         this.onPageChanged({ currentPage: 1, totalPages, pageLimit })
       })
     }
@@ -46,12 +65,6 @@ class DMsProductPage extends Component {
     this.setState({ searchValue: e.target.value })
   }
 
-  handleKeypress = e => {
-    if (e.keyCode === 13) {
-      this.handleSubmit();
-    }
-  };
-
   handleSubmit = e => {
     e.preventDefault();
     this.searchTitles(this.state.searchValue)
@@ -59,11 +72,10 @@ class DMsProductPage extends Component {
 
   resetSearch = e => {
     const { products } = dmsguildProducts;
-    this.setState({ allProducts: products, searchValue: '' }, () => {
+    this.setState({ allProducts: products, searchValue: '', searchActive: false }, () => {
       let pageLimit = 18;
       let totalPages = Math.ceil(products.length / pageLimit)
       this.onPageChanged({ currentPage: 1, totalPages, pageLimit })
-
     });
   }
 
@@ -77,43 +89,48 @@ class DMsProductPage extends Component {
 
 
   render() {
-    const { allProducts, currentProducts, currentPage, totalPages } = this.state;
+    const { allProducts, currentProducts, currentPage, totalPages, searchActive, searchValue } = this.state;
     const totalProducts = allProducts.length;
 
 
-    if (totalProducts === 0) return null;
+    if (totalProducts === 0) return <NoSearchItems searchValue={searchValue} resetSearch={this.resetSearch} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
     if (!dmsguildProducts) return <Loading />
     return (
       <>
         <Container>
           <Row d='flex' flexDir={{ xs: 'column', md: 'row' }} justify={{ xs: 'center', md: 'space-around' }} p={{ t: '2rem' }}>
             <Col size={{ xs: '12', md: '5' }}>
-              <Text tag="p" textSize="title">DMsGuild products</Text>
+              <Text tag="p" textSize="title" textAlign={{ xs: 'center', md: 'justify' }}>DMsGuild products</Text>
             </Col>
             <Col size={{ xs: '12', md: '2' }} d='flex' justify='center'>
-              {currentPage && <Text tag="p" textWeight="300" textSize="body" textAlign='center'>Page {currentPage} / {totalPages}</Text>}
+              {currentPage && <Text tag="p" textWeight="300" textSize="body" textAlign='center' m={{ y: { xs: '1rem' } }}>Page {currentPage} / {totalPages}</Text>}
             </Col>
-            <Col size={{ xs: '12', md: '5' }} d='flex' align='center' justify='flex-end' w='100%'>
-              <Text onClick={this.resetSearch} p={{ x: '1rem' }}>Reset</Text>
-              <Input
-                w='100%'
-                placeholder="Search"
-                onKeyPress={this.handleKeypress}
-                onChange={this.handleChange}
-                value={this.state.searchValue}
-                suffix={
-                  <Icon
-                    name="Search"
-                    size="20px"
-                    cursor="pointer"
-                    onClick={this.handleSubmit}
-                    pos="absolute"
-                    top="50%"
-                    right="1rem"
-                    transform="translateY(-50%)"
-                  />
-                }
-              />
+            <Col size={{ xs: '12', md: '5' }} d='flex' align='center' justify={{ xs: 'center', md: 'flex-end' }}  >
+              <form style={{ width: '85%' }} onSubmit={this.handleSubmit}>
+                <Input
+                  placeholder="Search"
+                  onChange={this.handleChange}
+                  value={this.state.searchValue}
+
+                  suffix={
+                    <Icon
+                      name="Search"
+                      size="20px"
+                      cursor="pointer"
+                      onClick={this.handleSubmit}
+                      pos="absolute"
+                      top="50%"
+                      right="1rem"
+                      transform="translateY(-50%)"
+                    />
+                  }
+                />
+              </form>
+              {searchActive && <Button d='flex' align='center' m={{ x: '1rem' }} p={{ x: '0.75rem' }} onClick={this.resetSearch} bg='white' >
+                <Icon name="Close" color="black" size="20px" />
+                <Text textSize='caption' textColor='black' p={{ x: '0.5rem' }}>Clear</Text>
+              </Button>}
+
             </Col>
           </Row>
           <Row>
@@ -151,6 +168,8 @@ class DMsProductPage extends Component {
       </>
     )
   }
+
+
 
 }
 
