@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Container, Text, Anchor, Col } from "atomize";
+import { Row, Container, Text, Anchor, Col, Div } from "atomize";
 import HireMeForm from '../components/HireMeForm';
 import PreviousWork from '../components/PreviousWork';
 
@@ -30,8 +30,11 @@ const HireMePage = () => {
       <Row p={{ y: { xs: '2rem' }, x: { xs: '2rem', sm: '0' } }}>
         <PreviousWork />
       </Row>
-      <Row p={{ y: { xs: '2rem', sm: '4rem' }, x: { xs: '2rem', sm: '0' } }} d='flex' justify='center'>
-        <HireMeForm id='hire-form' />
+      <Row >
+        <Div p={{ y: { xs: '2rem', sm: '4rem' }, x: { xs: '2rem' } }} w='100%'>
+          <Text tag="h5" textSize="title" p={{ b: '1rem' }} id='hire-form'>Get in touch</Text>
+          <HireMeForm id='hire-form' />
+        </Div>
       </Row>
     </Container>
   )
