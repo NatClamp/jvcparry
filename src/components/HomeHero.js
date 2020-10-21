@@ -2,7 +2,8 @@ import React from 'react'
 import { Container, Div, Button, Text } from 'atomize'
 import { Link } from 'react-router-dom'
 
-import bg from '../images/bg.jpg';
+// import bg from '../images/bg.jpg';
+import bg from '../images/bg-min.jpg';
 import logoInverted from '../images/logo-inverted.png'
 
 const HomeHero = () => {
@@ -46,7 +47,7 @@ const HomeHero = () => {
             >Hire Me
                         </Button>
           </Link>
-          <Link to='/Blog' style={{ textDecoration: 'none' }}>
+          {/* <Link to='/Blog' style={{ textDecoration: 'none' }}>
             <Button
               textSize="subheader"
               hoverTextColor="gray200"
@@ -54,11 +55,10 @@ const HomeHero = () => {
               hoverBg="hsla(217, 14%, 43%)"
               bg="hsla(217, 14%, 50%)"
               m='1rem'
-              // p={{ x: '1.5em' }}
               w='10em'
             >Blog
                         </Button>
-          </Link>
+          </Link> */}
         </Div>
       </Container>
     </>

@@ -1,6 +1,7 @@
 import React from 'react'
-import { Row, Col, Container, Text, Anchor, Button, Div } from "atomize";
+import { Row, Col, Container, Text, Button, Div } from "atomize";
 import portrait from '../images/portrait.jpg';
+import { Link } from 'react-router-dom'
 
 
 const Bio = () => {
@@ -16,7 +17,7 @@ const Bio = () => {
             <Text textSize={{ xs: 'paragraph', sm: 'subheader' }} textAlign="right">My formal education is in Biosciences and Zoology, and in my spare time I like to play games (obviously), ramble, write, fish, play in bands, and eat fine food!</Text>
           </Div>
           <Div d="flex" justify='flex-end' m={{ b: '20px' }}>
-            <Anchor href="hire-me" textDecoration='none' w='100px' m='0'>
+            <Link to='/hire-me' style={{ textDecoration: 'none' }}>
               <Button
                 d='inline-block'
                 r='0'
@@ -31,7 +32,7 @@ const Bio = () => {
                 borderColor="black"
                 hoverBorderColor="hsla(217, 14%, 50%)"
               >Hire me</Button>
-            </Anchor>
+            </Link>
           </Div>
 
         </Col>
