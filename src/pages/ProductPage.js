@@ -19,7 +19,7 @@ const ProductPage = () => {
     return (
         <Container>
             <Row d='flex' justify='flex-start' align='center' p={{ t: '20px', l: '10px' }}>
-                <Icon name="Back" size="20px" color="gray900" /> <Anchor href='/products' textColor="gray900" textSize='body' >Back to products</Anchor>
+                <Icon name="Back" size="20px" color="gray900" /> <Anchor href='/products' textColor="gray900" textSize='body'>Back to products</Anchor>
             </Row>
             <Row m={{ b: "2rem" }} p="2rem" d='flex' justify={{ xs: 'center', sm: 'space-around' }}>
                 <Col size={{ xs: '12', sm: '4' }} d='flex' justify='center' align='center'>
