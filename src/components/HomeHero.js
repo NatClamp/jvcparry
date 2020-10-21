@@ -26,7 +26,7 @@ const HomeHero = () => {
             <Button
               textSize="subheader"
               hoverTextColor="gray200"
-              TextColor="gray300"
+              textColor="gray300"
               hoverBg="hsla(217, 14%, 43%)"
               bg="hsla(217, 14%, 50%)"
               m='1rem'

@@ -156,11 +156,11 @@ class DMsProductPage extends Component {
               </Col>
             ))}
           </Row>
-          <Row p={{ y: '2rem', l: '2rem' }}>
-            <Col size={{ xs: '12', md: '7' }} d='flex' align='center'>
-              {currentPage && <Text tag="p" textWeight="300" textSize="body">Page {currentPage} / {totalPages}</Text>}
+          <Row p={{ y: '2rem', x: '2rem' }} >
+            <Col size={{ xs: '12', md: '7' }} d='flex' align='center' justify={{ xs: 'center', md: 'flex-start' }}>
+              {currentPage && <Text tag="p" textWeight="300" textSize="body" textAlign='center'>Page {currentPage} / {totalPages}</Text>}
             </Col>
-            <Col size={{ xs: '12', md: '5' }} d='flex' justify='center' >
+            <Col size={{ xs: '12', md: '5' }} d='flex' justify={{ xs: 'center', md: 'flex-end' }} >
               <Pagination totalRecords={totalProducts} pageLimit={18} pageNeighbours={1} onPageChanged={this.onPageChanged} />
             </Col>
           </Row>
