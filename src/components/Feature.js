@@ -7,11 +7,11 @@ const Feature = () => {
 
   return (
     <Container className='featureContainer'>
-      <Row d='flex' flexDir={{ xs: 'column', sm: 'column', md: 'column', lg: 'row' }} justify='center' align='center'>
+      <Row d='flex' flexDir={{ xs: 'column', sm: 'column', md: 'column', lg: 'row' }} justify={{ xs: 'center', sm: 'space-around' }} align='center'>
         <Col size={{ xs: '10', sm: '4' }} >
-          <img src={cover} alt='' style={{ maxHeight: '400px' }} />
+          <img src={cover} alt='' style={{ width: '100% ' }} />
         </Col>
-        <Col size={{ xs: '10', sm: '6' }} d='flex' flexDir='column' justify='center'>
+        <Col size={{ xs: '10', sm: '7' }} d='flex' flexDir='column' justify='center'>
           <Div m={{ t: '10px' }}>
             <Text textSize="heading" >Call from the Deep</Text>
             <Text textSize="title"><em>Assault from the Astral</em></Text>
@@ -22,13 +22,14 @@ const Feature = () => {
                 h="2.5rem"
                 p={{ x: "1rem" }}
                 textSize="body"
-                textColor="black"
-                hoverTextColor="hsla(217, 14%, 50%)"
-                bg="white"
-                hoverBg="grey600"
+                textColor="black700"
+                bg="gray100"
+                hoverBg="gray300"
                 border="1px solid"
-                borderColor="black"
-                hoverBorderColor="hsla(217, 14%, 50%)"
+                borderColor="black700"
+                hoverBorderColor="black900"
+                shadow='2'
+                hoverShadow='3'
                 m={{ t: '1rem', r: '0' }}
               >Buy on DMsGuild</Button>
             </Anchor>

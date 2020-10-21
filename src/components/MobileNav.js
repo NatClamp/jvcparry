@@ -14,9 +14,9 @@ const MobileNav = () => {
           <Row p="1rem" d="flex" justify="center">
             <li><Link to='/hire-me' style={{ textDecoration: 'none', color: 'white' }}>Hire Me</Link></li>
           </Row>
-          <Row p="1rem" d="flex" justify="center">
+          {/* <Row p="1rem" d="flex" justify="center">
             <li><Link to='/blog' style={{ textDecoration: 'none', color: 'white' }}>Blog</Link></li>
-          </Row>
+          </Row> */}
         </ul>
       </Container>
     </>

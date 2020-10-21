@@ -55,13 +55,14 @@ const ProductsPage = () => {
               h="2.5rem"
               p={{ x: "1rem" }}
               textSize="body"
-              textColor="black"
-              hoverTextColor="hsla(217, 14%, 50%)"
-              bg="white"
-              hoverBg="grey600"
+              textColor="black700"
+              bg="gray100"
+              hoverBg="gray300"
               border="1px solid"
-              borderColor="black"
-              hoverBorderColor="hsla(217, 14%, 50%)"
+              borderColor="black700"
+              hoverBorderColor="black900"
+              shadow='2'
+              hoverShadow='3'
               m={{ t: '1rem', r: '0' }}
             >See more DMsGuild products</Button>
           </Link>

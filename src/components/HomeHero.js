@@ -2,7 +2,6 @@ import React from 'react'
 import { Container, Div, Button, Text } from 'atomize'
 import { Link } from 'react-router-dom'
 
-// import bg from '../images/bg.jpg';
 import bg from '../images/bg-min.jpg';
 import logoInverted from '../images/logo-inverted.png'
 
@@ -10,7 +9,7 @@ const HomeHero = () => {
 
   return (
     <>
-      <Container minW='100%' minH='100vh' d="flex" flexDir="column" justify="center" align="center" bg="black" p="2rem" bgImg={bg} bgSize="cover"
+      <Container minW='100%' minH='100vh' d="flex" flexDir="column" justify="center" align="center" p="2rem" bgImg={bg} bgSize="cover"
         bgPos="center">
         <Div d="flex" flexDir="row" justify="center" align="center" w={{ xs: 'auto', md: '300px' }} p={{ b: '30px' }}>
           <img src={logoInverted} alt="" style={{ maxHeight: '120px' }} />
@@ -25,25 +24,28 @@ const HomeHero = () => {
           <Link to='/products' style={{ textDecoration: 'none' }}>
             <Button
               textSize="subheader"
-              hoverTextColor="gray200"
-              textColor="gray300"
-              hoverBg="hsla(217, 14%, 43%)"
-              bg="hsla(217, 14%, 50%)"
+              hoverTextColor="black"
+              textColor="black"
+              hoverBg="gray400"
+              bg="white"
               m='1rem'
               w='10em'
+              shadow="4"
+              hoverShadow="6"
             >Products
                         </Button>
           </Link>
           <Link to='/hire-me' style={{ textDecoration: 'none' }}>
             <Button
               textSize="subheader"
-              hoverTextColor="gray200"
-              TextColor="gray300"
-              hoverBg="hsla(217, 14%, 43%)"
-              bg="hsla(217, 14%, 50%)"
+              hoverTextColor="black"
+              textColor="black"
+              hoverBg="gray400"
+              bg="white"
               m='1rem'
               w='10em'
-
+              shadow="4"
+              hoverShadow="6"
             >Hire Me
                         </Button>
           </Link>

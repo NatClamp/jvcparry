@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const Bio = () => {
 
   return (
-    <Container className='featureContainer'>
+    <Container className='bioContainer'>
       <Row d='flex' flexDir={{ xs: 'column', sm: 'column', md: 'column', lg: 'row' }} justify={{ xs: 'center', sm: 'space-around' }} align='center'>
         <Col size={{ xs: '10', sm: '7' }} d='flex' flexDir='column' justify='center'>
           <Div m={{ y: '20px' }}>
@@ -19,25 +19,25 @@ const Bio = () => {
           <Div d="flex" justify='flex-end' m={{ b: '20px' }}>
             <Link to='/hire-me' style={{ textDecoration: 'none' }}>
               <Button
-                d='inline-block'
-                r='0'
+                d="inline-block"
                 h="2.5rem"
                 p={{ x: "1rem" }}
                 textSize="body"
-                textColor="black"
-                hoverTextColor="hsla(217, 14%, 50%)"
-                bg="white"
-                hoverBg="grey600"
+                textColor="black700"
+                bg="gray100"
+                hoverBg="gray300"
                 border="1px solid"
-                borderColor="black"
-                hoverBorderColor="hsla(217, 14%, 50%)"
+                borderColor="black700"
+                hoverBorderColor="black900"
+                shadow='2'
+                hoverShadow='3'
+                m={{ t: '1rem', r: '0' }}
               >Hire me</Button>
             </Link>
           </Div>
-
         </Col>
         <Col size={{ xs: '10', sm: '4' }} >
-          <img src={portrait} alt='' style={{ maxHeight: '300px' }} />
+          <img src={portrait} alt='' style={{ width: '100% ' }} />
         </Col>
       </Row>
     </Container >
