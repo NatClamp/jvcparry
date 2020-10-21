@@ -23,7 +23,7 @@ const HireMePage = () => {
         </Text>
           <Text tag="p" textSize="paragraph">If you'd like to discuss a project, <Anchor d="inline-block" href="#hire-form">get in touch</Anchor>!</Text>
         </Col>
-        <Col size={{ xs: '12', sm: '4' }} p={{ t: { xs: '2rem' } }} d='flex' justify='center' align='center'>
+        <Col size={{ xs: '12', sm: '4' }} p={{ y: { xs: '2rem' } }} d='flex' justify='center' align='center'>
           <img src={logo} alt='' style={{ maxHeight: '200px' }} />
         </Col>
       </Row>

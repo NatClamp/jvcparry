@@ -16,7 +16,7 @@ const Bio = () => {
             <Text textSize={{ xs: 'paragraph', sm: 'subheader' }} textAlign="right">My formal education is in Biosciences and Zoology, and in my spare time I like to play games (obviously), ramble, write, fish, play in bands, and eat fine food!</Text>
           </Div>
           <Div d="flex" justify='flex-end' m={{ b: '20px' }}>
-            <Anchor href="/hire-me" textDecoration='none' w='100px' m='0'>
+            <Anchor href="hire-me" textDecoration='none' w='100px' m='0'>
               <Button
                 d='inline-block'
                 r='0'
