@@ -8,11 +8,11 @@ const NoProducts = (props) => {
       <Container>
         <Row d='flex' flexDir={{ xs: 'column', md: 'row' }} justify={{ xs: 'center', md: 'space-around' }} p={{ t: '2rem' }}>
           <Col size={{ xs: '12', md: '5' }}>
-            <Text tag="p" textSize="title">DMsGuild products</Text>
+            <Text tag="p" textSize="title" p={{ y: { xs: '1rem' } }}>DMsGuild products</Text>
           </Col>
           <Col size={{ xs: '12', md: '2' }} d='flex' justify='center'></Col>
-          <Col size={{ xs: '12', md: '5' }} d='flex' align='center' justify={{ xs: 'center', md: 'flex-end' }}  >
-            <form style={{ width: '85%' }} onSubmit={handleSubmit}>
+          <Col size={{ xs: '12', md: '5' }} d='flex' flexDir={{ xs: 'column', md: 'row' }} align='center' justify={{ xs: 'center', md: 'flex-end' }}  >
+            <form style={{ width: '85%' }} onSubmit={handleSubmit} >
               <Input
                 placeholder="Search"
                 onChange={handleChange}
@@ -38,7 +38,7 @@ const NoProducts = (props) => {
 
           </Col>
         </Row>
-        <Row d='flex' flexDir='column' justify='center' align='center'>
+        <Row d='flex' flexDir='column' justify='center' align='center' m={{ y: '2rem' }}>
           <Text textSize='title' p='2rem' textAlign='center'>Sorry, there are no products matching the search term "{searchValue}"</Text>
           <Anchor href='/products/dmsguild'>
             <Button
