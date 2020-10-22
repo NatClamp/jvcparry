@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Container, Text, Anchor } from "atomize";
+import { Row, Col, Div, Text, Anchor } from "atomize";
 
 import heroicChallenges from '../images/heroic-challenges.jpg';
 import remarkableInns from '../images/remarkable-inns2.jpg';
@@ -8,7 +8,7 @@ import remarkableShops from '../images/remarkable-shops2.jpg';
 const PreviousWork = () => {
 
   return (
-    <Container className='previousWorkContainer' p='0'>
+    <Div className='previousWorkContainer'>
       <Text tag="h5" textSize="title">Previous work</Text>
 
       <Row d='flex' flexDir={{ xs: 'column', sm: 'column', md: 'column', lg: 'row' }} justify={{ xs: 'center', sm: 'space-around' }} align='center'>
@@ -43,7 +43,7 @@ const PreviousWork = () => {
           <Text textAlign={{ xs: 'center', md: 'left' }} textSize="paragraph">The Ultimate Guide on Roleplaying Fantasy Shops - From the classic general goods store to wildly exotic locations such as magic item artificers, black markets, underwater libraries, and traveling merchants.</Text>
         </Col>
       </Row>
-    </Container>
+    </Div>
   )
 }
 
