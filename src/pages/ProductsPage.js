@@ -68,7 +68,7 @@ const ProductsPage = () => {
           </Link>
         </Row>
         <Row>
-          <Text p={{ t: '2rem' }} tag="p" textSize="title">Standalone products</Text>
+          <Text p={{ t: '2rem' }} tag="p" textSize="title">Indie products</Text>
         </Row>
         <Row d='flex' flexDir={{ xs: 'column', md: 'row' }} flexWrap="wrap">
           {products.map(product => (
