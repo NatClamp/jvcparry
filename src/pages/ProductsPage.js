@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react'
-import { ShopContext } from '../context/shopContext'
+import React, { useContext, useEffect } from 'react';
+import { ShopContext } from '../context/shopContext';
 import { Text, Div, Row, Col, Container, Anchor, Button } from "atomize";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Loading from '../components/Loading'
 
 import dmsguildProducts from '../data/dmsguild-products';

@@ -49,7 +49,7 @@ const HomeHero = () => {
             >Hire Me
                         </Button>
           </Link>
-          {/* <Link to='/Blog' style={{ textDecoration: 'none' }}>
+          <Link to='/Blog' style={{ textDecoration: 'none' }}>
             <Button
               textSize="subheader"
               hoverTextColor="gray200"
@@ -60,7 +60,7 @@ const HomeHero = () => {
               w='10em'
             >Blog
                         </Button>
-          </Link> */}
+          </Link>
         </Div>
       </Container>
     </>

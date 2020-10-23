@@ -3,7 +3,8 @@ import './App.css';
 import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ShopProvider from './context/shopContext'
+import ShopProvider from './context/shopContext';
+import BlogProvider from './context/blogContext';
 
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -24,43 +25,45 @@ const engine = new Styletron();
 const App = () => {
   return (
     <ShopProvider>
-      <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-        <Router>
-          <ScrollToTop />
-          <Cart />
-          <Switch>
-            <Route path="/product/:id">
-              <Header />
-              <ProductPage />
-            </Route>
-            <Route path="/products/dmsguild">
-              <Header />
-              <DMsProductPage />
-            </Route>
-            <Route path="/products">
-              <Header />
-              <ProductsPage />
-            </Route>
-            <Route path="/hire-me">
-              <Header />
-              <HireMe />
-            </Route>
-            <Route path="/blog/:id">
-              <Header />
-              <BlogPost />
-            </Route>
-            <Route path="/blog">
-              <Header />
-              <Blog />
-            </Route>
-            <Route path="/">
-              <HomeHero />
-              <HomePage />
-            </Route>
-          </Switch>
-          <Footer />
-        </Router>
-      </StyletronProvider>
+      <BlogProvider>
+        <StyletronProvider value={engine} debug={debug} debugAfterHydration>
+          <Router>
+            <ScrollToTop />
+            <Cart />
+            <Switch>
+              <Route path="/product/:id">
+                <Header />
+                <ProductPage />
+              </Route>
+              <Route path="/products/dmsguild">
+                <Header />
+                <DMsProductPage />
+              </Route>
+              <Route path="/products">
+                <Header />
+                <ProductsPage />
+              </Route>
+              <Route path="/hire-me">
+                <Header />
+                <HireMe />
+              </Route>
+              <Route path="/blog/:id">
+                <Header />
+                <BlogPost />
+              </Route>
+              <Route path="/blog">
+                <Header />
+                <Blog />
+              </Route>
+              <Route path="/">
+                <HomeHero />
+                <HomePage />
+              </Route>
+            </Switch>
+            <Footer />
+          </Router>
+        </StyletronProvider>
+      </BlogProvider>
     </ShopProvider>
   );
 }
