@@ -22,7 +22,7 @@ const Header = () => {
                 <Anchor onClick={() => toggleMenu()} cursor="pointer" d={{ xs: 'flex', md: 'none' }}>{mobileMenuOpen ? <Icon name="Cross" size="20px" color="gray400" /> : <Icon name="Menu" size="20px" color="gray400" />}</Anchor>
                 <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
                     <Div d="flex" flexDir="row" justify="center" align="center" w={{ xs: 'auto', md: '300px' }}>
-                        <img src="https://jvcparry.files.wordpress.com/2020/08/cropped-jvcp-logo-inverted.png" alt="" style={{ maxHeight: '60px' }} />
+                        <img src="https://jvcparry.files.wordpress.com/2020/08/cropped-jvcp-logo-inverted.png" alt="JVC Parry logo" style={{ maxHeight: '60px' }} />
                     </Div>
                 </Link>
                 <Anchor onClick={() => openCart()} w={{ xs: 'auto', md: '300px' }} d="flex" justify="flex-end" cursor="pointer"><Icon name="Bag" size="20px" color="gray400" /></Anchor>

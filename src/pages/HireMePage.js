@@ -24,7 +24,7 @@ const HireMePage = () => {
           <Text tag="p" textSize="paragraph" p={{ y: '0.5rem' }}>If you'd like to discuss a project, <Anchor d="inline-block" href="#hire-form">get in touch</Anchor>!</Text>
         </Col>
         <Col size={{ xs: '12', sm: '4' }} p={{ y: { xs: '2rem' } }} d='flex' justify='center' align='center'>
-          <img src={logo} alt='' style={{ maxHeight: '200px' }} />
+          <img src={logo} alt='JVC Parry logo' style={{ maxHeight: '200px' }} />
         </Col>
       </Row>
       <Row p={{ y: { xs: '2rem' }, x: { xs: '2rem', md: '0' } }}>

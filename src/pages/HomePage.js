@@ -8,7 +8,6 @@ const HomePage = () => {
     return (
         <Container p={{ y: '40px' }} d='flex' align='center' flexDir='column'>
             <Feature />
-            <Div p={{ xs: '20px', sm: '50px' }} />
             <Bio />
         </Container>
     )
