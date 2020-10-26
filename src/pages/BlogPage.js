@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import Loading from '../components/Loading';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BlogContext } from '../context/blogContext';
 import { Text, Row, Container, Div, Button } from "atomize";
 
 
 const BlogPage = () => {
-  const { getAllPosts, allPosts, postCount, categories, getPostById } = useContext(BlogContext)
+  const { getAllPosts, allPosts, postCount } = useContext(BlogContext)
 
   useEffect(() => {
     getAllPosts()
@@ -15,19 +15,18 @@ const BlogPage = () => {
   }, [getAllPosts])
 
 
-
   if (!postCount) return <Loading />
   return (
-    <Container>
+    <Container maxW='1000px'>
       <Row>
-        <Text p={{ t: '2rem' }} tag="p" textSize="title">Blog</Text>
+        <Text p={{ t: '2rem' }} tag="h2" textSize="display2">Blog</Text>
       </Row>
       <Row>
         {allPosts.map(post => (
-          <Div key={post.id} p="1rem" m="2rem">
-            <Text>{post.preparedTitle}</Text>
-            <Text>{post.preparedDate}</Text>
-            <Text>{post.preparedExcerpt}</Text>
+          <Div key={post.id} p="2rem" m={{ y: "1rem" }} bg='gray400'>
+            <Text tag="h3" textSize="title">{post.preparedTitle}</Text>
+            <Text p={{ b: '0.5rem' }} tag="h4" textSize="subheader">{post.preparedDate}</Text>
+            <Text tag="p" textSize="paragraph">{post.preparedExcerpt}</Text>
             <Link to={`/blog/${post.id}`}>
               <Button
                 d="inline-block"

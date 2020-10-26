@@ -20,10 +20,10 @@ class BlogProvider extends Component {
     this.preparePosts(posts.data);
   }
 
-  // getAllCategories = async () => {
-  //   const cats = await axios.get(`${process.env.REACT_APP_WORDPRESS_API}/categories`);
-  //   this.setState({ categories: cats.data })
-  // }
+  getAllCategories = async () => {
+    const cats = await axios.get(`${process.env.REACT_APP_WORDPRESS_API}/categories`);
+    this.setState({ categories: cats.data })
+  }
 
   preparePosts = async (posts) => {
     const postsCopy = await [...posts]
@@ -57,15 +57,12 @@ class BlogProvider extends Component {
   getPostById = async (id) => {
     const post = await axios.get(`${process.env.REACT_APP_WORDPRESS_API}/posts/${id}`)
     const postCopy = JSON.parse(JSON.stringify(post.data))
-    const parsedTitle = parse(postCopy.title.rendered)
-    const formattedDate = new Date(postCopy.date).toLocaleDateString('en-gb', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
     this.getPostCategories(postCopy.categories).then(data => {
       this.setState({ categories: data })
     })
+    const parsedTitle = parse(postCopy.title.rendered)
+    const formattedDate = new Date(postCopy.date).toLocaleDateString('en-gb', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
-    // Promise.all(categories).then(function (results) {
-    //   console.log(results)
-    // })
     this.setState({
       postById: post.data,
       parsedTitle: parsedTitle,
@@ -82,7 +79,7 @@ class BlogProvider extends Component {
           ...this.state,
           getAllPosts: this.getAllPosts,
           getPostById: this.getPostById,
-          // getAllCategories: this.getAllCategories,
+          getAllCategories: this.getAllCategories,
         }}
       >
         {this.props.children}
