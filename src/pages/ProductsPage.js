@@ -7,7 +7,7 @@ import Loading from '../components/Loading'
 import dmsguildProducts from '../data/dmsguild-products';
 
 const ProductsPage = () => {
-  const { fetchAllProducts, products } = useContext(ShopContext)
+  const { fetchAllProducts, products, isLoading } = useContext(ShopContext)
 
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const ProductsPage = () => {
   }, [fetchAllProducts])
 
 
-  if (!products) return <Loading />
+  if (isLoading) return <Loading />
   return (
     <>
       <Container>

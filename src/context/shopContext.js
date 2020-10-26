@@ -14,6 +14,7 @@ class ShopProvider extends Component {
     product: {},
     checkout: {},
     isCartOpen: false,
+    isLoading: false,
   };
 
   componentDidMount() {
@@ -31,6 +32,7 @@ class ShopProvider extends Component {
   }
 
   createCheckout = async () => {
+    this.setState({ isLoading: true })
     const checkout = await client.checkout.create();
     localStorage.setItem("checkout", checkout.id);
     await this.setState({ checkout: checkout });
@@ -79,8 +81,7 @@ class ShopProvider extends Component {
 
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
-    this.setState({ products: products });
-    console.log(products)
+    this.setState({ products: products, isLoading: false });
   };
 
   fetchProductWithId = async (id) => {
