@@ -8,7 +8,7 @@ var parse = require('html-react-parser');
 
 
 const BlogPage = () => {
-  const { getPostById, postById, parsedTitle, content, date, categories, tags, isLoading, currentPage } = useContext(BlogContext)
+  const { getPostById, postById, parsedTitle, content, date, categories, tags, isLoading } = useContext(BlogContext)
   let { id } = useParams()
 
   useEffect(() => {

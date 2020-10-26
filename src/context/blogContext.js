@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from 'axios';
 var parse = require('html-react-parser');
 
-
 const BlogContext = React.createContext();
 
 class BlogProvider extends Component {
@@ -19,22 +18,31 @@ class BlogProvider extends Component {
     content: '',
     categories: [],
     tags: [],
+    filter: null,
+    filterName: null,
   };
 
-  getAllPosts = async (page) => {
-    this.setState({ isLoading: true });
+  getAllPosts = async (page, category) => {
     let apiCall;
+    let BASE_URL = process.env.REACT_APP_WORDPRESS_API;
+    this.setState({ isLoading: true });
+    let URL = category ? `${BASE_URL}/posts?categories=${category}` : `${BASE_URL}/posts`
     if (page) {
-      apiCall = `${process.env.REACT_APP_WORDPRESS_API}/posts?page=${page}`
+      if (URL.includes('?')) {
+        apiCall = `${URL}&page=${page}`
+      } else {
+        apiCall = `${URL}?page=${page}`
+      }
+      this.setState({ currentPage: page })
     } else {
-      apiCall = `${process.env.REACT_APP_WORDPRESS_API}/posts`
+      apiCall = URL
     }
+    console.log(apiCall)
     let posts = await axios.get(apiCall);
+    posts.data.length < 10 ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
     this.preparePosts(posts.data);
-    if (!this.state.totalPostCount) {
-      this.setState({ totalPostCount: Number(posts.headers['x-wp-total']) })
-      this.getPageCount();
-    }
+    console.log(posts)
+    this.setState({ totalPostCount: Number(posts.headers['x-wp-total']), pageCount: Number(posts.headers['x-wp-totalpages']) })
   }
 
   getPostById = async (id) => {
@@ -61,8 +69,22 @@ class BlogProvider extends Component {
 
   getAllCategories = async () => {
     const cats = await axios.get(`${process.env.REACT_APP_WORDPRESS_API}/categories`);
-    let categories = cats.data.map(cat => cat.name)
+    let categories = cats.data.map(cat => {
+      let categoryObj = {};
+      categoryObj['name'] = cat.name;
+      categoryObj['id'] = cat.id
+      return categoryObj
+    })
     this.setState({ allCategories: categories })
+  }
+
+  setFilter = (filter, filterName) => {
+    this.setState({ filter, filterName })
+  }
+
+  removeFilter = () => {
+    this.setState({ filter: null, filterName: null }, () => this.getAllPosts())
+
   }
 
   getAllTags = async () => {
@@ -72,8 +94,6 @@ class BlogProvider extends Component {
 
   preparePosts = async (posts) => {
     const postsCopy = await [...posts]
-    // this.getAllTags();
-    // this.getAllCategories();
     const parsedPosts = await postsCopy.map(post => {
       let parsedExcerpt = parse(post.excerpt.rendered);
       let parsedTitle = parse(post.title.rendered);
@@ -116,19 +136,13 @@ class BlogProvider extends Component {
   }
 
 
-
-  getPageCount = () => {
-    let pageCount = (this.totalPostCount / 10) + 1;
-    this.setState({ pageCount })
-  }
-
   handleNextPage = () => {
     this.setState(
       prevState => {
         prevState.currentPage++;
       },
       () => {
-        this.getAllPosts(this.state.currentPage);
+        this.getAllPosts(this.state.currentPage, this.state.filter);
       },
     );
   };
@@ -139,7 +153,7 @@ class BlogProvider extends Component {
         prevState.currentPage--;
       },
       () => {
-        this.getAllPosts(this.state.currentPage)
+        this.getAllPosts(this.state.currentPage, this.state.filter)
       },
     );
   };
@@ -155,6 +169,8 @@ class BlogProvider extends Component {
           handleNextPage: this.handleNextPage,
           handlePrevPage: this.handlePrevPage,
           getAllCategories: this.getAllCategories,
+          setFilter: this.setFilter,
+          removeFilter: this.removeFilter,
         }}
       >
         {this.props.children}

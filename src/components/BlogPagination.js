@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Div, Button } from "atomize";
 import { BlogContext } from '../context/blogContext';
 
 
 const BlogPagination = () => {
   const { currentPage, lastPage, handlePrevPage, handleNextPage } = useContext(BlogContext)
-
-
 
   return (
     <Div d='flex' justify='center' align='center' m={{ y: '1rem' }}>

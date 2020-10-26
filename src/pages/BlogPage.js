@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom'
 import Loading from '../components/Loading';
 import React, { useContext, useEffect } from 'react';
 import { BlogContext } from '../context/blogContext';
-import { Text, Row, Container, Div } from "atomize";
+import { Text, Row, Container, Div, Col, Tag, Icon } from "atomize";
 import BlogPagination from '../components/BlogPagination';
 import BlogFilter from '../components/BlogFilter';
 
 const BlogPage = () => {
-  const { getAllPosts, allPosts, isLoading, getAllCategories, allCategories } = useContext(BlogContext)
+  const { getAllPosts, allPosts, isLoading, getAllCategories, allCategories, lastPage, pageCount, filterName, removeFilter, currentPage } = useContext(BlogContext)
 
   useEffect(() => {
     getAllPosts()
@@ -19,12 +19,23 @@ const BlogPage = () => {
   if (isLoading) return <Loading />
   return (
     <Container maxW='1000px'>
-      <Row>
-        <Text p={{ t: '2rem' }} tag="h2" textSize="display2">Blog</Text>
+      <Row d='flex' align='center' p={{ t: '2rem' }}>
+        <Col>
+          <Text tag="h2" textSize="display2">Blog</Text>
+        </Col>
+        <Col >
+          <BlogFilter allCategories={allCategories} />
+          {filterName && <Tag m={{ r: "1rem", y: "1rem" }} suffix={
+            <Icon
+              name="Cross"
+              size="12px"
+              m={{ l: "1rem" }}
+              cursor="pointer"
+              onClick={() => removeFilter()}
+            />
+          }>Filter: {filterName} </Tag>}
+        </Col>
       </Row>
-      {/* <Row>
-        <BlogFilter allCategories={allCategories} />
-      </Row> */}
       <Row>
         {allPosts.map(post => (
           <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }} key={post.id}>
@@ -36,7 +47,8 @@ const BlogPage = () => {
           </Link>
         ))}
       </Row>
-      <Row d='flex' justify='center' m={{ y: '1rem' }}>
+      <Row d='flex' flexDir='column' justify='center' m={{ y: '1rem' }} align='center'>
+        <Text>Page {currentPage} / {pageCount}</Text>
         <BlogPagination />
       </Row>
     </Container >
