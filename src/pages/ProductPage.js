@@ -6,7 +6,7 @@ import Loading from '../components/Loading'
 
 const ProductPage = () => {
     let { id } = useParams()
-    const { fetchProductWithId, addItemToCheckout, product } = useContext(ShopContext)
+    const { fetchProductWithId, addItemToCheckout, product, isLoading } = useContext(ShopContext)
 
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const ProductPage = () => {
         };
     }, [fetchProductWithId, id])
 
-    if (!product.title) return <Loading />
+    if (isLoading) return <Loading />
     return (
         <Container>
             <Row d='flex' justify='flex-start' align='center' p={{ y: '2rem', x: '1rem' }}>

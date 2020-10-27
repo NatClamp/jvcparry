@@ -18,8 +18,6 @@ class ShopProvider extends Component {
   };
 
   componentDidMount() {
-    // this.createCheckout();
-
     //Check if localStorage has a checkout_id saved
     if (localStorage.checkout) {
       this.fetchCheckout(localStorage.checkout);
@@ -27,12 +25,10 @@ class ShopProvider extends Component {
       this.createCheckout();
     }
     //if there is no checkout_id in localStorage then we will create a new checkout
-
     //else fetch the checkout from shopify
   }
 
   createCheckout = async () => {
-    this.setState({ isLoading: true })
     const checkout = await client.checkout.create();
     localStorage.setItem("checkout", checkout.id);
     await this.setState({ checkout: checkout });
@@ -80,16 +76,25 @@ class ShopProvider extends Component {
   }
 
   fetchAllProducts = async () => {
-    const products = await client.product.fetchAll();
-    this.setState({ products: products, isLoading: false });
+    this.setState({ isLoading: true, err: false })
+    try {
+      const products = await client.product.fetchAll();
+      this.setState({ products: products, isLoading: false });
+    } catch (err) {
+      this.setState({ err: true })
+    }
   };
 
   fetchProductWithId = async (id) => {
-    const product = await client.product.fetch(id);
-    this.setState({ product: product });
-    // console.log(JSON.stringify(product));
-
-    return product;
+    this.setState({ isLoading: true, err: false })
+    try {
+      const product = await client.product.fetch(id);
+      this.setState({ product: product, isLoading: false });
+      return product;
+    }
+    catch (err) {
+      this.setState({ err: true })
+    }
   };
 
   closeCart = () => {
