@@ -37,22 +37,21 @@ const Nav = () => {
           >Hire Me
                         </Button>
         </Link>
-        {/* <Link to='/Blog' style={{ textDecoration: 'none' }}>
+        <Link to='/Blog' style={{ textDecoration: 'none' }}>
           <Button
             h="2.5rem"
             p={{ x: "1rem" }}
             textSize="body"
             textColor="white"
-            hoverTextColor="hsla(217, 14%, 60%)"
             bg="black"
-            hoverBg="grey600"
             border="1px solid"
             borderColor="white"
-            hoverBorderColor="hsla(217, 14%, 60%)"
+            hoverTextColor="gray500"
+            hoverBorderColor="gray500"
             m={{ r: "0.5rem" }}
           >Blog
                         </Button>
-        </Link> */}
+        </Link>
       </Div>
     </>
   )

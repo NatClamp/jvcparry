@@ -1,13 +1,13 @@
-import React, { useContext, useEffect } from 'react'
-import { ShopContext } from '../context/shopContext'
+import React, { useContext, useEffect } from 'react';
+import { ShopContext } from '../context/shopContext';
 import { Text, Div, Row, Col, Container, Anchor, Button } from "atomize";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Loading from '../components/Loading'
 
 import dmsguildProducts from '../data/dmsguild-products';
 
 const ProductsPage = () => {
-  const { fetchAllProducts, products } = useContext(ShopContext)
+  const { fetchAllProducts, products, isLoading } = useContext(ShopContext)
 
 
   useEffect(() => {
@@ -18,12 +18,14 @@ const ProductsPage = () => {
   }, [fetchAllProducts])
 
 
-  if (!products) return <Loading />
+  if (isLoading) return <Loading />
   return (
     <>
       <Container>
         <Row>
-          <Text p={{ t: '2rem' }} tag="p" textSize="title">DMsGuild products</Text>
+          <Col size='12'>
+            <Text p={{ t: '2rem' }} tag="p" textSize="title">DMsGuild products</Text>
+          </Col>
         </Row>
         <Row>
           {[dmsguildProducts.products[0], dmsguildProducts.products[1], dmsguildProducts.products[2]].map(product => (
@@ -68,7 +70,9 @@ const ProductsPage = () => {
           </Link>
         </Row>
         <Row>
-          <Text p={{ t: '2rem' }} tag="p" textSize="title">Indie products</Text>
+          <Col size='12'>
+            <Text p={{ t: '2rem' }} tag="p" textSize="title">Indie products</Text>
+          </Col>
         </Row>
         <Row d='flex' flexDir={{ xs: 'column', md: 'row' }} flexWrap="wrap">
           {products.map(product => (

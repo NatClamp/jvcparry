@@ -98,7 +98,10 @@ class DMsProductPage extends Component {
     return (
       <>
         <Container>
-          <Row d='flex' flexDir={{ xs: 'column', md: 'row' }} justify={{ xs: 'center', md: 'space-around' }} p={{ t: '2rem' }}>
+          <Row d='flex' justify='flex-start' align='center' p={{ y: '1rem' }}>
+            <Icon name="Back" size="20px" color="gray900" /> <Anchor href='/products' textColor="gray900" textSize='body'>Back to all products</Anchor>
+          </Row>
+          <Row d='flex' flexDir={{ xs: 'column', md: 'row' }} justify={{ xs: 'center', md: 'space-around' }} >
             <Col size={{ xs: '12', md: '5' }}>
               <Text tag="p" textSize="title" textAlign={{ xs: 'center', md: 'justify' }}>DMsGuild products</Text>
             </Col>

@@ -38,21 +38,21 @@ const HireMeForm = () => {
     <>
       <Div d='flex' flexDir='column' w={{ xs: '100%', lg: '100%' }} justify="center" className='HireMeFormContainer'>
         <form onSubmit={handleSubmit(onSubmit)} w='100%'>
-          <Text tag='label' htmlFor='name'>Name</Text>
+          <Text tag='label' htmlFor='name' textSize='subheader'>Name</Text>
           <Input
             name='name'
             ref={register({ required: true })}
             type='text'
             m={{ y: '1rem' }}
           />
-          <Text tag='label' htmlFor='email'>Email</Text>
+          <Text tag='label' htmlFor='email' textSize='subheader'>Email</Text>
           <Input
             name='email'
             ref={register({ required: true })}
             type='email'
             m={{ y: '1rem' }}
           />
-          <Text tag='label' htmlFor='message'>Your Message</Text>
+          <Text tag='label' htmlFor='message' textSize='subheader'>Your Message</Text>
           <Input
             tag="textarea"
             name='message'

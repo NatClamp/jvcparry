@@ -14,20 +14,15 @@ class ShopProvider extends Component {
     product: {},
     checkout: {},
     isCartOpen: false,
+    err: null,
   };
 
   componentDidMount() {
-    // this.createCheckout();
-
-    //Check if localStorage has a checkout_id saved
     if (localStorage.checkout) {
       this.fetchCheckout(localStorage.checkout);
     } else {
       this.createCheckout();
     }
-    //if there is no checkout_id in localStorage then we will create a new checkout
-
-    //else fetch the checkout from shopify
   }
 
   createCheckout = async () => {
@@ -42,7 +37,7 @@ class ShopProvider extends Component {
       .then((checkout) => {
         this.setState({ checkout: checkout });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => this.setState({ err: true }));
 
   };
 
@@ -80,15 +75,11 @@ class ShopProvider extends Component {
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
     this.setState({ products: products });
-    console.log(products)
   };
 
   fetchProductWithId = async (id) => {
     const product = await client.product.fetch(id);
     this.setState({ product: product });
-    // console.log(JSON.stringify(product));
-
-    return product;
   };
 
   closeCart = () => {

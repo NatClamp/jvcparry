@@ -49,18 +49,20 @@ const HomeHero = () => {
             >Hire Me
                         </Button>
           </Link>
-          {/* <Link to='/Blog' style={{ textDecoration: 'none' }}>
+          <Link to='/Blog' style={{ textDecoration: 'none' }}>
             <Button
               textSize="subheader"
-              hoverTextColor="gray200"
-              TextColor="gray300"
-              hoverBg="hsla(217, 14%, 43%)"
-              bg="hsla(217, 14%, 50%)"
+              hoverTextColor="black"
+              textColor="black"
+              hoverBg="gray400"
+              bg="white"
               m='1rem'
               w='10em'
+              shadow="4"
+              hoverShadow="6"
             >Blog
                         </Button>
-          </Link> */}
+          </Link>
         </Div>
       </Container>
     </>
