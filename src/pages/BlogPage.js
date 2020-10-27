@@ -1,21 +1,24 @@
 import { Link } from 'react-router-dom'
-import Loading from '../components/Loading';
 import React, { useContext, useEffect } from 'react';
 import { BlogContext } from '../context/blogContext';
 import { Text, Row, Container, Div, Col, Tag, Icon } from "atomize";
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 import BlogPagination from '../components/BlogPagination';
 import BlogFilter from '../components/BlogFilter';
 
 const BlogPage = () => {
-  const { getAllPosts, allPosts, isLoading, getAllCategories, allCategories, lastPage, pageCount, filterName, removeFilter, currentPage } = useContext(BlogContext)
+  const { getAllPosts, allPosts, isLoading, getAllCategories, allCategories, pageCount, filterName, removeFilter, currentPage, err } = useContext(BlogContext)
 
   useEffect(() => {
     getAllPosts()
     getAllCategories()
+    removeFilter()
     return () => {
     };
-  }, [getAllPosts, getAllCategories])
+  }, [getAllPosts, getAllCategories, removeFilter])
 
+  if (err) return <Error />
   if (isLoading) return <Loading />
   return (
     <Container maxW='1000px'>
