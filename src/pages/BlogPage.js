@@ -40,15 +40,16 @@ const BlogPage = () => {
         </Col>
       </Row>
       <Row>
-        {allPosts.map(post => (
-          <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }} key={post.id}>
-            <Div key={post.id} p="2rem" m={{ y: "1rem" }} bg='gray400' hoverBg='gray500' textColor='black'>
-              <Text tag="h3" textSize="title">{post.preparedTitle}</Text>
-              <Text p={{ b: '0.5rem' }} tag="h4" textSize="subheader">{post.preparedDate}</Text>
-              <Text tag="p" textSize="paragraph">{post.preparedExcerpt}</Text>
-            </Div>
-          </Link>
-        ))}
+        <Col size='12'>
+          {allPosts.map(post => (
+            <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }} key={post.id}>
+              <Div key={post.id} p="2rem" m={{ y: "1rem" }} bg='gray400' hoverBg='gray500' textColor='black' w='100%' >
+                <Text tag="h3" textSize="title">{post.preparedTitle}</Text>
+                <Text tag="p" textSize="subheader" w='100%' overflow='hidden'>{post.preparedExcerpt}</Text>
+              </Div>
+            </Link>
+          ))}
+        </Col>
       </Row>
       <Row d='flex' flexDir='column' justify='center' m={{ y: '1rem' }} align='center'>
         <Text>Page {currentPage} / {pageCount}</Text>

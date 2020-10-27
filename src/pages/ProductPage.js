@@ -1,13 +1,13 @@
 import React, { useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/shopContext'
-import { Text, Button, Row, Col, Container, Icon, Anchor } from 'atomize'
-import Loading from '../components/Loading'
+import { Text, Row, Col, Container, Icon, Anchor, Button } from 'atomize'
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 const ProductPage = () => {
     let { id } = useParams()
-    const { fetchProductWithId, addItemToCheckout, product, isLoading } = useContext(ShopContext)
-
+    const { fetchProductWithId, addItemToCheckout, product, err } = useContext(ShopContext)
 
     useEffect(() => {
         fetchProductWithId(id)
@@ -15,7 +15,8 @@ const ProductPage = () => {
         };
     }, [fetchProductWithId, id])
 
-    if (isLoading) return <Loading />
+    if (err) return <Error />
+    if (!product.title) return <Loading />
     return (
         <Container>
             <Row d='flex' justify='flex-start' align='center' p={{ y: '2rem', x: '1rem' }}>

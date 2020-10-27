@@ -14,11 +14,13 @@ const BlogFilter = () => {
 
   const menuList = (
     <Div>
-      <ul>
+      <ul style={{ listStyle: 'none', paddingLeft: '1.5rem' }}>
         {allCategories.map((category, index) => (
-          <Anchor d="block" p={{ y: "0.25rem" }} key={index}>
-            <Text onClick={() => filterBlogPosts(category.id, category.name)}>{category.name}</Text>
-          </Anchor>
+          <li key={index}>
+            <Anchor d="block" p={{ y: "0.25rem" }} >
+              <Text textColor='black600' hoverTextColor='black200' onClick={() => filterBlogPosts(category.id, category.name)}>{category.name}</Text>
+            </Anchor>
+          </li>
         ))}
       </ul>
     </Div>
