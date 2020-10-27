@@ -1,42 +1,39 @@
 import React from 'react'
-import { Row, Col, Container, Text, Anchor, Button, Div } from "atomize";
+import { Row, Anchor, Div, Icon } from "atomize";
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
-import cover from '../images/callfromdeepcover.jpg';
+import CftDSlider from '../images/CftD_Slider.jpg';
+import DRSlider from '../images/DR_Slider.jpg';
+import DrakarSlider from '../images/Drakar_Slider.jpg';
+import GrimmSlider from '../images/Grimm_Slider.jpg';
+import TDRSlider from '../images/TDR_Slider.jpg';
 
 const Feature = () => {
 
   return (
-    <Container className='featureContainer'>
-      <Row d='flex' flexDir={{ xs: 'column', sm: 'column', md: 'column', lg: 'row' }} justify={{ xs: 'center', sm: 'space-around' }} align='center'>
-        <Col size={{ xs: '10', sm: '4' }} >
-          <img src={cover} alt='' style={{ width: '100% ' }} />
-        </Col>
-        <Col size={{ xs: '10', sm: '7' }} d='flex' flexDir='column' justify='center'>
-          <Div m={{ t: '10px' }}>
-            <Text textSize="heading" >Call from the Deep</Text>
-            <Text textSize="title"><em>Assault from the Astral</em></Text>
-            <Text textSize={{ xs: 'paragraph', sm: 'subheader' }}>After crash-landing onto the Material Plane, a strange, otherworldly ship brings with it an unexpected wave of piracy, hideous creatures from the bottom of the Trackless Sea, and a notorious foe who has been awakened from the deep, intent on destroying the world as you know it.</Text>
-            <Anchor href="https://www.dmsguild.com/product/280922/Call-from-the-Deep" target="_blank" textDecoration='none' w='150px'>
-              <Button
-                d="inline-block"
-                h="2.5rem"
-                p={{ x: "1rem" }}
-                textSize="body"
-                textColor="black700"
-                bg="gray100"
-                hoverBg="gray300"
-                border="1px solid"
-                borderColor="black700"
-                hoverBorderColor="black900"
-                shadow='2'
-                hoverShadow='3'
-                m={{ t: '1rem', r: '0' }}
-              >Buy on DMsGuild</Button>
-            </Anchor>
-          </Div>
-        </Col>
-      </Row>
-    </Container>
+    <Row d={{ xs: 'none', lg: 'flex' }} justify='center' align='center' p={{ b: '2rem' }} >
+      <CarouselProvider
+        naturalSlideHeight={1000}
+        naturalSlideWidth={500}
+        totalSlides={5}
+        orientation="horizontal"
+        infinite={true}
+        isIntrinsicHeight
+      >
+        <Div className='sliderContainer'>
+          <Slider className='slider' >
+            <Slide index="0"><Anchor target="_blank" href='https://www.dmsguild.com/product/280922/Call-from-the-Deep?affiliate_rem=819295'><img src={CftDSlider} alt="Call from the deep description" /></Anchor></Slide>
+            <Slide index="1"><Anchor target="_blank" href='https://www.dmsguild.com/product/323832/Dragon-Relics?affiliate_rem=819295'><img src={DRSlider} alt="Dragon Relics description" /></Anchor></Slide>
+            <Slide index="2"><Anchor target="_blank" href='https://www.kickstarter.com/projects/jvcparry/drakar'><img src={DrakarSlider} alt="Drakar description" /></Anchor></Slide>
+            <Slide index="3"><Anchor target="_blank" href='https://www.dmsguild.com/product/224651/Grimm-Encounters?affiliate_rem=819295'><img src={GrimmSlider} alt="Grimm Encounters description" /></Anchor></Slide>
+            <Slide index="4"><Anchor target="_blank" href='https://jvcparry.itch.io/the-dead-rise'><img src={TDRSlider} alt="The dead rise description" /></Anchor></Slide>
+          </Slider>
+          <ButtonBack className='slider__button slider__button--back'><Icon name="Back" color="black" size="20px" /></ButtonBack>
+          <ButtonNext className='slider__button slider__button--next'><Icon name="Next" color="black" size="20px" /></ButtonNext>
+        </Div>
+      </CarouselProvider >
+    </Row>
   )
 }
 

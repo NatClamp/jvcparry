@@ -24,7 +24,7 @@ const ProductPage = () => {
             </Row>
             <Row m={{ b: "2rem" }} p={{ y: '2rem', x: "1rem" }} d='flex' justify={{ xs: 'center', sm: 'space-around' }}>
                 <Col size={{ xs: '12', sm: '4' }} d='flex' justify='center' align='center'>
-                    <img src={product.images[0].src} alt='' style={{ maxWidth: '350px' }} />
+                    <img src={product.images[0].src} alt={`${product.title} product`} style={{ maxWidth: '350px' }} />
                 </Col>
                 <Col size={{ xs: '12', sm: '6' }}>
                     <Text tag="h2" textColor="black500" textSize="2rem" textWeight="200" m={{ y: '2rem' }}>{product.title}</Text>

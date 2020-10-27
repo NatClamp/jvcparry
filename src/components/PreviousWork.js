@@ -13,7 +13,7 @@ const PreviousWork = () => {
 
       <Row d='flex' flexDir={{ xs: 'column', sm: 'column', md: 'column', lg: 'row' }} justify={{ xs: 'center', sm: 'space-around' }} align='center'>
         <Col size={{ xs: '12', sm: '7', md: '5' }} d='flex' flexDir='column' justify='center' p={{ y: { xs: "2rem" } }}>
-          <img src={heroicChallenges} alt='' style={{ width: '100%' }} />
+          <img src={heroicChallenges} alt='Heroic Challenges game' style={{ width: '100%' }} />
         </Col>
         <Col size={{ xs: '12', sm: '7', md: '5' }} d='flex' flexDir='column' justify='center' p={{ t: '2rem' }} >
           <Text textAlign={{ xs: 'center', md: 'left' }} textSize={{ xs: 'subheader', sm: 'title' }} >Heroic Challenges</Text>
@@ -29,13 +29,13 @@ const PreviousWork = () => {
           <Text textAlign={{ xs: 'center', md: 'right' }} textSize={{ xs: 'paragraph', sm: 'subheader' }}>Best-selling, definitive guide to roleplaying taverns and inns - This richly detailed 88-page tome offers a wealth of new gameplay options, d&d inn maps, 8 ready-made taverns, NPC’s, rumors, secrets and over 1.000 random list options.</Text>
         </Col>
         <Col size={{ xs: '12', sm: '7', md: '5' }} d='flex' flexDir='column' justify='center' align='center' order={{ xs: '1', lg: '2' }} >
-          <img src={remarkableInns} alt='' style={{ width: '100%' }} />
+          <img src={remarkableInns} alt='Remarkable Inns guide' style={{ width: '100%' }} />
         </Col>
       </Row>
 
       <Row d='flex' flexDir={{ xs: 'column', sm: 'column', md: 'column', lg: 'row' }} justify={{ xs: 'center', sm: 'space-around' }} align='center'>
         <Col size={{ xs: '12', sm: '7', md: '5' }} d='flex' flexDir='column' justify='center'>
-          <img src={remarkableShops} alt='' style={{ width: '100%' }} />
+          <img src={remarkableShops} alt='Remarkable Shops guide' style={{ width: '100%' }} />
         </Col>
         <Col size={{ xs: '12', sm: '7', md: '5' }} d='flex' flexDir='column' justify='center' p={{ t: '2rem' }} >
           <Text textAlign={{ xs: 'center', md: 'left' }} textSize={{ xs: 'subheader', sm: 'title' }} >Remarkable Shops & Their Wares</Text>
