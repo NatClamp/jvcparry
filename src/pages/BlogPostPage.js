@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import Loading from '../components/Loading';
 import React, { useContext, useEffect } from 'react';
@@ -9,7 +9,7 @@ var parse = require('html-react-parser');
 
 
 const BlogPage = () => {
-  const { getPostById, parsedTitle, content, date, categories, tags, isLoading, err } = useContext(BlogContext)
+  const { getPostById, parsedTitle, content, date, categories, isLoading, err } = useContext(BlogContext)
   let { id } = useParams()
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const BlogPage = () => {
   return (
     <Container maxW='1000px' >
       <Row d='flex' justify='flex-start' align='center' p={{ y: '2rem' }}>
-        <Icon name="Back" size="20px" color="gray900" /> <Anchor href='/blog' textColor="gray900" textSize='body'>Back</Anchor>
+        <Icon name="Back" size="20px" color="gray900" /> <Link to='/blog'><Text textColor="gray900" textSize='body'>Back</Text></Link>
       </Row>
       <Row p={{ x: { xs: '1rem', md: '0' } }} d='flex' flexDir='column'>
         <Text tag="h2" textSize="display2">{parsedTitle}</Text>

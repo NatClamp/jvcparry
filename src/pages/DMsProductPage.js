@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { Text, Div, Row, Col, Container, Anchor, Input, Icon, Button } from "atomize";
 import Loading from '../components/Loading'
 import Pagination from '../components/Pagination';
@@ -99,7 +100,7 @@ class DMsProductPage extends Component {
       <>
         <Container>
           <Row d='flex' justify='flex-start' align='center' p={{ y: '1rem' }}>
-            <Icon name="Back" size="20px" color="gray900" /> <Anchor href='/products' textColor="gray900" textSize='body'>Back to all products</Anchor>
+            <Icon name="Back" size="20px" color="gray900" /> <Link to='/products'><Text textColor="gray900" textSize='body'>Back to all products</Text></Link>
           </Row>
           <Row d='flex' flexDir={{ xs: 'column', md: 'row' }} justify={{ xs: 'center', md: 'space-around' }} >
             <Col size={{ xs: '12', md: '5' }}>
