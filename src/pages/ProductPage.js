@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { ShopContext } from '../context/shopContext'
-import { Text, Row, Col, Container, Icon, Anchor, Button } from 'atomize'
+import { Text, Row, Col, Container, Icon, Button } from 'atomize'
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Div } from "atomize";
+import { Container } from "atomize";
 
 import Feature from '../components/Feature';
 import Bio from '../components/Bio';
