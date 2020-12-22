@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../components/Loading'
 
 import dmsguildProducts from '../data/dmsguild-products';
+import driveThruProducts from '../data/drivethru-products.js';
 
 const ProductsPage = () => {
   const { fetchAllProducts, products, isLoading } = useContext(ShopContext)
@@ -94,6 +95,34 @@ const ProductsPage = () => {
                   <Text tag="p" textWeight="300" textSize="body" textDecor="none" textColor="gray800">{product.variants[0].price} {product.variants[0].priceV2.currencyCode}</Text>
                 </Div>
               </Link>
+            </Col>
+          ))}
+        </Row>
+        <Row id='driveThruProducts'>
+          <Col size='12'>
+            <Text p={{ t: '2rem' }} tag="p" textSize="title">DriveThruRPG Products</Text>
+          </Col>
+        </Row>
+        <Row>
+          {[driveThruProducts.products[0]].map(product => (
+            <Col key={product.id} size={{ xs: '12', md: '4' }}>
+              <Anchor href={product.uri} target='_blank' style={{ textDecoration: 'none' }}>
+                <Div p="2rem">
+                  <Div
+                    h="20rem"
+                    bgImg={product.image}
+                    bgSize="cover"
+                    bgPos="top center"
+                    shadow="3"
+                    hoverShadow="4"
+                    transition="0.3s"
+                    m={{ b: "1.5rem" }}
+                  >
+                  </Div>
+                  <Text tag="p" textWeight="300" textSize="subheader" textDecor="none" textColor="black500">{product.title}</Text>
+                  <Text tag="p" textWeight="300" textSize="body" textDecor="none" textColor="gray800">{product.price} {product.currencyCode}</Text>
+                </Div>
+              </Anchor>
             </Col>
           ))}
         </Row>
