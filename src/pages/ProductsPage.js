@@ -2,14 +2,13 @@ import React, { useContext, useEffect } from 'react';
 import { ShopContext } from '../context/shopContext';
 import { Text, Div, Row, Col, Container, Anchor, Button } from "atomize";
 import { Link } from 'react-router-dom';
-import Loading from '../components/Loading'
+import Loading from '../components/Loading';
 
 import dmsguildProducts from '../data/dmsguild-products';
 import driveThruProducts from '../data/drivethru-products.js';
 
 const ProductsPage = () => {
   const { fetchAllProducts, products, isLoading } = useContext(ShopContext)
-
 
   useEffect(() => {
     fetchAllProducts()
@@ -72,9 +71,14 @@ const ProductsPage = () => {
         </Row>
         <Row>
           <Col size='12'>
-            <Text p={{ t: '2rem' }} tag="p" textSize="title">Indie products</Text>
+            <Text p={{ t: '2rem' }} tag="p" textSize="title">Indie Products</Text>
           </Col>
         </Row>
+        {products.length === 0 ? <Row>
+          <Col size='12'>
+            <Text p={{ t: '2rem' }} tag="p" textSize="paragraph">We're currently having issues with our online store for Indie Products - please check back at a later date to purchase these. All other products are available via external services.</Text>
+          </Col>
+        </Row> :
         <Row d='flex' flexDir={{ xs: 'column', md: 'row' }} flexWrap="wrap">
           {products.map(product => (
             <Col key={product.id} size={{ xs: '12', md: '4' }} >
@@ -97,7 +101,7 @@ const ProductsPage = () => {
               </Link>
             </Col>
           ))}
-        </Row>
+        </Row>}
         <Row id='driveThruProducts'>
           <Col size='12'>
             <Text p={{ t: '2rem' }} tag="p" textSize="title">DriveThruRPG Products</Text>

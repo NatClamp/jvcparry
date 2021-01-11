@@ -1,14 +1,15 @@
 import React, { useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { ShopContext } from '../context/shopContext'
 import { Text, Row, Col, Container, Icon, Button } from 'atomize'
 import Loading from '../components/Loading';
 import Error from '../components/Error';
+import VariantDropdown from '../components/VariantDropdown';
 
 const ProductPage = () => {
     let { id } = useParams()
-    const { fetchProductWithId, addItemToCheckout, product, err } = useContext(ShopContext)
+    const { fetchProductWithId, addItemToCheckout, product, variantIndex, err } = useContext(ShopContext)
+
 
     useEffect(() => {
         fetchProductWithId(id)
@@ -16,6 +17,7 @@ const ProductPage = () => {
         };
     }, [fetchProductWithId, id])
 
+    console.log(product)
     if (err) return <Error />
     if (!product.title) return <Loading />
     return (
@@ -29,9 +31,10 @@ const ProductPage = () => {
                 </Col>
                 <Col size={{ xs: '12', sm: '6' }}>
                     <Text tag="h2" textColor="black500" textSize="2rem" textWeight="200" m={{ y: '2rem' }}>{product.title}</Text>
-                    <Text tag="h3" m={{ y: '2rem' }} textWeight="200">{product.variants[0].price} {product.variants[0].priceV2.currencyCode}</Text>
+                    {product.variants.length > 1 && <VariantDropdown title={product.variants[variantIndex].title}/>}
+                    <Text tag="h3" m={{ y: '2rem' }} textWeight="200">{product.variants[variantIndex].price} {product.variants[variantIndex].priceV2.currencyCode}</Text>
                     <Text tag="p" textSize="paragraph" textColor="gray900" textWeight="200">{product.description}</Text>
-                    <Button rounded="0" shadow="3" bg="black500" m={{ y: '2rem' }} onClick={() => addItemToCheckout(product.variants[0].id, 1)}>Add To Cart</Button>
+                    <Button rounded="0" shadow="3" bg="black500" m={{ y: '2rem' }} onClick={() => addItemToCheckout(product.variants[variantIndex].id, 1)}>Add To Cart</Button>
                 </Col>
             </Row>
         </Container >
