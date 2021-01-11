@@ -11,10 +11,8 @@ const ProductsPage = () => {
   const { fetchAllProducts, products, isLoading } = useContext(ShopContext)
 
   useEffect(() => {
-    fetchAllProducts()
-    return () => {
-      // cleanup
-    };
+   fetchAllProducts()
+   return () => {}
   }, [fetchAllProducts])
 
 
@@ -74,7 +72,8 @@ const ProductsPage = () => {
             <Text p={{ t: '2rem' }} tag="p" textSize="title">Indie Products</Text>
           </Col>
         </Row>
-        {products.length === 0 ? <Row>
+        {
+            products.length === 0 ? <Row>
           <Col size='12'>
             <Text p={{ t: '2rem' }} tag="p" textSize="paragraph">We're currently having issues with our online store for Indie Products - please check back at a later date to purchase these. All other products are available via external services.</Text>
           </Col>
@@ -102,6 +101,26 @@ const ProductsPage = () => {
             </Col>
           ))}
         </Row>}
+        {/* Commenting out until there are more than three indie products to display */}
+        {/* <Row d='flex' justify='center' p={{ x: '2rem', b: '2rem' }}>
+                <Link to='/products/indie'>
+                  <Button
+                    d="inline-block"
+                    h="2.5rem"
+                    p={{ x: "1rem" }}
+                    textSize="body"
+                    textColor="black700"
+                    bg="gray100"
+                    hoverBg="gray300"
+                    border="1px solid"
+                    borderColor="black700"
+                    hoverBorderColor="black900"
+                    shadow='2'
+                    hoverShadow='3'
+                    m={{ t: '1rem', r: '0' }}
+                  >See more Indie products</Button>
+                </Link>
+              </Row> */}
         <Row id='driveThruProducts'>
           <Col size='12'>
             <Text p={{ t: '2rem' }} tag="p" textSize="title">DriveThruRPG Products</Text>

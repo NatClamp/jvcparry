@@ -19,6 +19,7 @@ import Cart from './components/Cart';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import PageNotFound from './pages/404';
+// import IndieProductsPage from './pages/IndieProductsPage';
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 const engine = new Styletron();
@@ -40,6 +41,11 @@ const App = () => {
                 <Header />
                 <DMsProductPage />
               </Route>
+              {/* Commenting out until there are more than 3 indie products */}
+              {/* <Route path="/products/indie">
+                <Header />
+                <IndieProductsPage />
+              </Route> */}
               <Route path="/products">
                 <Header />
                 <ProductsPage />

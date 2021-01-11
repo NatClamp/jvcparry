@@ -16,7 +16,6 @@ const HireMeForm = () => {
         setSubmittedData(data)
         setSubmitLoading(false)
         setThanksMessage(true);
-        console.log()
       }
 
       )
