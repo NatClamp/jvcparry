@@ -6,6 +6,7 @@ const ShopContext = React.createContext();
 const client = Client.buildClient({
   domain: 'jvcparry.myshopify.com/',
   storefrontAccessToken: '6488f139d8c7b8de76ef7c6c45af0a2a',
+  // storefrontAccessToken: '',
 });
 
 class ShopProvider extends Component {
@@ -15,6 +16,7 @@ class ShopProvider extends Component {
     checkout: {},
     isCartOpen: false,
     err: null,
+    variantIndex: 0,
   };
 
   componentDidMount() {
@@ -89,6 +91,10 @@ class ShopProvider extends Component {
     this.setState({ isCartOpen: true });
   };
 
+  setVariantIndex = (index) => {
+    this.setState({ variantIndex: index })
+  }
+
   render() {
     return (
       <ShopContext.Provider
@@ -100,6 +106,7 @@ class ShopProvider extends Component {
           openCart: this.openCart,
           addItemToCheckout: this.addItemToCheckout,
           updateItemToCheckout: this.updateItemToCheckout,
+          setVariantIndex: this.setVariantIndex,
         }}
       >
         {this.props.children}
