@@ -17,7 +17,6 @@ const ProductPage = () => {
         };
     }, [fetchProductWithId, id])
 
-    console.log(product)
     if (err) return <Error />
     if (!product.title) return <Loading />
     return (
