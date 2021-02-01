@@ -32,7 +32,7 @@ const ProductPage = () => {
                     <Text tag="h2" textColor="black500" textSize="2rem" textWeight="200" m={{ y: '2rem' }}>{product.title}</Text>
                     {product.variants.length > 1 && <VariantDropdown title={product.variants[variantIndex].title}/>}
                     <Text tag="h3" m={{ y: '2rem' }} textWeight="200">{product.variants[variantIndex].price} {product.variants[variantIndex].priceV2.currencyCode}</Text>
-                    <Text tag="p" textSize="paragraph" textColor="gray900" textWeight="200">{product.description}</Text>
+                    <Text tag="p" textSize="paragraph" textColor="black400" textWeight="200">{product.description}</Text>
                     <Button rounded="0" shadow="3" bg="black500" m={{ y: '2rem' }} onClick={() => addItemToCheckout(product.variants[variantIndex].id, 1)}>Add To Cart</Button>
                 </Col>
             </Row>
