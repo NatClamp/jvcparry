@@ -27,9 +27,9 @@ const VariantDropdown = (props) => {
 
     return (
         <Dropdown
-        w="fit-content"
-          isOpen={showDropdown}
-          onClick={() =>
+            w="10rem"
+            isOpen={showDropdown}
+            onClick={() =>
             setShowDropdown(!showDropdown)
           }
           menu={menuList}

@@ -6,7 +6,6 @@ const ShopContext = React.createContext();
 const client = Client.buildClient({
   domain: 'jvcparry.myshopify.com/',
   storefrontAccessToken: '6488f139d8c7b8de76ef7c6c45af0a2a',
-  // storefrontAccessToken: '',
 });
 
 class ShopProvider extends Component {
