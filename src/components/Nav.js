@@ -37,7 +37,7 @@ const Nav = () => {
           >Hire Me
                         </Button>
         </Link>
-        <Link to='/Blog' style={{ textDecoration: 'none' }}>
+        <Link to='/blog' style={{ textDecoration: 'none' }}>
           <Button
             h="2.5rem"
             p={{ x: "1rem" }}
