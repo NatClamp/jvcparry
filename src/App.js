@@ -3,8 +3,6 @@ import './App.css';
 import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ShopProvider from './context/shopContext';
-import BlogProvider from './context/blogContext';
 
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -26,12 +24,10 @@ const engine = new Styletron();
 
 const App = () => {
   return (
-    <ShopProvider>
-      <BlogProvider>
         <StyletronProvider value={engine} debug={debug} debugAfterHydration>
           <Router>
             <ScrollToTop />
-            {Cart !== null && <Cart />}
+            <Cart />
             <Switch>
               <Route path="/product/:id">
                 <Header />
@@ -73,8 +69,6 @@ const App = () => {
             <Footer />
           </Router>
         </StyletronProvider>
-      </BlogProvider>
-    </ShopProvider>
   );
 }
 
