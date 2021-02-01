@@ -27,7 +27,7 @@ const App = () => {
         <StyletronProvider value={engine} debug={debug} debugAfterHydration>
           <Router>
             <ScrollToTop />
-            {Cart !== null && <Cart />}
+            <Cart />
             <Switch>
               <Route path="/product/:id">
                 <Header />

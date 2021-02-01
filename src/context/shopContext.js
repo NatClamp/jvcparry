@@ -20,9 +20,11 @@ class ShopProvider extends Component {
 
   componentDidMount() {
     if (localStorage.checkout) {
+      console.log('checkout already exists')
       this.fetchCheckout(localStorage.checkout);
     } else {
       this.createCheckout();
+      console.log('checkout created')
     }
   }
 
@@ -99,6 +101,7 @@ class ShopProvider extends Component {
       <ShopContext.Provider
         value={{
           ...this.state,
+          createCheckout: this.createCheckout,
           fetchAllProducts: this.fetchAllProducts,
           fetchProductWithId: this.fetchProductWithId,
           closeCart: this.closeCart,

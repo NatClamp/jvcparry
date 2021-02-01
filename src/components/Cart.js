@@ -54,9 +54,11 @@ const Cart = () => {
                     </Container>
                 </SideDrawer>
             )
+        } else {
+            return null;
         }
+
     }
-    return null;
 }
 
 export default Cart
