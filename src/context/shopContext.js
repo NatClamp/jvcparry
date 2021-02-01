@@ -19,11 +19,11 @@ class ShopProvider extends Component {
   };
 
   componentDidMount() {
-    if (localStorage.checkout) {
-      this.fetchCheckout(localStorage.checkout);
-    } else {
+    // if (localStorage.checkout) {
+    //   this.fetchCheckout(localStorage.checkout);
+    // } else {
       this.createCheckout();
-    }
+    // }
   }
 
   createCheckout = async () => {
