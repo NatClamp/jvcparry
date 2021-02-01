@@ -79,7 +79,7 @@ const ProductsPage = () => {
           </Col>
         </Row> :
         <Row d='flex' flexDir={{ xs: 'column', md: 'row' }} flexWrap="wrap">
-          {products.map(product => (
+          {[products[0], products[1], products[2]].map(product => (
             <Col key={product.id} size={{ xs: '12', md: '4' }} >
               <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
                 <Div p="2rem">
@@ -101,8 +101,7 @@ const ProductsPage = () => {
             </Col>
           ))}
         </Row>}
-        {/* Commenting out until there are more than three indie products to display */}
-        {/* <Row d='flex' justify='center' p={{ x: '2rem', b: '2rem' }}>
+        <Row d='flex' justify='center' p={{ x: '2rem', b: '2rem' }}>
                 <Link to='/products/indie'>
                   <Button
                     d="inline-block"
@@ -120,7 +119,7 @@ const ProductsPage = () => {
                     m={{ t: '1rem', r: '0' }}
                   >See more Indie products</Button>
                 </Link>
-              </Row> */}
+              </Row>
         <Row id='driveThruProducts'>
           <Col size='12'>
             <Text p={{ t: '2rem' }} tag="p" textSize="title">DriveThruRPG Products</Text>
