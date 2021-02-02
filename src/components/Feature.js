@@ -23,10 +23,10 @@ const Feature = () => {
       >
         <Div className='sliderContainer'>
           <Slider className='slider' >
-            <Slide index="0"><Anchor href='https://www.kickstarter.com/projects/jvcparry/peculiar-children'><img src={Peculiar_Slider} alt="Peculiar Children" /></Anchor></Slide>
+            <Slide index="0"><Anchor target="_blank" href='https://www.kickstarter.com/projects/jvcparry/peculiar-children'><img src={Peculiar_Slider} alt="Peculiar Children" /></Anchor></Slide>
             <Slide index="1"><Anchor target="_blank" href='https://www.dmsguild.com/product/280922/Call-from-the-Deep?affiliate_rem=819295'><img src={CftDSlider} alt="Call from the deep" /></Anchor></Slide>
-            <Slide index="2"><Anchor target="_blank" href='https://jvcparry.com/product/Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzU5MjQ2Mzk2Mzc2NTg='><img src={DrakarSlider} alt="Drakar" /></Anchor></Slide>
-            <Slide index="3"><Anchor target="_blank" href='https://jvcparry.com/product/Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzYxMjQxNjU3OTE4OTg='><img src={UTSlider} alt="Drakar Unlocked Treasures" /></Anchor></Slide>
+            <Slide index="2"><Anchor target="_blank" href='https://jvcparry.com/products/indie'><img src={DrakarSlider} alt="Drakar" /></Anchor></Slide>
+            <Slide index="3"><Anchor target="_blank" href='https://jvcparry.com/products/indie'><img src={UTSlider} alt="Drakar Unlocked Treasures" /></Anchor></Slide>
             <Slide index="4"><Anchor target="_blank" href='https://www.dmsguild.com/product/323832/Dragon-Relics?affiliate_rem=819295'><img src={DRSlider} alt="Dragon Relics" /></Anchor></Slide>
           </Slider>
           <ButtonBack className='slider__button slider__button--back'><Icon name="Back" color="black" size="20px" /></ButtonBack>
