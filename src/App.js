@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, useRouteMatch } from "react-router-dom";
 
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -29,33 +29,19 @@ const App = () => {
             <ScrollToTop />
             <Cart />
             <Switch>
-              <Route path="/product/:id">
+              <Route exact path="/product/:id">
                 <Header />
                 <ProductPage />
               </Route>
-              <Route path="/products/dmsguild">
-                <Header />
-                <DMsProductPage />
-              </Route>
-              <Route path="/products/indie">
-                <Header />
-                <IndieProductsPage />
-              </Route>
               <Route path="/products">
-                <Header />
-                <ProductsPage />
+                <NestedProducts />
               </Route>
               <Route path="/hire-me">
                 <Header />
                 <HireMe />
               </Route>
-              <Route path="/blog/:id">
-                <Header />
-                <BlogPost />
-              </Route>
               <Route path="/blog">
-                <Header />
-                <Blog />
+                <NestedBlogs />
               </Route>
               <Route path="/" exact>
                 <HomeHero />
@@ -70,6 +56,44 @@ const App = () => {
           </Router>
         </StyletronProvider>
   );
+}
+
+const NestedProducts = () => {
+  let { path } = useRouteMatch();
+
+  return (
+    <Switch>
+      <Route exact path={path}>
+        <Header />
+        <ProductsPage />
+      </Route>
+      <Route path={`${path}/dmsguild`}>
+        <Header />
+        <DMsProductPage />
+      </Route>
+      <Route path={`${path}/indie`}>
+        <Header />
+        <IndieProductsPage />
+      </Route>
+    </Switch>
+  )
+}
+
+const NestedBlogs = () => {
+  let { path } = useRouteMatch();
+
+  return (
+    <Switch>
+      <Route exact path={path}>
+        <Header />
+        <Blog />
+      </Route>
+      <Route path={`${path}/:id`}>
+        <Header />
+        <BlogPost />
+      </Route>
+    </Switch>
+  )
 }
 
 export default App;
