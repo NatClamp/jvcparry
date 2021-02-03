@@ -22,7 +22,7 @@ const ProductPage = () => {
     return (
         <Container>
             <Row d='flex' justify='flex-start' align='center' p={{ y: '2rem', x: '1rem' }}>
-                <Icon name="Back" size="20px" color="gray900" /> <Link to='/products'><Text textColor="gray900" textSize='body'>Back to products</Text></Link>
+                <Icon name="Back" size="20px" color="gray900" /> <Link to='/products/indie'><Text textColor="gray900" textSize='body'>Back to products</Text></Link>
             </Row>
             <Row m={{ b: "2rem" }} p={{ y: '2rem', x: "1rem" }} d='flex' justify={{ xs: 'center', sm: 'space-around' }}>
                 <Col size={{ xs: '12', sm: '4' }} d='flex' justify='center' align='center'>
