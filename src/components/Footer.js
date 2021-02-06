@@ -32,7 +32,7 @@ const Footer = () => {
           </Text>
         </Div>
         <Div className='FooterLeft' w={{ xs: '80%', md: '40%' }} m={{ x: '20px', b: '30px' }}>
-          <NewsletterForm />
+          <NewsletterForm location='footer'/>
         </Div>
       </Container>
     </>
