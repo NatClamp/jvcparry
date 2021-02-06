@@ -1,7 +1,8 @@
 import React from 'react'
-import { Div, Button, Modal, Icon, Text } from "atomize";
+import { Div, Modal, Icon, Text } from "atomize";
 
 import NewsletterForm from '../components/NewsletterForm';
+import logo from '../images/logo.png'
 
 class PopUpModal extends React.Component {
   constructor(props) {
@@ -48,6 +49,9 @@ class PopUpModal extends React.Component {
           onClick={onClose}
           cursor="pointer"
         />
+        <Div d="flex" flexDir="row" justify="center" align="center">
+          <img src={logo} alt="JVC Parry logo" textalign='center' style={{ maxHeight: '80px' }} />
+        </Div>
         <Text
           p={{ l: "0.5rem", t: "0.25rem" }}
           textSize="title"
