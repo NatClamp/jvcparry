@@ -18,6 +18,8 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import PageNotFound from './pages/404';
 import IndieProductsPage from './pages/IndieProductsPage';
+import Modal from './components/SubscribeModal';
+
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 const engine = new Styletron();
@@ -44,6 +46,7 @@ const App = () => {
                 <NestedBlogs />
               </Route>
               <Route path="/" exact>
+                <Modal/>
                 <HomeHero />
                 <HomePage />
               </Route>
