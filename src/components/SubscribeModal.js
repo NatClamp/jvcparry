@@ -79,14 +79,16 @@ class SubmittingStateModal extends React.Component {
 
   showModalTimeout() {
     setTimeout(() => {
-        this.setState({ showModal: true });
-        localStorage.setItem('modalShown','true');
-      }, 2000);
+      let now = new Date();
+      let tomorrow = now.setHours(now.getHours() + 24);
+      localStorage.setItem('modalShownUntil', new Date(tomorrow));
+      this.setState({ showModal: true });
+    }, 2000);
   };
 
   componentDidMount() {
-    let modalShown = localStorage.getItem('modalShown');
-    if (!modalShown) {
+    let modalShownUntil = localStorage.getItem('modalShownUntil');
+    if (new Date(modalShownUntil) < new Date()) {
         this.showModalTimeout();
     }
   }
