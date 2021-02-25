@@ -44,11 +44,11 @@ class BlogProvider extends Component {
       let posts = await axios.get(apiCall);
       posts.data.length < 10 ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
       this.preparePosts(posts.data);
-      this.setState({ totalPostCount: Number(posts.headers['x-wp-total']), pageCount: Number(posts.headers['x-wp-totalpages']), err: false })
+      this.setState({ totalPostCount: Number(posts.headers['x-wp-total']), pageCount: Number(posts.headers['x-wp-totalpages']), err: null })
       if (this.state.currentPage === this.state.pageCount) this.setState({ lastPage: true })
 
     } catch (err) {
-      this.setState({ err: true });
+      this.setState({ err });
     }
 
   }
@@ -73,10 +73,10 @@ class BlogProvider extends Component {
         content: postCopy.content.rendered,
         date: formattedDate,
         isLoading: false,
-        err: false,
+        err: null,
       })
     } catch (err) {
-      this.setState({ err: true })
+      this.setState({ err })
     }
 
   }
@@ -90,9 +90,9 @@ class BlogProvider extends Component {
         categoryObj['id'] = cat.id
         return categoryObj
       })
-      this.setState({ allCategories: categories, err: false })
+      this.setState({ allCategories: categories, err: null })
     } catch (err) {
-      this.setState({ err: true })
+      this.setState({ err })
     }
   }
 
@@ -117,9 +117,9 @@ class BlogProvider extends Component {
         post['preparedDate'] = formattedDate;
         return post;
       })
-      this.setState({ allPosts: parsedPosts, isLoading: false, err: false })
+      this.setState({ allPosts: parsedPosts, isLoading: false, err: null })
     } catch (err) {
-      this.setState({ err: true })
+      this.setState({ err })
     }
   }
 
@@ -129,9 +129,12 @@ class BlogProvider extends Component {
       let matchedCat = categories.data.filter((cat) => (
         cat.id === id
       ))
-      return matchedCat[0].name;
+      if (matchedCat.length > 0) {
+        return matchedCat[0].name;
+      } 
+
     } catch (err) {
-      this.setState({ err: true })
+      this.setState({ err })
     }
   }
 
@@ -147,7 +150,7 @@ class BlogProvider extends Component {
         return null
       }
     } catch (err) {
-      this.setState({ err: true })
+      this.setState({ err })
     }
   }
 
@@ -155,7 +158,7 @@ class BlogProvider extends Component {
     try {
       return Promise.all(postCategoryIds.map(id => this.convertCategoryIds(id)))
     } catch (err) {
-      this.setState({ err: true })
+      this.setState({ err })
     }
   }
 
@@ -163,7 +166,7 @@ class BlogProvider extends Component {
     try {
       return Promise.all(postTagIds.map(id => this.convertTagIds(id)))
     } catch (err) {
-      this.setState({ err: true })
+      this.setState({ err })
     }
   }
 
