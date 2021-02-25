@@ -34,7 +34,7 @@ const BlogPage = () => {
           {parse(content)}
         </Div>
       </Row>
-      <Row p={{ b: '2rem', x: { xs: '1rem', md: '0' } }} d='flex' justify='center' align='center'>
+      {categories[0] !== undefined && <Row p={{ b: '2rem', x: { xs: '1rem', md: '0' } }} d='flex' justify='center' align='center'>
         <Text tag='p' m={{ r: '1rem' }} textSize='paragraph' textWeight='500' d='flex' align='center'>
           <Icon name="FolderSolid" size="20px" m={{ r: '1rem' }} />
           {typeof (categories[0]) === 'string' && categories.map((cat, index) =>
@@ -46,7 +46,7 @@ const BlogPage = () => {
             <Text tag='p' key={`tag-${index}`} m={{ r: '1rem' }} textSize='paragraph' textWeight='500'>{tag}</Text>
           )}
         </Div> */}
-      </Row>
+      </Row>}
     </Container >
   )
 }
