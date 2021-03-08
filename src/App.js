@@ -22,12 +22,13 @@ import PageNotFound from './pages/404';
 import IndieProductsPage from './pages/IndieProductsPage';
 import Modal from './components/SubscribeModal';
 
-
+ReactGA.initialize('UA-191601925-1');
 const history = createBrowserHistory();
 history.listen(location => {
   ReactGA.set({ page: location.pathname });
   ReactGA.pageview(location.pathname);
 });
+
 
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 const engine = new Styletron();
