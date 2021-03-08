@@ -8,12 +8,12 @@ import BlogProvider from './context/blogContext';
 import ReactGA from 'react-ga';
 
 ReactGA.initialize('UA-191601925-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
+
 
 ReactDOM.render(
     <ShopProvider>
         <BlogProvider>
-                <App />
+            <App />
         </BlogProvider>
     </ShopProvider>, 
     document.getElementById('root'));
