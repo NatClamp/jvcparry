@@ -3,6 +3,8 @@ import './App.css';
 import { Provider as StyletronProvider, DebugEngine } from "styletron-react";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { BrowserRouter as Router, Switch, Route, useRouteMatch } from "react-router-dom";
+import { createBrowserHistory } from 'history';
+import ReactGA from 'react-ga';
 
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -21,13 +23,19 @@ import IndieProductsPage from './pages/IndieProductsPage';
 import Modal from './components/SubscribeModal';
 
 
+const history = createBrowserHistory();
+history.listen(location => {
+  ReactGA.set({ page: location.pathname });
+  ReactGA.pageview(location.pathname);
+});
+
 const debug = process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
 const engine = new Styletron();
 
 const App = () => {
   return (
         <StyletronProvider value={engine} debug={debug} debugAfterHydration>
-          <Router>
+          <Router history={history}>
             <ScrollToTop />
             <Cart />
             <Switch>
