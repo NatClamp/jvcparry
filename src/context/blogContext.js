@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-var parse = require('html-react-parser');
+import parse from 'html-react-parser';
 
 const BlogContext = React.createContext();
 
