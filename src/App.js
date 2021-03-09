@@ -1,65 +1,62 @@
-import React from "react";
-import "./App.css";
+import React from 'react';
+import './App.css';
 import {
   Switch,
   Route,
   useRouteMatch,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import HomePage from "./pages/HomePage";
-import ProductsPage from "./pages/ProductsPage";
-import DMsProductPage from "./pages/DMsProductPage";
-import ProductPage from "./pages/ProductPage";
-import HireMe from "./pages/HireMePage";
-import Blog from "./pages/BlogPage";
-import BlogPost from "./pages/BlogPostPage";
-import Header from "./components/Header";
-import HomeHero from "./components/HomeHero";
-import Cart from "./components/Cart";
-import Footer from "./components/Footer";
-import ScrollToTop from "./components/ScrollToTop";
-import PageNotFound from "./pages/404";
-import IndieProductsPage from "./pages/IndieProductsPage";
-import Modal from "./components/SubscribeModal";
+import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
+import DMsProductPage from './pages/DMsProductPage';
+import ProductPage from './pages/ProductPage';
+import HireMe from './pages/HireMePage';
+import Blog from './pages/BlogPage';
+import BlogPost from './pages/BlogPostPage';
+import Header from './components/Header';
+import HomeHero from './components/HomeHero';
+import Cart from './components/Cart';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+import PageNotFound from './pages/404';
+import IndieProductsPage from './pages/IndieProductsPage';
+import Modal from './components/SubscribeModal';
 
-
-const App = () => {
-  return (
-    <React.Fragment>
-      <ScrollToTop />
-      <Cart />
-      <Switch>
-        <Route exact path="/product/:id">
-          <Header />
-          <ProductPage />
-        </Route>
-        <Route path="/products">
-          <NestedProducts />
-        </Route>
-        <Route path="/hire-me">
-          <Header />
-          <HireMe />
-        </Route>
-        <Route path="/blog">
-          <NestedBlogs />
-        </Route>
-        <Route path="/" exact>
-          <Modal />
-          <HomeHero />
-          <HomePage />
-        </Route>
-        <Route>
-          <Header />
-          <PageNotFound />
-        </Route>
-      </Switch>
-      <Footer />
-    </React.Fragment>
-  );
-};
+const App = () => (
+  <>
+    <ScrollToTop />
+    <Cart />
+    <Switch>
+      <Route exact path="/product/:id">
+        <Header />
+        <ProductPage />
+      </Route>
+      <Route path="/products">
+        <NestedProducts />
+      </Route>
+      <Route path="/hire-me">
+        <Header />
+        <HireMe />
+      </Route>
+      <Route path="/blog">
+        <NestedBlogs />
+      </Route>
+      <Route path="/" exact>
+        <Modal />
+        <HomeHero />
+        <HomePage />
+      </Route>
+      <Route>
+        <Header />
+        <PageNotFound />
+      </Route>
+    </Switch>
+    <Footer />
+  </>
+);
 
 const NestedProducts = () => {
-  let { path } = useRouteMatch();
+  const { path } = useRouteMatch();
 
   return (
     <Switch>
@@ -80,7 +77,7 @@ const NestedProducts = () => {
 };
 
 const NestedBlogs = () => {
-  let { path } = useRouteMatch();
+  const { path } = useRouteMatch();
 
   return (
     <Switch>

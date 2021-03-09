@@ -1,21 +1,21 @@
 import React, { Component, Fragment } from 'react';
-import { Anchor } from "atomize";
-
+import { Anchor } from 'atomize';
+import PropTypes from 'prop-types';
 
 const LEFT_PAGE = 'LEFT';
 const RIGHT_PAGE = 'RIGHT';
 
 const range = (from, to, step = 1) => {
   let i = from;
-  const range = [];
+  const rnge = [];
 
   while (i <= to) {
-    range.push(i);
+    rnge.push(i);
     i += step;
   }
 
-  return range;
-}
+  return rnge;
+};
 
 class Pagination extends Component {
   constructor(props) {
@@ -33,16 +33,18 @@ class Pagination extends Component {
 
     this.state = { currentPage: 1 };
   }
+
   componentDidUpdate(prevProps) {
-    if (this.props.totalRecords !== prevProps.totalRecords) {
-      this.totalPages = Math.ceil(this.props.totalRecords / this.pageLimit);
+    const { totalRecords } = this.props;
+    if (totalRecords !== prevProps.totalRecords) {
+      this.totalPages = Math.ceil(totalRecords / this.pageLimit);
     }
   }
 
   fetchPageNumbers = () => {
-    const totalPages = this.totalPages;
-    const currentPage = this.state.currentPage;
-    const pageNeighbours = this.pageNeighbours;
+    const { totalPages } = this;
+    const { currentPage } = this.state;
+    const { pageNeighbours } = this;
 
     /**
      * totalNumbers: the total page numbers to show on the control
@@ -99,37 +101,50 @@ class Pagination extends Component {
     const { currentPage } = this.state;
     const pages = this.fetchPageNumbers();
 
-
     return (
-      <Fragment>
-        <nav aria-label="Pagination" >
-          <ul className="pagination" style={{ textDecoration: 'none', listStyle: 'none', display: 'flex', justify: 'center', padding: '0' }}>
-            {currentPage > 1 &&
+      <>
+        <nav aria-label="Pagination">
+          <ul
+            className="pagination"
+            style={{
+              textDecoration: 'none', listStyle: 'none', display: 'flex', justify: 'center', padding: '0',
+            }}
+          >
+            {currentPage > 1
+              && (
               <li className="page-item" style={{ listStyle: 'none' }}>
-                <Anchor className="page-link" aria-label="Previous" onClick={this.handleMoveLeft}
-                  textDecoration='none' p='1rem' textColor='black' hoverTextColor="hsla(217, 14%, 50%)">
+                <Anchor
+                  className="page-link"
+                  aria-label="Previous"
+                  onClick={this.handleMoveLeft}
+                  textDecoration="none"
+                  p="1rem"
+                  textColor="black"
+                  hoverTextColor="hsla(217, 14%, 50%)"
+                >
                   <span aria-hidden="true">&laquo;</span>
                   <span className="sr-only">Previous</span>
                 </Anchor>
               </li>
-            }
+              )}
             {pages.map((page, index) => (
-              <li key={index} >
-                <Anchor className="page-link" onClick={this.handleClick(page)} textDecoration='none' p='1rem' textColor={currentPage === page ? 'red' : 'black'} hoverTextColor="hsla(217, 14%, 50%)" cursor={currentPage === page ? 'not-allowed' : 'pointer'}>{page}</Anchor>
+              <li key={index}>
+                <Anchor className="page-link" onClick={this.handleClick(page)} textDecoration="none" p="1rem" textColor={currentPage === page ? 'red' : 'black'} hoverTextColor="hsla(217, 14%, 50%)" cursor={currentPage === page ? 'not-allowed' : 'pointer'}>{page}</Anchor>
               </li>
             ))}
-            {currentPage < this.totalPages &&
+            {currentPage < this.totalPages
+              && (
               <li className="page-item">
-                <Anchor className="page-link" aria-label="Next" onClick={this.handleMoveRight} textDecoration='none' p='1rem' textColor='black' hoverTextColor="hsla(217, 14%, 50%)" >
+                <Anchor className="page-link" aria-label="Next" onClick={this.handleMoveRight} textDecoration="none" p="1rem" textColor="black" hoverTextColor="hsla(217, 14%, 50%)">
                   <span aria-hidden="true">&raquo;</span>
                   <span className="sr-only">Next</span>
                 </Anchor>
               </li>
-            }
+              )}
 
           </ul>
-        </nav >
-      </Fragment >
+        </nav>
+      </>
     );
   }
 
@@ -137,33 +152,42 @@ class Pagination extends Component {
     this.gotoPage(1);
   }
 
-  gotoPage = page => {
-    const { onPageChanged = f => f } = this.props;
+  gotoPage = (page) => {
+    const { onPageChanged = (f) => f } = this.props;
     const currentPage = Math.max(0, Math.min(page, this.totalPages));
     const paginationData = {
       currentPage,
       totalPages: this.totalPages,
       pageLimit: this.pageLimit,
-      totalRecords: this.totalRecords
+      totalRecords: this.totalRecords,
     };
 
     this.setState({ currentPage }, () => onPageChanged(paginationData));
   }
 
-  handleClick = page => evt => {
+  handleClick = (page) => (evt) => {
     evt.preventDefault();
     this.gotoPage(page);
   }
 
-  handleMoveLeft = evt => {
+  handleMoveLeft = (evt) => {
+    const { currentPage } = this.state;
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage - 1);
+    this.gotoPage(currentPage - 1);
   }
 
-  handleMoveRight = evt => {
+  handleMoveRight = (evt) => {
+    const { currentPage } = this.state;
     evt.preventDefault();
-    this.gotoPage(this.state.currentPage + 1);
+    this.gotoPage(currentPage + 1);
   }
 }
+
+Pagination.propTypes = {
+  totalRecords: PropTypes.number.isRequired,
+  pageLimit: PropTypes.number.isRequired,
+  pageNeighbours: PropTypes.number.isRequired,
+  onPageChanged: PropTypes.func.isRequired,
+};
 
 export default Pagination;

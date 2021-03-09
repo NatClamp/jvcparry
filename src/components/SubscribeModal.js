@@ -1,19 +1,22 @@
-import React from 'react'
-import { Div, Modal, Icon, Text } from "atomize";
+/* eslint-disable react/no-unused-state */
+import React from 'react';
+import {
+  Div, Modal, Icon, Text,
+} from 'atomize';
+import PropTypes from 'prop-types';
 
-import NewsletterForm from '../components/NewsletterForm';
-import logo from '../images/logo.png'
+import NewsletterForm from './NewsletterForm';
+import logo from '../images/logo.png';
 
 class PopUpModal extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isSubmitting: false
+      isSubmitting: false,
     };
 
     this.onClickSubmit = this.onClickSubmit.bind(this);
-    
   }
 
   onClickSubmit() {
@@ -27,8 +30,6 @@ class PopUpModal extends React.Component {
     }, 600);
   }
 
-
-
   render() {
     const { isOpen, onClose } = this.props;
 
@@ -36,7 +37,7 @@ class PopUpModal extends React.Component {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        m={{ y: "4rem", x: { xs: "1rem", lg: "auto" } }}
+        m={{ y: '4rem', x: { xs: '1rem', lg: 'auto' } }}
         rounded="md"
         align="center"
       >
@@ -50,17 +51,17 @@ class PopUpModal extends React.Component {
           cursor="pointer"
         />
         <Div d="flex" flexDir="row" justify="center" align="center">
-          <img src={logo} alt="JVC Parry logo" textalign='center' style={{ maxHeight: '80px' }} />
+          <img src={logo} alt="JVC Parry logo" textalign="center" style={{ maxHeight: '80px' }} />
         </Div>
         <Text
-          p={{ l: "0.5rem", t: "0.25rem" }}
+          p={{ l: '0.5rem', t: '0.25rem' }}
           textSize="title"
-          m={{ b: "1rem" }}
-          textAlign='center'
+          m={{ b: '1rem' }}
+          textAlign="center"
         >
           Sign up for my newsletter to receive four free 5e adventures!
         </Text>
-        <NewsletterForm location='modal'/>
+        <NewsletterForm location="modal" />
       </Modal>
     );
   }
@@ -71,7 +72,7 @@ class SubmittingStateModal extends React.Component {
     super(props);
 
     this.state = {
-      showModal: false
+      showModal: false,
     };
 
     this.showModalTimeout = this.showModalTimeout.bind(this);
@@ -79,17 +80,17 @@ class SubmittingStateModal extends React.Component {
 
   showModalTimeout() {
     setTimeout(() => {
-      let now = new Date();
-      let tomorrow = now.setHours(now.getHours() + 24);
+      const now = new Date();
+      const tomorrow = now.setHours(now.getHours() + 24);
       localStorage.setItem('modalShownUntil', new Date(tomorrow));
       this.setState({ showModal: true });
     }, 2000);
-  };
+  }
 
   componentDidMount() {
-    let modalShownUntil = localStorage.getItem('modalShownUntil');
+    const modalShownUntil = localStorage.getItem('modalShownUntil');
     if (new Date(modalShownUntil) < new Date()) {
-        this.showModalTimeout();
+      this.showModalTimeout();
     }
   }
 
@@ -106,5 +107,10 @@ class SubmittingStateModal extends React.Component {
     );
   }
 }
+
+PopUpModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+};
 
 export default SubmittingStateModal;

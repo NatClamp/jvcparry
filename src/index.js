@@ -1,18 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Client as Styletron } from "styletron-engine-atomic";
-import { Provider as StyletronProvider, DebugEngine } from "styletron-react"
-import { BrowserRouter as Router } from "react-router-dom";
-import Analytics from "react-router-ga";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Client as Styletron } from 'styletron-engine-atomic';
+import { Provider as StyletronProvider, DebugEngine } from 'styletron-react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Analytics from 'react-router-ga';
 
-import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-import ShopProvider from "./context/shopContext";
-import BlogProvider from "./context/blogContext";
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+import ShopProvider from './context/shopContext';
+import BlogProvider from './context/blogContext';
 
-const debug =
-  process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();
+const debug = process.env.NODE_ENV === 'production' ? undefined : new DebugEngine();
 const engine = new Styletron();
 
 ReactDOM.render(
@@ -27,7 +26,7 @@ ReactDOM.render(
       </StyletronProvider>
     </BlogProvider>
   </ShopProvider>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
