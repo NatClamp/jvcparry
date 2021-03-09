@@ -5,7 +5,7 @@ import React, { useContext, useEffect } from 'react';
 import { BlogContext } from '../context/blogContext';
 import Error from '../components/Error';
 import { Text, Row, Container, Div, Icon } from "atomize";
-var parse = require('html-react-parser');
+import parse from 'html-react-parser';
 
 
 const BlogPage = () => {
