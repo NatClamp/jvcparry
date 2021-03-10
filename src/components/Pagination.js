@@ -50,7 +50,7 @@ class Pagination extends Component {
      * totalNumbers: the total page numbers to show on the control
      * totalBlocks: totalNumbers + 2 to cover for the left(<) and right(>) controls
      */
-    const totalNumbers = (this.pageNeighbours * 2) + 3;
+    const totalNumbers = (pageNeighbours * 2) + 3;
     const totalBlocks = totalNumbers + 2;
 
     if (totalPages > totalBlocks) {
