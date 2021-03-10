@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
-import { Div, Button } from "atomize";
+import { Div, Button } from 'atomize';
 import { BlogContext } from '../context/blogContext';
 
-
 const BlogPagination = () => {
-  const { currentPage, lastPage, handlePrevPage, handleNextPage } = useContext(BlogContext)
+  const {
+    currentPage, lastPage, handlePrevPage, handleNextPage,
+  } = useContext(BlogContext);
 
   return (
-    <Div d='flex' justify='center' align='center' m={{ y: '1rem' }}>
+    <Div d="flex" justify="center" align="center" m={{ y: '1rem' }}>
       <Button
         className={
           currentPage === 1
@@ -19,7 +20,7 @@ const BlogPagination = () => {
         m={{ r: '1rem' }}
       >
         Back
-          </Button>
+      </Button>
       <Button
         className={
           lastPage === true
@@ -30,12 +31,9 @@ const BlogPagination = () => {
         disabled={lastPage === true}
       >
         Next
-          </Button>
+      </Button>
     </Div>
   );
-
-}
-
-
+};
 
 export default BlogPagination;

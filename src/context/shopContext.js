@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import Client from "shopify-buy";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Client from 'shopify-buy';
 
 const ShopContext = React.createContext();
 
@@ -20,28 +21,27 @@ class ShopProvider extends Component {
 
   componentDidMount() {
     if (localStorage.checkout) {
-      console.log('checkout already exists')
+      console.log('checkout already exists');
       this.fetchCheckout(localStorage.checkout);
     } else {
       this.createCheckout();
-      console.log('checkout created')
+      console.log('checkout created');
     }
   }
 
   createCheckout = async () => {
     const checkout = await client.checkout.create();
-    localStorage.setItem("checkout", checkout.id);
-    await this.setState({ checkout: checkout });
+    localStorage.setItem('checkout', checkout.id);
+    await this.setState({ checkout });
   };
 
   fetchCheckout = async (checkoutId) => {
     client.checkout
       .fetch(checkoutId)
       .then((checkout) => {
-        this.setState({ checkout: checkout });
+        this.setState({ checkout });
       })
-      .catch((err) => this.setState({ err: true }));
-
+      .catch((err) => this.setState({ err }));
   };
 
   addItemToCheckout = async (variantId, quantity) => {
@@ -51,11 +51,12 @@ class ShopProvider extends Component {
         quantity: parseInt(quantity, 10),
       },
     ];
-    const checkout = await client.checkout.addLineItems(
-      this.state.checkout.id,
-      lineItemsToAdd
+    const { checkout } = this.state;
+    const chkout = await client.checkout.addLineItems(
+      checkout.id,
+      lineItemsToAdd,
     );
-    this.setState({ checkout: checkout });
+    this.setState({ checkout: chkout });
 
     this.openCart();
   };
@@ -65,38 +66,41 @@ class ShopProvider extends Component {
     const lineItemToUpdate = [
       {
         id: variantId,
-        quantity: newItemNumber
-      }
-    ]
-    const checkout = await client.checkout.updateLineItems(
-      this.state.checkout.id,
-      lineItemToUpdate
-    )
-    this.setState({ checkout: checkout })
+        quantity: newItemNumber,
+      },
+    ];
+    const { checkout } = this.state;
+    const chkout = await client.checkout.updateLineItems(
+      checkout.id,
+      lineItemToUpdate,
+    );
+    this.setState({ checkout: chkout });
   }
 
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
-    this.setState({ products: products });
+    this.setState({ products });
   };
 
   fetchProductWithId = async (id) => {
     const product = await client.product.fetch(id);
-    this.setState({ product: product });
+    this.setState({ product });
   };
 
   closeCart = () => {
     this.setState({ isCartOpen: false });
   };
+
   openCart = () => {
     this.setState({ isCartOpen: true });
   };
 
   setVariantIndex = (index) => {
-    this.setState({ variantIndex: index })
+    this.setState({ variantIndex: index });
   }
 
   render() {
+    const { children } = this.props;
     return (
       <ShopContext.Provider
         value={{
@@ -111,11 +115,15 @@ class ShopProvider extends Component {
           setVariantIndex: this.setVariantIndex,
         }}
       >
-        {this.props.children}
+        {children}
       </ShopContext.Provider>
     );
   }
 }
+
+ShopProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 const ShopConsumer = ShopContext.Consumer;
 
