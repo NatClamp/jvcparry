@@ -22,6 +22,7 @@ const HireMeForm = () => {
         setThanksMessage(true);
       })
       .catch((err) => {
+        setSubmitLoading(false);
         console.log('Message not sent due to error');
         console.log(err);
         setError(err);
@@ -85,6 +86,7 @@ const HireMeForm = () => {
             {error && (
             <Text tag="p" textSize="body" textColor="danger800" p={{ t: '10px' }}>
               Sorry, an error occurred. Please contact me directly on
+              {' '}
               <Anchor textColor="danger800" hoverTextColor="danger900" textWeight="600" href="mailto:jvcparry@hotmail.com">jvcparry@hotmail.com</Anchor>
             </Text>
             )}
