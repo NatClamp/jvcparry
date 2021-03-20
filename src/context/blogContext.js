@@ -23,6 +23,7 @@ class BlogProvider extends Component {
     filter: null,
     filterName: null,
     err: null,
+    search: null,
   };
 
   getAllPosts = async (page = 1, filter = null) => {
@@ -105,6 +106,15 @@ class BlogProvider extends Component {
 
   removeFilter = () => {
     this.setState({ filter: null, filterName: null }, () => this.getAllPosts());
+  }
+
+  setSearch = (search) => {
+    console.log('In the setSearch function');
+    this.setState({ search });
+  }
+
+  removeSearch = () => {
+    this.setState({ search: null }, () => this.getAllPosts());
   }
 
   preparePosts = async (posts) => {
@@ -212,6 +222,8 @@ class BlogProvider extends Component {
           getAllCategories: this.getAllCategories,
           setFilter: this.setFilter,
           removeFilter: this.removeFilter,
+          setSearch: this.setSearch,
+          removeSearch: this.removeSearch,
         }}
       >
         { children }

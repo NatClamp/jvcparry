@@ -32,6 +32,7 @@ const BlogFilter = () => {
       isOpen={showDropdown}
       onClick={() => setShowDropdown(!showDropdown)}
       menu={menuList}
+      w="20rem"
     >
       Filter posts
     </Dropdown>

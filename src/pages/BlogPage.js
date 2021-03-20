@@ -8,6 +8,7 @@ import Loading from '../components/Loading';
 import Error from '../components/Error';
 import BlogPagination from '../components/BlogPagination';
 import BlogFilter from '../components/BlogFilter';
+import BlogSearchBar from '../components/BlogSearchBar';
 
 const BlogPage = () => {
   const {
@@ -27,9 +28,12 @@ const BlogPage = () => {
   if (isLoading) return <Loading />;
   return (
     <Container maxW="1000px">
-      <Row d="flex" align="center" p={{ t: '2rem' }}>
+      <Row d="flex" align="top" m={{ t: '3rem' }} h="5rem">
         <Col>
-          <Text tag="h2" textSize="display2">Blog</Text>
+          <Text tag="h2" align="top" textSize="display2">Blog</Text>
+        </Col>
+        <Col>
+          <BlogSearchBar />
         </Col>
         <Col>
           <BlogFilter allCategories={allCategories} />
