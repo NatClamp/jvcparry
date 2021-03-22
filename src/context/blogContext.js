@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable consistent-return */
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -23,13 +24,13 @@ class BlogProvider extends Component {
     filter: null,
     filterName: null,
     err: null,
-    search: null,
+    search: '',
   };
 
   getAllPosts = async (page = 1, filter = null) => {
     let apiCall;
     const BASE_URL = process.env.REACT_APP_WORDPRESS_API;
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, search: '' });
     const URL = filter ? `${BASE_URL}/posts?categories=${filter}` : `${BASE_URL}/posts`;
     if (page) {
       if (URL.includes('?')) {
@@ -108,13 +109,28 @@ class BlogProvider extends Component {
     this.setState({ filter: null, filterName: null }, () => this.getAllPosts());
   }
 
-  setSearch = (search) => {
-    console.log('In the setSearch function');
-    this.setState({ search });
+  searchPagination = async (posts) => {
+    const postsNumber = posts.length;
+    const pageNumber = Math.ceil(postsNumber / 10);
+    posts.length < 10 ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
+    this.setState({ totalPostCount: postsNumber, pageCount: pageNumber, err: null });
+    const { currentPage, pageCount } = this.state;
+    if (currentPage === pageCount) this.setState({ lastPage: true });
+  }
+
+  setSearch = async (searchTerm) => {
+    this.setState({ search: searchTerm });
+    const { allPosts } = this.state;
+    const lcSearchTerm = searchTerm.toLowerCase();
+    // eslint-disable-next-line max-len
+    const searchedPosts = allPosts.filter((post) => post.content.rendered.toLowerCase().includes(lcSearchTerm));
+    console.log('search results', searchedPosts);
+    this.setState({ allPosts: searchedPosts });
+    this.searchPagination(searchedPosts);
   }
 
   removeSearch = () => {
-    this.setState({ search: null }, () => this.getAllPosts());
+    this.setState({ search: '' }, () => this.getAllPosts());
   }
 
   preparePosts = async (posts) => {
@@ -186,25 +202,23 @@ class BlogProvider extends Component {
 
   handleNextPage = () => {
     const { currentPage, filter } = this.state;
-
+    const newCurrentPage = currentPage + 1;
     this.setState(
-      (prevState) => {
-        prevState.currentPage++;
-      },
+      { currentPage: newCurrentPage },
       () => {
-        this.getAllPosts(currentPage, filter);
+        this.getAllPosts(newCurrentPage, filter);
       },
     );
   };
 
   handlePrevPage = () => {
     const { currentPage, filter } = this.state;
+    const newCurrentPage = currentPage - 1;
+
     this.setState(
-      (prevState) => {
-        prevState.currentPage--;
-      },
+      { currentPage: newCurrentPage },
       () => {
-        this.getAllPosts(currentPage, filter);
+        this.getAllPosts(newCurrentPage, filter);
       },
     );
   };

@@ -13,13 +13,14 @@ import BlogSearchBar from '../components/BlogSearchBar';
 const BlogPage = () => {
   const {
     getAllPosts, allPosts, isLoading, getAllCategories,
-    allCategories, pageCount, filterName, removeFilter, currentPage, err,
+    allCategories, pageCount, filterName, removeFilter, currentPage, err, search, removeSearch,
   } = useContext(BlogContext);
 
   useEffect(() => {
     getAllPosts();
     getAllCategories();
     removeFilter();
+    removeSearch();
     return () => {
     };
   }, [getAllPosts, getAllCategories, removeFilter]);
@@ -34,6 +35,26 @@ const BlogPage = () => {
         </Col>
         <Col>
           <BlogSearchBar />
+          {search && (
+          <Tag
+            m={{ r: '1rem', y: '1rem' }}
+            suffix={(
+              <Icon
+                name="Cross"
+                size="12px"
+                m={{ l: '1rem' }}
+                cursor="pointer"
+                onClick={() => removeSearch()}
+              />
+          )}
+          >
+            Search:
+            {' '}
+            {search}
+            {' '}
+
+          </Tag>
+          )}
         </Col>
         <Col>
           <BlogFilter allCategories={allCategories} />
@@ -61,14 +82,24 @@ const BlogPage = () => {
       </Row>
       <Row>
         <Col size="12">
-          {allPosts.map((post) => (
+          {allPosts.length > 0 ? allPosts.map((post) => (
             <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }} key={post.id}>
               <Div key={post.id} p="2rem" m={{ y: '1rem' }} bg="gray400" hoverBg="gray500" textColor="black" w="100%">
                 <Text tag="h3" textSize="title">{post.preparedTitle}</Text>
                 <Text tag="p" textSize="subheader" w="100%" overflow="hidden">{post.preparedExcerpt}</Text>
               </Div>
             </Link>
-          ))}
+          )) : (
+            <Div d="flex" flexDir="column" justify="center" align="center" m={{ y: '2rem' }}>
+              <Text textSize="title" p="2rem" textAlign="center">
+                Sorry, no items were found with search term
+                {' '}
+                "
+                {search}
+                ". Remove the term and try another.
+              </Text>
+            </Div>
+          )}
         </Col>
       </Row>
       <Row d="flex" flexDir="column" justify="center" m={{ y: '1rem' }} align="center">
