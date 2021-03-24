@@ -26,6 +26,7 @@ class BlogProvider extends Component {
     err: null,
     search: '',
     searchResultTotal: 0,
+    searchResult: [],
   };
 
   getCompletePostList = async () => {
@@ -59,7 +60,6 @@ class BlogProvider extends Component {
     if (posts.data) {
       posts.data.length < 10
         ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
-      this.preparePosts(posts.data);
       const totalPostCount = Number(posts.headers['x-wp-total']);
       const pageCount = Number(posts.headers['x-wp-totalpages']);
       this.setState({
@@ -72,7 +72,6 @@ class BlogProvider extends Component {
       const numberOfPages = Math.ceil(searchResultTotal / 10);
       numberOfPostsOnPage < 10
         ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
-      await this.preparePosts(posts);
       this.setState({ pageCount: numberOfPages, err: null });
     }
     const { pageCount } = this.state;
@@ -80,12 +79,15 @@ class BlogProvider extends Component {
   }
 
   getPostsOnPage = async (page = 1, filter = null) => {
-    const { search, completePostList } = this.state;
+    const { search, searchResult } = this.state;
     if (search) {
       const sliceTo = page * 10;
       const sliceFrom = sliceTo - 10;
-      const searchedPosts = completePostList.slice(sliceFrom, sliceTo);
+      console.log(searchResult);
+      const searchedPosts = searchResult.slice(sliceFrom, sliceTo);
+      console.log(searchedPosts);
       this.pagination(searchedPosts);
+      this.preparePosts(searchedPosts);
     } else {
       let apiCall;
       const BASE_URL = process.env.REACT_APP_WORDPRESS_API;
@@ -106,6 +108,7 @@ class BlogProvider extends Component {
       try {
         const posts = await axios.get(apiCall);
         this.pagination(posts);
+        this.preparePosts(posts.data);
       } catch (err) {
         this.setState({ err });
       }
@@ -170,13 +173,14 @@ class BlogProvider extends Component {
     const { completePostList } = this.state;
     const lcSearchTerm = searchTerm.toLowerCase();
     // eslint-disable-next-line max-len
-    const searchedPosts = completePostList.filter((post) => post.content.rendered.toLowerCase().includes(lcSearchTerm));
+    const searchedPosts = completePostList.filter((post) => post.content.rendered.toLowerCase().indexOf(lcSearchTerm) !== -1);
     console.log('search results', searchedPosts);
     const firstPageOfSearchedPosts = searchedPosts.slice(0, 10);
     // console.log(firstPageOfSearchedPosts);
     const searchResultTotal = searchedPosts.length;
-    this.setState({ searchResultTotal });
+    this.setState({ searchResultTotal, searchResult: searchedPosts });
     this.pagination(firstPageOfSearchedPosts);
+    this.preparePosts(firstPageOfSearchedPosts);
   }
 
   removeSearch = () => {
