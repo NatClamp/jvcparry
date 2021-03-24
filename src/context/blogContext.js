@@ -44,13 +44,15 @@ class BlogProvider extends Component {
     } else {
       apiCall = URL;
     }
-    const { currentPage, pageCount } = this.state;
     try {
+      const { currentPage } = this.state;
       const posts = await axios.get(apiCall);
       posts.data.length < 10
         ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
       this.preparePosts(posts.data);
-      this.setState({ totalPostCount: Number(posts.headers['x-wp-total']), pageCount: Number(posts.headers['x-wp-totalpages']), err: null });
+      const totalPostCount = Number(posts.headers['x-wp-total']);
+      const pageCount = Number(posts.headers['x-wp-totalpages']);
+      this.setState({ totalPostCount, pageCount, err: null });
       if (currentPage === pageCount) this.setState({ lastPage: true });
     } catch (err) {
       this.setState({ err });
