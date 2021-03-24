@@ -12,18 +12,18 @@ import BlogSearchBar from '../components/BlogSearchBar';
 
 const BlogPage = () => {
   const {
-    getAllPosts, allPosts, isLoading, getAllCategories,
+    getPostsOnPage, postsOnPage, isLoading, getAllCategories,
     allCategories, pageCount, filterName, removeFilter, currentPage, err, search, removeSearch,
   } = useContext(BlogContext);
 
   useEffect(() => {
-    getAllPosts();
+    getPostsOnPage();
     getAllCategories();
     removeFilter();
     removeSearch();
     return () => {
     };
-  }, [getAllPosts, getAllCategories, removeFilter]);
+  }, [getPostsOnPage, getAllCategories, removeFilter]);
 
   if (err) return <Error />;
   if (isLoading) return <Loading />;
@@ -82,7 +82,7 @@ const BlogPage = () => {
       </Row>
       <Row>
         <Col size="12">
-          {allPosts.length > 0 ? allPosts.map((post) => (
+          {postsOnPage.length > 0 ? postsOnPage.map((post) => (
             <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }} key={post.id}>
               <Div key={post.id} p="2rem" m={{ y: '1rem' }} bg="gray400" hoverBg="gray500" textColor="black" w="100%">
                 <Text tag="h3" textSize="title">{post.preparedTitle}</Text>
@@ -105,9 +105,11 @@ const BlogPage = () => {
       <Row d="flex" flexDir="column" justify="center" m={{ y: '1rem' }} align="center">
         <Text>
           Page
+          {' '}
           {currentPage}
           {' '}
           /
+          {' '}
           {pageCount}
         </Text>
         <BlogPagination />
