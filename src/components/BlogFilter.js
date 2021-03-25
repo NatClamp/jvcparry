@@ -6,11 +6,11 @@ import { BlogContext } from '../context/blogContext';
 
 const BlogFilter = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const { allCategories, getAllPosts, setFilter } = useContext(BlogContext);
+  const { allCategories, getPostsOnPage, setFilter } = useContext(BlogContext);
 
   const filterBlogPosts = (categoryId, filterName) => {
     setFilter(categoryId, filterName);
-    getAllPosts(1, categoryId);
+    getPostsOnPage(1, categoryId);
   };
 
   const menuList = (
@@ -32,6 +32,7 @@ const BlogFilter = () => {
       isOpen={showDropdown}
       onClick={() => setShowDropdown(!showDropdown)}
       menu={menuList}
+      w="20rem"
     >
       Filter posts
     </Dropdown>

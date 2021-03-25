@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -9,11 +8,14 @@ const BlogContext = React.createContext();
 class BlogProvider extends Component {
   state = {
     isLoading: false,
-    allPosts: [],
+    completePostList: [],
     totalPostCount: 0,
+    totalPageCount: 0,
+    postsOnPage: [],
+    currentPostCount: 0,
+    currentPageCount: 0,
     currentPage: 1,
     lastPage: false,
-    pageCount: 0,
     postById: {},
     allCategories: [],
     parsedTitle: '',
@@ -23,35 +25,102 @@ class BlogProvider extends Component {
     filter: null,
     filterName: null,
     err: null,
+    search: '',
+    searchResultTotal: 0,
+    searchResult: [],
   };
 
-  getAllPosts = async (page = 1, filter = null) => {
-    let apiCall;
+  getCompletePostList = async () => {
+    const { totalPageCount } = this.state;
     const BASE_URL = process.env.REACT_APP_WORDPRESS_API;
     this.setState({ isLoading: true });
-    const URL = filter ? `${BASE_URL}/posts?categories=${filter}` : `${BASE_URL}/posts`;
-    if (page) {
-      if (URL.includes('?')) {
-        // combine queries
-        apiCall = `${URL}&page=${page}`;
-      } else {
-        // just add page query
-        apiCall = `${URL}?page=${page}`;
-      }
-      this.setState({ currentPage: page });
-    } else {
-      apiCall = URL;
+    const apiCalls = [];
+    const pageRange = [];
+    for (let i = 1; i <= totalPageCount; i++) {
+      pageRange.push(i);
     }
-    const { currentPage, pageCount } = this.state;
+    pageRange.forEach((pageNum) => {
+      const newPromise = axios({
+        method: 'get',
+        url: `${BASE_URL}/posts?page=${pageNum}`,
+      });
+      apiCalls.push(newPromise);
+    });
     try {
-      const posts = await axios.get(apiCall);
-      posts.data.length < 10
-        ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
-      this.preparePosts(posts.data);
-      this.setState({ totalPostCount: Number(posts.headers['x-wp-total']), pageCount: Number(posts.headers['x-wp-totalpages']), err: null });
-      if (currentPage === pageCount) this.setState({ lastPage: true });
+      const promiseResolution = await Promise.all(apiCalls);
+      const data = promiseResolution.map((result) => result.data);
+      const postsArray = data.flat();
+      this.setState({ completePostList: postsArray });
     } catch (err) {
       this.setState({ err });
+    }
+  }
+
+  pagination = async (posts) => {
+    const { currentPage } = this.state;
+    if (posts.data) {
+      posts.data.length < 10
+        ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
+      const currentPostCount = Number(posts.headers['x-wp-total']);
+      const currentPageCount = Number(posts.headers['x-wp-totalpages']);
+      this.setState({
+        currentPostCount, currentPageCount, err: null,
+      });
+    } else {
+      // for searched items
+      const numberOfPostsOnPage = posts.length;
+      const { searchResultTotal } = this.state;
+      const numberOfPages = Math.ceil(searchResultTotal / 10);
+      numberOfPostsOnPage < 10
+        ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
+      this.setState({
+        currentPageCount: numberOfPages,
+        currentPostCount: searchResultTotal,
+        err: null,
+      });
+    }
+    const { currentPageCount } = this.state;
+    if (currentPage === currentPageCount) this.setState({ lastPage: true });
+  }
+
+  getPostsOnPage = async (page = 1, filter = null) => {
+    const { search, searchResult, totalPostCount } = this.state;
+    if (search) {
+      const sliceTo = page * 10;
+      const sliceFrom = sliceTo - 10;
+      const searchedPosts = searchResult.slice(sliceFrom, sliceTo);
+      this.pagination(searchedPosts);
+      this.preparePosts(searchedPosts);
+    } else {
+      let apiCall;
+      const BASE_URL = process.env.REACT_APP_WORDPRESS_API;
+      this.setState({ isLoading: true });
+      const URL = filter ? `${BASE_URL}/posts?categories=${filter}` : `${BASE_URL}/posts`;
+      if (page) {
+        if (URL.includes('?')) {
+          // combine queries
+          apiCall = `${URL}&page=${page}`;
+        } else {
+          // just add page query
+          apiCall = `${URL}?page=${page}`;
+        }
+        this.setState({ currentPage: page });
+      } else {
+        apiCall = URL;
+      }
+      try {
+        const posts = await axios.get(apiCall);
+        if (totalPostCount === 0) {
+          // Set the full blog post and page count in state and don't alter these. Only run once.
+          const completePostCount = Number(posts.headers['x-wp-total']);
+          const completePageCount = Number(posts.headers['x-wp-totalpages']);
+          this.setState({ totalPostCount: completePostCount, totalPageCount: completePageCount });
+        }
+        this.pagination(posts);
+        this.preparePosts(posts.data);
+      } catch (err) {
+        this.setState({ err });
+      }
     }
   }
 
@@ -100,11 +169,46 @@ class BlogProvider extends Component {
   }
 
   setFilter = (filter, filterName) => {
-    this.setState({ filter, filterName });
+    this.setState({
+      filter,
+      filterName,
+      search: '',
+      searchResultTotal: 0,
+      currentPage: 1,
+    });
   }
 
   removeFilter = () => {
-    this.setState({ filter: null, filterName: null }, () => this.getAllPosts());
+    this.setState({ filter: null, filterName: null }, () => this.getPostsOnPage());
+  }
+
+  setSearch = async (searchTerm) => {
+    await this.getCompletePostList();
+    this.setState({
+      search: searchTerm,
+      currentPage: 1,
+      filter: null,
+      filterName: null,
+    });
+    const { completePostList } = this.state;
+    const lcSearchTerm = searchTerm.toLowerCase();
+    const searchedPosts = completePostList
+      .filter((post) => post.content.rendered.toLowerCase().indexOf(lcSearchTerm) !== -1);
+    const firstPageOfSearchedPosts = searchedPosts.slice(0, 10);
+    const searchResultTotal = searchedPosts.length;
+    this.setState({ searchResultTotal, searchResult: searchedPosts });
+    this.pagination(firstPageOfSearchedPosts);
+    this.preparePosts(firstPageOfSearchedPosts);
+  }
+
+  removeSearch = () => {
+    this.setState({ search: '', searchResultTotal: 0 }, () => this.getPostsOnPage());
+  }
+
+  blogClearAll = () => {
+    this.setState({
+      search: '', searchResultTotal: 0, filter: null, filterName: null,
+    }, () => this.getPostsOnPage(1));
   }
 
   preparePosts = async (posts) => {
@@ -122,7 +226,7 @@ class BlogProvider extends Component {
         post.preparedDate = formattedDate;
         return post;
       });
-      this.setState({ allPosts: parsedPosts, isLoading: false, err: null });
+      this.setState({ postsOnPage: parsedPosts, isLoading: false, err: null });
     } catch (err) {
       this.setState({ err });
     }
@@ -138,10 +242,10 @@ class BlogProvider extends Component {
       if (matchedCat.length > 0) {
         result = matchedCat[0].name;
       }
-      return result;
     } catch (err) {
       this.setState({ err });
     }
+    return result;
   }
 
   convertTagIds = async (id) => {
@@ -152,49 +256,53 @@ class BlogProvider extends Component {
       if (matchedTag[0] !== undefined) {
         result = matchedTag[0].name.replace('&amp;', '&');
       }
-      return result;
     } catch (err) {
       this.setState({ err });
     }
+    return result;
   }
 
   getPostCategories = async (postCategoryIds) => {
+    let postCats;
     try {
-      return Promise.all(postCategoryIds.map((id) => this.convertCategoryIds(id)));
+      postCats = Promise.all(postCategoryIds.map((id) => this.convertCategoryIds(id)));
     } catch (err) {
       this.setState({ err });
     }
+    return postCats;
   }
 
   getPostTags = async (postTagIds) => {
+    let postTags;
     try {
-      return Promise.all(postTagIds.map((id) => this.convertTagIds(id)));
+      postTags = Promise.all(postTagIds.map((id) => this.convertTagIds(id)));
     } catch (err) {
       this.setState({ err });
     }
+    return postTags;
   }
 
   handleNextPage = () => {
     const { currentPage, filter } = this.state;
-
+    const newCurrentPage = currentPage + 1;
     this.setState(
-      (prevState) => {
-        prevState.currentPage++;
-      },
+      { currentPage: newCurrentPage },
       () => {
-        this.getAllPosts(currentPage, filter);
+        this.getPostsOnPage(newCurrentPage, filter);
+        window.scrollTo(0, 0);
       },
     );
   };
 
   handlePrevPage = () => {
     const { currentPage, filter } = this.state;
+    const newCurrentPage = currentPage - 1;
+
     this.setState(
-      (prevState) => {
-        prevState.currentPage--;
-      },
+      { currentPage: newCurrentPage },
       () => {
-        this.getAllPosts(currentPage, filter);
+        this.getPostsOnPage(newCurrentPage, filter);
+        window.scrollTo(0, 0);
       },
     );
   };
@@ -205,13 +313,16 @@ class BlogProvider extends Component {
       <BlogContext.Provider
         value={{
           ...this.state,
-          getAllPosts: this.getAllPosts,
+          getPostsOnPage: this.getPostsOnPage,
           getPostById: this.getPostById,
           handleNextPage: this.handleNextPage,
           handlePrevPage: this.handlePrevPage,
           getAllCategories: this.getAllCategories,
           setFilter: this.setFilter,
           removeFilter: this.removeFilter,
+          setSearch: this.setSearch,
+          removeSearch: this.removeSearch,
+          blogClearAll: this.blogClearAll,
         }}
       >
         { children }
