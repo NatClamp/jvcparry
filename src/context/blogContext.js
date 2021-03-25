@@ -205,6 +205,12 @@ class BlogProvider extends Component {
     this.setState({ search: '', searchResultTotal: 0 }, () => this.getPostsOnPage());
   }
 
+  blogClearAll = () => {
+    this.setState({
+      search: '', searchResultTotal: 0, filter: null, filterName: null,
+    }, () => this.getPostsOnPage(1));
+  }
+
   preparePosts = async (posts) => {
     try {
       const postsCopy = await [...posts];
@@ -316,6 +322,7 @@ class BlogProvider extends Component {
           removeFilter: this.removeFilter,
           setSearch: this.setSearch,
           removeSearch: this.removeSearch,
+          blogClearAll: this.blogClearAll,
         }}
       >
         { children }

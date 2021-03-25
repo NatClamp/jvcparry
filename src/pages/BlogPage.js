@@ -13,12 +13,12 @@ import BlogSearchBar from '../components/BlogSearchBar';
 const BlogPage = () => {
   const {
     getPostsOnPage, postsOnPage, isLoading, getAllCategories,
-    allCategories, currentPageCount, filterName, removeFilter,
-    currentPage, err, search, removeSearch,
+    allCategories, currentPageCount, filter, filterName, removeFilter,
+    currentPage, err, search, removeSearch, blogClearAll,
   } = useContext(BlogContext);
 
   useEffect(() => {
-    getPostsOnPage(currentPage);
+    getPostsOnPage(currentPage, filter);
     getAllCategories();
     return () => {
     };
@@ -28,11 +28,16 @@ const BlogPage = () => {
   if (isLoading) return <Loading />;
   return (
     <Container maxW="1000px">
-      <Row d="flex" align="top" m={{ t: '3rem' }} h="5rem">
-        <Col>
-          <Text tag="h2" align="top" textSize="display2">Blog</Text>
+      <Row d="flex" m={{ t: '3rem' }} h="5rem">
+        <Col size="1">
+          <Text tag="h2" align="top" textSize="display1">
+            Blog
+          </Text>
         </Col>
-        <Col>
+        <Col size="3">
+          <Icon name="HomeSolid2" color="black" size="2rem" cursor="pointer" m={{ t: '0.5rem' }} onClick={() => blogClearAll()} />
+        </Col>
+        <Col size="4">
           <BlogSearchBar />
           {search && (
           <Tag
@@ -55,7 +60,7 @@ const BlogPage = () => {
           </Tag>
           )}
         </Col>
-        <Col>
+        <Col size="4">
           <BlogFilter allCategories={allCategories} />
           {filterName && (
           <Tag
@@ -90,17 +95,22 @@ const BlogPage = () => {
             </Link>
           )) : (
             <Div d="flex" flexDir="column" justify="center" align="center" m={{ y: '2rem' }}>
-              <Text textSize="title" p="2rem" textAlign="center">
-                Sorry, no items were found with search term
+              <Text textSize="display3">🪄</Text>
+              <Text textSize="heading" p="2rem" textAlign="center">
+                Sorry, we couldn't magic up any posts for the search term
                 {' '}
                 "
                 {search}
-                ". Remove the term and try another.
+                ".
+              </Text>
+              <Text textSize="heading" p={{ b: '2rem' }} textAlign="center">
+                Try another? 🧙‍♂️
               </Text>
             </Div>
           )}
         </Col>
       </Row>
+      {postsOnPage.length > 0 && (
       <Row d="flex" flexDir="column" justify="center" m={{ y: '1rem' }} align="center">
         <Text>
           Page
@@ -113,6 +123,8 @@ const BlogPage = () => {
         </Text>
         <BlogPagination />
       </Row>
+      ) }
+
     </Container>
   );
 };
