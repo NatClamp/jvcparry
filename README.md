@@ -6,8 +6,8 @@
 
 ## :octocat: Tech
 - The site was bootstrapped with [create-react-app](https://github.com/facebook/create-react-app)
-- It uses the [Shopify Buy SDK](https://shopify.dev/tools/libraries/storefront-api/javascript) to create a shopping cart, fetch information about a products and generate a checkout URL.
-- It uses the [WordPress REST API](https://developer.wordpress.org/rest-api/reference/) to pull over the blog posts from the clients WP.com site
+- It uses the [Shopify Buy SDK](https://shopify.dev/tools/libraries/storefront-api/javascript) to create a shopping cart, fetch information about products and generate checkout URLs.
+- It uses the [WordPress REST API](https://developer.wordpress.org/rest-api/reference/) to pull over blog posts from the client's WP.com site.
 
 ## :construction_worker: Development
 - `npm install` installs all the dependencies
@@ -18,5 +18,5 @@
 - `npm run test` runs [Jest](https://jestjs.io/) for all the unit tests
 
 ## :rocket: Deployment
-- The site is deployed at [JVCParry.com](https://jvcparry.com). It automatically deploys from the `main` branch on merge.
+- The site is deployed at [jvcparry.com](https://jvcparry.com). It automatically deploys from the `main` branch on merge.
 
