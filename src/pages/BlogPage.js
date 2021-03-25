@@ -13,17 +13,16 @@ import BlogSearchBar from '../components/BlogSearchBar';
 const BlogPage = () => {
   const {
     getPostsOnPage, postsOnPage, isLoading, getAllCategories,
-    allCategories, pageCount, filterName, removeFilter, currentPage, err, search, removeSearch,
+    allCategories, currentPageCount, filterName, removeFilter,
+    currentPage, err, search, removeSearch,
   } = useContext(BlogContext);
 
   useEffect(() => {
-    getPostsOnPage();
+    getPostsOnPage(currentPage);
     getAllCategories();
-    removeFilter();
-    removeSearch();
     return () => {
     };
-  }, [getPostsOnPage, getAllCategories, removeFilter]);
+  }, [getPostsOnPage, getAllCategories]);
 
   if (err) return <Error />;
   if (isLoading) return <Loading />;
@@ -110,7 +109,7 @@ const BlogPage = () => {
           {' '}
           /
           {' '}
-          {pageCount}
+          {currentPageCount}
         </Text>
         <BlogPagination />
       </Row>

@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -9,12 +8,14 @@ const BlogContext = React.createContext();
 class BlogProvider extends Component {
   state = {
     isLoading: false,
-    postsOnPage: [],
     completePostList: [],
     totalPostCount: 0,
+    totalPageCount: 0,
+    postsOnPage: [],
+    currentPostCount: 0,
+    currentPageCount: 0,
     currentPage: 1,
     lastPage: false,
-    pageCount: 0,
     postById: {},
     allCategories: [],
     parsedTitle: '',
@@ -30,12 +31,12 @@ class BlogProvider extends Component {
   };
 
   getCompletePostList = async () => {
-    const { pageCount } = this.state;
+    const { totalPageCount } = this.state;
     const BASE_URL = process.env.REACT_APP_WORDPRESS_API;
     this.setState({ isLoading: true });
     const apiCalls = [];
     const pageRange = [];
-    for (let i = 1; i <= pageCount; i++) {
+    for (let i = 1; i <= totalPageCount; i++) {
       pageRange.push(i);
     }
     pageRange.forEach((pageNum) => {
@@ -60,10 +61,10 @@ class BlogProvider extends Component {
     if (posts.data) {
       posts.data.length < 10
         ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
-      const totalPostCount = Number(posts.headers['x-wp-total']);
-      const pageCount = Number(posts.headers['x-wp-totalpages']);
+      const currentPostCount = Number(posts.headers['x-wp-total']);
+      const currentPageCount = Number(posts.headers['x-wp-totalpages']);
       this.setState({
-        totalPostCount, pageCount, err: null,
+        currentPostCount, currentPageCount, err: null,
       });
     } else {
       // for searched items
@@ -72,20 +73,22 @@ class BlogProvider extends Component {
       const numberOfPages = Math.ceil(searchResultTotal / 10);
       numberOfPostsOnPage < 10
         ? this.setState({ lastPage: true }) : this.setState({ lastPage: false });
-      this.setState({ pageCount: numberOfPages, err: null });
+      this.setState({
+        currentPageCount: numberOfPages,
+        currentPostCount: searchResultTotal,
+        err: null,
+      });
     }
-    const { pageCount } = this.state;
-    if (currentPage === pageCount) this.setState({ lastPage: true });
+    const { currentPageCount } = this.state;
+    if (currentPage === currentPageCount) this.setState({ lastPage: true });
   }
 
   getPostsOnPage = async (page = 1, filter = null) => {
-    const { search, searchResult } = this.state;
+    const { search, searchResult, totalPostCount } = this.state;
     if (search) {
       const sliceTo = page * 10;
       const sliceFrom = sliceTo - 10;
-      console.log(searchResult);
       const searchedPosts = searchResult.slice(sliceFrom, sliceTo);
-      console.log(searchedPosts);
       this.pagination(searchedPosts);
       this.preparePosts(searchedPosts);
     } else {
@@ -107,6 +110,12 @@ class BlogProvider extends Component {
       }
       try {
         const posts = await axios.get(apiCall);
+        if (totalPostCount === 0) {
+          // Set the full blog post and page count in state and don't alter these. Only run once.
+          const completePostCount = Number(posts.headers['x-wp-total']);
+          const completePageCount = Number(posts.headers['x-wp-totalpages']);
+          this.setState({ totalPostCount: completePostCount, totalPageCount: completePageCount });
+        }
         this.pagination(posts);
         this.preparePosts(posts.data);
       } catch (err) {
@@ -160,7 +169,13 @@ class BlogProvider extends Component {
   }
 
   setFilter = (filter, filterName) => {
-    this.setState({ filter, filterName });
+    this.setState({
+      filter,
+      filterName,
+      search: '',
+      searchResultTotal: 0,
+      currentPage: 1,
+    });
   }
 
   removeFilter = () => {
@@ -169,14 +184,17 @@ class BlogProvider extends Component {
 
   setSearch = async (searchTerm) => {
     await this.getCompletePostList();
-    this.setState({ search: searchTerm, currentPage: 1 });
+    this.setState({
+      search: searchTerm,
+      currentPage: 1,
+      filter: null,
+      filterName: null,
+    });
     const { completePostList } = this.state;
     const lcSearchTerm = searchTerm.toLowerCase();
-    // eslint-disable-next-line max-len
-    const searchedPosts = completePostList.filter((post) => post.content.rendered.toLowerCase().indexOf(lcSearchTerm) !== -1);
-    console.log('search results', searchedPosts);
+    const searchedPosts = completePostList
+      .filter((post) => post.content.rendered.toLowerCase().indexOf(lcSearchTerm) !== -1);
     const firstPageOfSearchedPosts = searchedPosts.slice(0, 10);
-    // console.log(firstPageOfSearchedPosts);
     const searchResultTotal = searchedPosts.length;
     this.setState({ searchResultTotal, searchResult: searchedPosts });
     this.pagination(firstPageOfSearchedPosts);
