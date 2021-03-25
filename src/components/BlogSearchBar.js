@@ -14,23 +14,25 @@ const BlogSearchBar = () => {
   };
 
   return (
-    <Input
-      placeholder="Search"
-      value={searchValue}
-      onChange={handleChange}
-      suffix={(
-      <Icon
-        name="Search"
-        size="20px"
-        cursor="pointer"
-        onClick={() => setSearch(searchValue)}
-        pos="absolute"
-        top="50%"
-        right="1rem"
-        transform="translateY(-50%)"
+    <form onSubmit={() => setSearch(searchValue)} w="100%">
+      <Input
+        placeholder="Search"
+        value={searchValue}
+        onChange={handleChange}
+        suffix={(
+          <Icon
+            name="Search"
+            size="20px"
+            cursor="pointer"
+            onClick={() => setSearch(searchValue)}
+            pos="absolute"
+            top="50%"
+            right="1rem"
+            transform="translateY(-50%)"
+          />
+        )}
       />
-    )}
-    />
+    </form>
   );
 };
 
