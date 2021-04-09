@@ -18,7 +18,7 @@ describe('MobileNav component', () => {
   it('should render the MobileNav component', () => {
     render(
       <Router history={history}>
-        <MobileNav />
+        <MobileNav toggleMenu={() => {}} />
       </Router>,
     );
     expect(
@@ -29,7 +29,7 @@ describe('MobileNav component', () => {
     const tree = renderer
       .create(
         <Router history={history}>
-          <MobileNav />
+          <MobileNav toggleMenu={() => {}} />
         </Router>,
       )
       .toJSON();
