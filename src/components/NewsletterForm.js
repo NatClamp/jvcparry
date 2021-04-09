@@ -46,7 +46,7 @@ const NewsletterForm = (props) => {
   return (
     <>
       {location === 'footer' && (
-      <Text tag="p" textSize="body" textAlign={{ xs: 'center', md: 'left' }} align={{ xs: 'center' }} justify={{ xs: 'center' }} p={{ y: '5px', l: { xs: '20px', md: '0' }, r: { xs: '20px', md: '0' } }} m={{ xs: '15px auto', md: 'auto' }} textColor="white">
+      <Text tag="p" textSize="body" textAlign={{ xs: 'center', md: 'left' }} align={{ xs: 'center' }} justify={{ xs: 'center' }} p={{ y: '5px', l: { xs: '20px', md: '0' }, r: { xs: '20px', md: '0' } }} m={{ xs: '15px auto', md: 'auto' }} textColor="white" data-testid="footer-title">
         Subscribe to my newsletter:
       </Text>
       )}

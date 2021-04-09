@@ -2,7 +2,7 @@ import React from 'react';
 import { Div, Icon, Container } from 'atomize';
 
 const Loading = () => (
-  <Container>
+  <Container data-testid="loading">
     <Div
       bg="transparent"
       d="flex"

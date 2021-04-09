@@ -7,7 +7,7 @@ const MobileNav = (props) => {
   const { toggleMenu } = props;
   return (
     <>
-      <Container d="flex" flexDir="column" p="0" m="0" bg="black" minW="100%">
+      <Container d="flex" flexDir="column" p="0" m="0" bg="black" minW="100%" data-testid="mobile-nav-container">
         <ul style={{
           listStyle: 'none', margin: '0 auto', padding: '0', paddingBottom: '20px',
         }}

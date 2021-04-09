@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewsletterForm component should match the snapshot 1`] = `
+Array [
+  <p
+    className=""
+    data-testid="footer-title"
+  >
+    Subscribe to my newsletter:
+  </p>,
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className=""
+    >
+      <input
+        className=""
+        d="flex"
+        m={
+          Object {
+            "b": "10px",
+          }
+        }
+        name="email_address"
+        placeholder="Email"
+        type="email"
+      />
+      <button
+        className=""
+        type="submit"
+      >
+        Subscribe
+      </button>
+    </div>
+  </form>,
+]
+`;

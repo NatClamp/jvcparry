@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -30,6 +31,7 @@
         "no-unused-expressions": ["error", { "allowTernary": true }],
         "react/sort-comp": 0,
         "max-classes-per-file": 0,
-        "no-console": 0
+        "no-console": 0,
+        "react/jsx-props-no-spreading": 0
     }
 }

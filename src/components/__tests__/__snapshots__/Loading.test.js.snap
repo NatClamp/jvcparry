@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading component should match the snapshot 1`] = `
+<div
+  className=""
+  data-testid="loading"
+>
+  <div
+    className=""
+  >
+    <svg
+      className=""
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      viewBox="0 0 24 24"
+    >
+      <circle
+        cx="5"
+        cy="12"
+        fill="#B0B7C3"
+        r="2"
+      >
+        <animate
+          attributeName="opacity"
+          begin="0.1"
+          dur="1s"
+          repeatCount="indefinite"
+          values="0;1;0"
+        />
+      </circle>
+      <circle
+        cx="12"
+        cy="12"
+        fill="#B0B7C3"
+        r="2"
+      >
+        <animate
+          attributeName="opacity"
+          begin="0.2"
+          dur="1s"
+          repeatCount="indefinite"
+          values="0;1;0"
+        />
+      </circle>
+      <circle
+        cx="19"
+        cy="12"
+        fill="#B0B7C3"
+        r="2"
+      >
+        <animate
+          attributeName="opacity"
+          begin="0.3"
+          dur="1s"
+          repeatCount="indefinite"
+          values="0;1;0"
+        />
+      </circle>
+    </svg>
+  </div>
+</div>
+`;

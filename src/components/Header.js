@@ -18,7 +18,7 @@ const Header = () => {
 
   return (
     <>
-      <Container minW="100%" d="flex" flexDir="row" justify="space-between" align="center" bg="black" p="2rem">
+      <Container minW="100%" d="flex" flexDir="row" justify="space-between" align="center" bg="black" p="2rem" className="headerContainer" data-testid="headerContainer">
         <Nav />
         <Text onClick={() => toggleMenu()} cursor="pointer" d={{ xs: 'flex', md: 'none' }}>{mobileMenuOpen ? <Icon name="Cross" size="20px" color="gray400" /> : <Icon name="Menu" size="20px" color="gray400" />}</Text>
         <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
