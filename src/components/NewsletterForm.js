@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 const NewsletterForm = (props) => {
   const {
-    register, handleSubmit, reset, errors, formState: { isSubmitSuccessful },
+    register, handleSubmit, reset, formState: { isSubmitSuccessful, errors },
   } = useForm();
   const [mailchimpMessage, setMailchimpMessage] = useState(null);
   const [error, setError] = useState(null);
@@ -52,8 +52,7 @@ const NewsletterForm = (props) => {
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
-          name="email_address"
-          ref={register({ required: true })}
+          {...register('email_address', { required: true })}
           type="email"
           placeholder="Email"
           m={{ b: '10px' }}

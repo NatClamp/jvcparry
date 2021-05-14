@@ -42,23 +42,20 @@ const HireMeForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} w="100%">
           <Text tag="label" htmlFor="name" textSize="subheader">Name</Text>
           <Input
-            name="name"
-            ref={register({ required: true })}
+            {...register('name', { required: true })}
             type="text"
             m={{ y: '1rem' }}
           />
           <Text tag="label" htmlFor="email" textSize="subheader">Email</Text>
           <Input
-            name="email"
-            ref={register({ required: true })}
+            {...register('email', { required: true })}
             type="email"
             m={{ y: '1rem' }}
           />
           <Text tag="label" htmlFor="message" textSize="subheader">Your Message</Text>
           <Input
             tag="textarea"
-            name="message"
-            ref={register()}
+            {...register('message')}
             m={{ y: '1rem' }}
             h={{ xs: '3rem', sm: '5rem' }}
             type="text"
