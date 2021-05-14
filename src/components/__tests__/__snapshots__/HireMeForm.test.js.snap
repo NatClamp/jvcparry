@@ -26,6 +26,8 @@ exports[`HireMeForm component should match the snapshot 1`] = `
           }
         }
         name="name"
+        onBlur={[Function]}
+        onChange={[Function]}
         type="text"
       />
     </div>
@@ -47,6 +49,8 @@ exports[`HireMeForm component should match the snapshot 1`] = `
           }
         }
         name="email"
+        onBlur={[Function]}
+        onChange={[Function]}
         type="email"
       />
     </div>
@@ -68,6 +72,8 @@ exports[`HireMeForm component should match the snapshot 1`] = `
           }
         }
         name="message"
+        onBlur={[Function]}
+        onChange={[Function]}
         type="text"
       />
     </div>

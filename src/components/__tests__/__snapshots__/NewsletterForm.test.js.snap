@@ -23,6 +23,8 @@ Array [
           }
         }
         name="email_address"
+        onBlur={[Function]}
+        onChange={[Function]}
         placeholder="Email"
         type="email"
       />
