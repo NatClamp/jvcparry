@@ -13,8 +13,14 @@ const BlogSearchBar = () => {
     setSearchValue(e.target.value);
   };
 
+  const submitChange = (e) => {
+    e.preventDefault();
+    console.log(searchValue);
+    setSearch(searchValue);
+  };
+
   return (
-    <form onSubmit={() => setSearch(searchValue)} w="100%">
+    <form onSubmit={submitChange} w="100%">
       <Input
         placeholder="Search"
         value={searchValue}
@@ -29,6 +35,7 @@ const BlogSearchBar = () => {
             top="50%"
             right="1rem"
             transform="translateY(-50%)"
+            type="button"
           />
         )}
       />
