@@ -15,7 +15,6 @@ const BlogSearchBar = () => {
 
   const submitChange = (e) => {
     e.preventDefault();
-    console.log(searchValue);
     setSearch(searchValue);
   };
 
