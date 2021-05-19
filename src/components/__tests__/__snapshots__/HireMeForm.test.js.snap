@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HireMeForm component should match the snapshot 1`] = `
+<div
+  className="HireMeFormContainer "
+>
+  <form
+    onSubmit={[Function]}
+    w="100%"
+  >
+    <label
+      className=""
+      htmlFor="name"
+    >
+      Name
+    </label>
+    <div
+      className=""
+    >
+      <input
+        className=""
+        d="flex"
+        m={
+          Object {
+            "y": "1rem",
+          }
+        }
+        name="name"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <label
+      className=""
+      htmlFor="email"
+    >
+      Email
+    </label>
+    <div
+      className=""
+    >
+      <input
+        className=""
+        d="flex"
+        m={
+          Object {
+            "y": "1rem",
+          }
+        }
+        name="email"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="email"
+      />
+    </div>
+    <label
+      className=""
+      htmlFor="message"
+    >
+      Your Message
+    </label>
+    <div
+      className=""
+    >
+      <textarea
+        className=""
+        d="flex"
+        m={
+          Object {
+            "y": "1rem",
+          }
+        }
+        name="message"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className=""
+    >
+      <button
+        className=""
+        type="submit"
+      >
+        Contact Us
+        <svg
+          className=""
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M15.5857864,13 L6,13 C5.44771525,13 5,12.5522847 5,12 C5,11.4477153 5.44771525,11 6,11 L15.5857864,11 L12.2928932,7.70710678 C11.9023689,7.31658249 11.9023689,6.68341751 12.2928932,6.29289322 C12.6834175,5.90236893 13.3165825,5.90236893 13.7071068,6.29289322 L18.7071068,11.2928932 C19.0976311,11.6834175 19.0976311,12.3165825 18.7071068,12.7071068 L13.7071068,17.7071068 C13.3165825,18.0976311 12.6834175,18.0976311 12.2928932,17.7071068 C11.9023689,17.3165825 11.9023689,16.6834175 12.2928932,16.2928932 L15.5857864,13 Z"
+            fill="#FFFFFF"
+            fillRule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+  </form>
+</div>
+`;

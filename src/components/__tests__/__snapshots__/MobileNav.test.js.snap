@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MobileNav component should match the snapshot 1`] = `
+<div
+  className=""
+  data-testid="mobile-nav-container"
+>
+  <ul
+    style={
+      Object {
+        "listStyle": "none",
+        "margin": "0 auto",
+        "padding": "0",
+        "paddingBottom": "20px",
+      }
+    }
+  >
+    <div
+      className=""
+    >
+      <li>
+        <a
+          href="/products"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          style={
+            Object {
+              "color": "white",
+              "textDecoration": "none",
+            }
+          }
+        >
+          Products
+        </a>
+      </li>
+    </div>
+    <div
+      className=""
+    >
+      <li>
+        <a
+          href="/hire-me"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          style={
+            Object {
+              "color": "white",
+              "textDecoration": "none",
+            }
+          }
+        >
+          Hire Me
+        </a>
+      </li>
+    </div>
+    <div
+      className=""
+    >
+      <li>
+        <a
+          href="/blog"
+          onClick={[Function]}
+          onKeyPress={[Function]}
+          style={
+            Object {
+              "color": "white",
+              "textDecoration": "none",
+            }
+          }
+        >
+          Blog
+        </a>
+      </li>
+    </div>
+  </ul>
+</div>
+`;

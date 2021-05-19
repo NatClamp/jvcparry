@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeHero component should match the snapshot 1`] = `
+<div
+  className=""
+>
+  <div
+    className=""
+  >
+    <img
+      alt="JVC Parry logo"
+      src={
+        Object {
+          "process": [Function],
+        }
+      }
+      style={
+        Object {
+          "maxHeight": "120px",
+        }
+      }
+    />
+  </div>
+  <h3
+    className=""
+  >
+    JVC Parry
+  </h3>
+  <h4
+    className=""
+  >
+    Indie TTRPG creator
+  </h4>
+  <div
+    className="homeHeroNav "
+  >
+    <a
+      href="/products"
+      onClick={[Function]}
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+    >
+      <button
+        className=""
+      >
+        Products
+      </button>
+    </a>
+    <a
+      href="/hire-me"
+      onClick={[Function]}
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+    >
+      <button
+        className=""
+      >
+        Hire Me
+      </button>
+    </a>
+    <a
+      href="/blog"
+      onClick={[Function]}
+      style={
+        Object {
+          "textDecoration": "none",
+        }
+      }
+    >
+      <button
+        className=""
+      >
+        Blog
+      </button>
+    </a>
+  </div>
+</div>
+`;

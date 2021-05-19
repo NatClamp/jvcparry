@@ -35,7 +35,7 @@ const BlogPage = () => {
           </Text>
         </Col>
         <Col size="3">
-          <Icon name="HomeSolid2" color="black" size="2rem" cursor="pointer" m={{ t: '0.5rem' }} onClick={() => blogClearAll()} />
+          <Icon name="HomeSolid2" color="black" size="2rem" cursor="pointer" m={{ t: '0.5rem' }} onClick={() => blogClearAll()} type="button" />
         </Col>
         <Col size="4">
           <BlogSearchBar />

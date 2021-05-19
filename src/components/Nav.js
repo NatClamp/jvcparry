@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Nav = () => (
   <>
-    <Div d={{ xs: 'none', md: 'flex' }} flexDir="row" justify="space-around" align="center" w={{ xs: 'auto', md: '300px' }}>
+    <Div d={{ xs: 'none', md: 'flex' }} flexDir="row" justify="space-around" align="center" w={{ xs: 'auto', md: '300px' }} data-testid="nav-container">
       <Link to="/products" style={{ textDecoration: 'none' }}>
         <Button
           h="2.5rem"

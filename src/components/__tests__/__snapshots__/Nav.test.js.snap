@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav component should match the snapshot 1`] = `
+<div
+  className=""
+  data-testid="nav-container"
+>
+  <a
+    href="/products"
+    onClick={[Function]}
+    style={
+      Object {
+        "textDecoration": "none",
+      }
+    }
+  >
+    <button
+      className=""
+    >
+      Products
+    </button>
+  </a>
+  <a
+    href="/hire-me"
+    onClick={[Function]}
+    style={
+      Object {
+        "textDecoration": "none",
+      }
+    }
+  >
+    <button
+      className=""
+    >
+      Hire Me
+    </button>
+  </a>
+  <a
+    href="/blog"
+    onClick={[Function]}
+    style={
+      Object {
+        "textDecoration": "none",
+      }
+    }
+  >
+    <button
+      className=""
+    >
+      Blog
+    </button>
+  </a>
+</div>
+`;

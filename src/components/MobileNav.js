@@ -5,15 +5,16 @@ import PropTypes from 'prop-types';
 
 const MobileNav = (props) => {
   const { toggleMenu } = props;
+
   return (
     <>
-      <Container d="flex" flexDir="column" p="0" m="0" bg="black" minW="100%">
+      <Container d="flex" flexDir="column" p="0" m="0" bg="black" minW="100%" data-testid="mobile-nav-container">
         <ul style={{
           listStyle: 'none', margin: '0 auto', padding: '0', paddingBottom: '20px',
         }}
         >
           <Row p="1rem" d="flex" justify="center">
-            <li><Link to="/products" onClick={() => toggleMenu()} onKeyPress={() => toggleMenu()} style={{ textDecoration: 'none', color: 'white' }} on>Products</Link></li>
+            <li><Link to="/products" onClick={() => toggleMenu()} onKeyPress={() => toggleMenu()} style={{ textDecoration: 'none', color: 'white' }}>Products</Link></li>
           </Row>
           <Row p="1rem" d="flex" justify="center">
             <li><Link to="/hire-me" onClick={() => toggleMenu()} onKeyPress={() => toggleMenu()} style={{ textDecoration: 'none', color: 'white' }}>Hire Me</Link></li>
