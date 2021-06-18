@@ -69,7 +69,7 @@ class DMsProductPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const searchValue = this.state;
+    const { searchValue } = this.state;
     this.searchTitles(searchValue);
   }
 
