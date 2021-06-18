@@ -27,6 +27,7 @@ const PreviousWork = () => (
         <Text textAlign={{ xs: 'center', md: 'left' }} textSize={{ xs: 'paragraph', sm: 'subheader' }}>
           <em>
             Created in collaboration with
+            {' '}
             <Anchor href="https://loresmyth.com/" target="_blank">LoreSmyth</Anchor>
           </em>
         </Text>
@@ -48,6 +49,7 @@ const PreviousWork = () => (
         <Text textAlign={{ xs: 'center', md: 'right' }} textSize={{ xs: 'paragraph', sm: 'subheader' }}>
           <em>
             Created in collaboration with
+            {' '}
             <Anchor href="https://loresmyth.com/" target="_blank">LoreSmyth</Anchor>
           </em>
         </Text>
@@ -74,6 +76,7 @@ const PreviousWork = () => (
         <Text textAlign={{ xs: 'center', md: 'left' }} textSize={{ xs: 'paragraph', sm: 'subheader' }}>
           <em>
             Created in collaboration with
+            {' '}
             <Anchor href="https://loresmyth.com/" target="_blank">LoreSmyth</Anchor>
           </em>
         </Text>
