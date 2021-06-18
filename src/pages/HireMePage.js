@@ -13,25 +13,25 @@ const HireMePage = () => (
       <Col size={{ xs: '12', sm: '8' }}>
         <Text tag="h4" textSize="display1" p={{ b: '1rem' }} w="100%">Freelance work</Text>
         <Text tag="p" textSize={{ xs: 'paragraph', sm: 'subheader' }} p={{ y: '0.5rem' }}>
-          Primarily I freelance as a TTRPG designer, author, and consultant.
-          Much of my work is for large companies
-          such as LoreSmyth and Nord Games, though I work for private commission too!
+          My typical role as a freelancer is as a TTRPG designer, author, and consultant.
+          Much of my work is for large 3rd party publishers such as Wizards of the Coast, LoreSmyth,
+          Nord Games, and Jetpack7, though I accept private commissions too!
         </Text>
         <Text tag="p" textSize={{ xs: 'paragraph', sm: 'subheader' }} p={{ y: '0.5rem' }}>
-          I'm a specialist at tight deadlines and 5e SRD compliant material,
-          though have been hired to write wargaming content, short fiction,
-          educational content, and dialogue for video games too. The content
-          I create and publish myself varies from indie RPGs to existing system
-          material, and can be found on this site, and a number of other platforms
+          I'm a deadline specialist and fluent in 5e SRD compliant material, though have been hired
+          to write wargaming content, short fiction, educational content, and dialogue for video
+          games too. The content I create and publish myself varies from indie RPGs to material
+          for existing systems, and can be found on this site, and a number of other platforms
           (DMsGuild, DTRPG, Kickstarter, and itch.io).
         </Text>
         <Text tag="p" textSize={{ xs: 'paragraph', sm: 'subheader' }} p={{ y: '0.5rem' }}>
-          My rates vary on what you're looking for. Rates start at $0.10 per word for writing,
-          and $5 per page for editing, consultancy and layout.
+          My rates vary on what you're looking for. Rates start at £0.10 per word for writing,
+          and £20 per hour for editing, consultancy, and other design.
         </Text>
         <Text tag="p" textSize={{ xs: 'paragraph', sm: 'subheader' }} p={{ y: '0.5rem' }}>
           If you'd like to discuss a project,
-          <Anchor d="inline-block" href="#hire-form">get in touch</Anchor>
+          {' '}
+          <Anchor d="inline-block" href="#hire-form"> get in touch</Anchor>
           !
         </Text>
       </Col>
