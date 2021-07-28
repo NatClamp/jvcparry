@@ -87,7 +87,7 @@ const BlogPage = () => {
       <Row>
         <Col size="12">
           {postsOnPage.length > 0 ? postsOnPage.map((post) => (
-            <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }} key={post.id}>
+            <Link to={`/blog/${post.id}/${post.slug}`} style={{ textDecoration: 'none' }} key={post.id}>
               <Div key={post.id} p="2rem" m={{ y: '1rem' }} bg="gray400" hoverBg="gray500" textColor="black" w="100%">
                 <Text tag="h3" textSize="title">{post.preparedTitle}</Text>
                 <Text tag="p" textSize="subheader" w="100%" overflow="hidden">{post.preparedExcerpt}</Text>
