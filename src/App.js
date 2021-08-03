@@ -85,7 +85,7 @@ const NestedBlogs = () => {
         <Header />
         <Blog />
       </Route>
-      <Route path={`${path}/:id`}>
+      <Route path={`${path}/:slug/:id`}>
         <Header />
         <BlogPost />
       </Route>
