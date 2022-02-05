@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import parse from 'html-react-parser/dist/html-react-parser';
+import parse from 'html-react-parser';
 
 const BlogContext = React.createContext();
 
