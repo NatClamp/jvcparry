@@ -9,12 +9,11 @@ const NewsletterForm = (props) => {
   const {
     register, handleSubmit, reset, formState: { isSubmitSuccessful, errors },
   } = useForm();
-  const [setMailchimpMessage] = useState(null);
+  const [mailchimpMessage, setMailchimpMessage] = useState(null);
   const [error, setError] = useState(null);
-  const [setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [submittedData, setSubmittedData] = useState({});
   const [successSub, setSuccessSub] = useState(null);
-
   const { location } = props;
 
   const onSubmit = (resp) => {
@@ -27,7 +26,9 @@ const NewsletterForm = (props) => {
       if (err) {
         setErrorMessage(err.message);
         setError(true);
+        console.log(errorMessage);
       } else {
+        console.log(mailchimpMessage);
         setMailchimpMessage(data.msg);
         setSubmittedData(data);
       }
