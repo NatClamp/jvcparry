@@ -4,7 +4,7 @@ import React, { useContext, useEffect } from 'react';
 import {
   Text, Row, Container, Div, Icon,
 } from 'atomize';
-import parse from 'html-react-parser';
+import parse from 'html-react-parser/dist/html-react-parser';
 import Loading from '../components/Loading';
 import { BlogContext } from '../context/blogContext';
 import Error from '../components/Error';
