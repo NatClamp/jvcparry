@@ -6,7 +6,7 @@ import { ShopContext } from '../context/shopContext';
 
 const Cart = () => {
   const {
-    isCartOpen, closeCart, checkout, updateItemToCheckout,
+    isCartOpen, closeCart, checkout, updateItemToCheckout, clearBasket,
   } = useContext(ShopContext);
 
   if (checkout) {
@@ -62,7 +62,7 @@ const Cart = () => {
             </Row>
             <Row border={{ t: '1px solid' }} p="0.7rem" borderColor="gray300">
               <Anchor w="100%" href={checkout.webUrl} target="_blank" rel="noopener noreferrer">
-                <Button w="100%" rounded="0" bg="black500" shadow="2" hoverShadow="3" m={{ t: '1rem' }}>
+                <Button w="100%" rounded="0" bg="black500" shadow="2" hoverShadow="3" m={{ t: '1rem' }} onClick={() => clearBasket()}>
                   Checkout
                 </Button>
               </Anchor>

@@ -23,8 +23,6 @@ const HireMeForm = () => {
       })
       .catch((err) => {
         setSubmitLoading(false);
-        console.log('Message not sent due to error');
-        console.log(err);
         setError(err);
       });
   };

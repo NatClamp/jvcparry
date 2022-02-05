@@ -14,7 +14,6 @@ const NewsletterForm = (props) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [submittedData, setSubmittedData] = useState({});
   const [successSub, setSuccessSub] = useState(null);
-
   const { location } = props;
 
   const onSubmit = (resp) => {

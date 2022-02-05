@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom';
-
 import React, { useContext, useEffect } from 'react';
 import {
   Text, Row, Container, Div, Icon,

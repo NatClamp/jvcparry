@@ -21,11 +21,9 @@ class ShopProvider extends Component {
 
   componentDidMount() {
     if (localStorage.checkout) {
-      console.log('checkout already exists');
       this.fetchCheckout(localStorage.checkout);
     } else {
       this.createCheckout();
-      console.log('checkout created');
     }
   }
 
@@ -77,6 +75,11 @@ class ShopProvider extends Component {
     this.setState({ checkout: chkout });
   }
 
+  clearBasket = async () => {
+    localStorage.clear();
+    this.setState({ isCartOpen: false });
+  }
+
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
     this.setState({ products });
@@ -113,6 +116,7 @@ class ShopProvider extends Component {
           addItemToCheckout: this.addItemToCheckout,
           updateItemToCheckout: this.updateItemToCheckout,
           setVariantIndex: this.setVariantIndex,
+          clearBasket: this.clearBasket,
         }}
       >
         {children}
