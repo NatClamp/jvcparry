@@ -9,9 +9,9 @@ const NewsletterForm = (props) => {
   const {
     register, handleSubmit, reset, formState: { isSubmitSuccessful, errors },
   } = useForm();
-  const [mailchimpMessage, setMailchimpMessage] = useState(null);
+  const [setMailchimpMessage] = useState(null);
   const [error, setError] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [setErrorMessage] = useState(null);
   const [submittedData, setSubmittedData] = useState({});
   const [successSub, setSuccessSub] = useState(null);
 
