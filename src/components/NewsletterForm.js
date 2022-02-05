@@ -27,9 +27,7 @@ const NewsletterForm = (props) => {
       if (err) {
         setErrorMessage(err.message);
         setError(true);
-        console.log(errorMessage);
       } else {
-        console.log(mailchimpMessage);
         setMailchimpMessage(data.msg);
         setSubmittedData(data);
       }

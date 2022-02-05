@@ -50,7 +50,6 @@ class BlogProvider extends Component {
       const promiseResolution = await Promise.all(apiCalls);
       const data = promiseResolution.map((result) => result.data);
       const postsArray = data.flat();
-      console.log(data);
       this.setState({ completePostList: postsArray });
     } catch (err) {
       this.setState({ err });
