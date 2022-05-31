@@ -17,7 +17,7 @@ function ScrollToTop({ history }) {
 
 ScrollToTop.propTypes = {
   history: PropTypes.shape({
-    listen: PropTypes.unknown.isRequired,
+    listen: PropTypes.func.isRequired,
   }).isRequired,
 };
 
