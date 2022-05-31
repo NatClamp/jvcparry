@@ -12,14 +12,17 @@ import VariantDropdown from '../components/VariantDropdown';
 const ProductPage = () => {
   const { id } = useParams();
   const {
-    fetchProductWithId, addItemToCheckout, product, variantIndex, err,
+    fetchProductWithId, addItemToCheckout, product, variantIndex, setVariantTypesAvailable, availableVariants, err,
   } = useContext(ShopContext);
 
   useEffect(() => {
     fetchProductWithId(id);
-    return () => {
-    };
+    return () => {};
   }, [fetchProductWithId, id]);
+  useEffect(() => {
+    setVariantTypesAvailable(product);
+    return () => {};
+  }, [product]);
 
   if (err) return <Error />;
   if (!product.title) return <Loading />;
@@ -36,7 +39,7 @@ const ProductPage = () => {
         </Col>
         <Col size={{ xs: '12', sm: '6' }}>
           <Text tag="h2" textColor="black500" textSize="2rem" textWeight="200" m={{ y: '2rem' }}>{product.title}</Text>
-          {product.variants.length > 1 && <VariantDropdown title={product.variants[variantIndex].title} />}
+          {product.variants.length > 1 && <VariantDropdown title={product.variants[variantIndex].title} variantTitles={availableVariants} />}
           <Text tag="h3" m={{ y: '2rem' }} textWeight="200">
             {product.variants[variantIndex].price}
             {' '}

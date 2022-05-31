@@ -102,6 +102,11 @@ class ShopProvider extends Component {
     this.setState({ variantIndex: index });
   }
 
+  setVariantTypesAvailable = (product) => {
+    const availableVariants = product?.variants?.map((variant) => variant.title) || [];
+    this.setState({ availableVariants });
+  };
+
   render() {
     const { children } = this.props;
     return (
@@ -116,6 +121,7 @@ class ShopProvider extends Component {
           addItemToCheckout: this.addItemToCheckout,
           updateItemToCheckout: this.updateItemToCheckout,
           setVariantIndex: this.setVariantIndex,
+          setVariantTypesAvailable: this.setVariantTypesAvailable,
           clearBasket: this.clearBasket,
         }}
       >

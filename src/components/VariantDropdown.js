@@ -6,6 +6,7 @@ import {
 import { ShopContext } from '../context/shopContext';
 
 const VariantDropdown = (props) => {
+  const { title, variantTitles } = props;
   const [showDropdown, setShowDropdown] = useState(false);
   const { setVariantIndex } = useContext(ShopContext);
 
@@ -17,7 +18,7 @@ const VariantDropdown = (props) => {
   const menuList = (
     <Div>
       <ul style={{ listStyle: 'none', paddingLeft: '1.5rem' }}>
-        {['PDF', 'Print+PDF'].map((name, index) => (
+        {variantTitles.map((name, index) => (
           <li key={index}>
             <Anchor d="block" p={{ y: '0.25rem' }}>
               <Text d="block" p={{ y: '0.25rem' }} onClick={() => selectVariantAndCloseDropdown(index)}>{name}</Text>
@@ -28,7 +29,6 @@ const VariantDropdown = (props) => {
     </Div>
   );
 
-  const { title } = props;
   const UpperTitle = title.toUpperCase();
   return (
     <Dropdown
