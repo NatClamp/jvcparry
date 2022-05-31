@@ -27,7 +27,7 @@ const App = () => (
     <ScrollToTop />
     <Cart />
     <Switch>
-      <Route exact path="/product/:id">
+      <Route path="/product/gid://shopify/Product/:id">
         <Header />
         <ProductPage />
       </Route>

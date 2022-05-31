@@ -82,11 +82,14 @@ class ShopProvider extends Component {
 
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
+    console.log(products);
     this.setState({ products });
   };
 
   fetchProductWithId = async (id) => {
-    const product = await client.product.fetch(id);
+    console.log(id);
+    // FIND OUT WHAT IS GOING ON HERE WITH THE ID CHANGE???
+    const product = await client.product.fetch(btoa(`gid://shopify/Product/${id}`));
     this.setState({ product });
   };
 
