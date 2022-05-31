@@ -54,9 +54,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js src/*.js",
     "audit": "npm audit --production",
-    "ci": "npm t && npm run lint && npm run audit && npm outdated",
-    "install": "npm install --no-audit"
-  },
+    "ci": "npm t && npm run lint && npm run audit && npm outdated"
+    },
   "eslintConfig": {
     "extends": "react-app"
   },
