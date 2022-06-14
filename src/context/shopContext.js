@@ -79,7 +79,6 @@ class ShopProvider extends Component {
   }
 
   clearBasket = async () => {
-    // TODO - instead of just getting rid of the checkout, we should perhaps create a new one!
     localStorage.clear();
     this.setState({ isCartOpen: false });
   }
