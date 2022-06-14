@@ -49,7 +49,10 @@ class ShopProvider extends Component {
         quantity: parseInt(quantity, 10),
       },
     ];
+    // check that the checkout is actually here - sometimes doesn't appear?
+    // clear cache to bring back temporarily
     const { checkout } = this.state;
+    console.log(checkout.id);
     const chkout = await client.checkout.addLineItems(
       checkout.id,
       lineItemsToAdd,
@@ -76,20 +79,31 @@ class ShopProvider extends Component {
   }
 
   clearBasket = async () => {
+    // TODO - instead of just getting rid of the checkout, we should perhaps create a new one!
     localStorage.clear();
     this.setState({ isCartOpen: false });
   }
 
   fetchAllProducts = async () => {
     const products = await client.product.fetchAll();
-    console.log(products);
     this.setState({ products });
   };
 
+  convertIdToGid = (type, id) => {
+    if (!id) return null;
+    return btoa(`gid://shopify/${type}/${id}`);
+  }
+
+  encodeGid = (gid) => btoa(gid)
+
+  getIdNumber = (gid) => {
+    if (!gid) return null;
+    return gid.split('/').slice(-1)[0];
+  };
+
   fetchProductWithId = async (id) => {
-    console.log(id);
-    // FIND OUT WHAT IS GOING ON HERE WITH THE ID CHANGE???
-    const product = await client.product.fetch(btoa(`gid://shopify/Product/${id}`));
+    const gid = this.convertIdToGid('Product', id);
+    const product = await client.product.fetch(gid);
     this.setState({ product });
   };
 
@@ -126,6 +140,7 @@ class ShopProvider extends Component {
           setVariantIndex: this.setVariantIndex,
           setVariantTypesAvailable: this.setVariantTypesAvailable,
           clearBasket: this.clearBasket,
+          getIdNumber: this.getIdNumber,
         }}
       >
         {children}

@@ -17,11 +17,11 @@ const VariantDropdown = (props) => {
 
   const menuList = (
     <Div>
-      <ul style={{ listStyle: 'none', paddingLeft: '1.5rem' }}>
+      <ul style={{ listStyle: 'none', paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
         {variantTitles.map((name, index) => (
           <li key={index}>
             <Anchor d="block" p={{ y: '0.25rem' }}>
-              <Text d="block" p={{ y: '0.25rem' }} onClick={() => selectVariantAndCloseDropdown(index)}>{name}</Text>
+              <Text d="block" p={{ y: '0.25rem' }} onClick={() => selectVariantAndCloseDropdown(index)}>{name.toUpperCase()}</Text>
             </Anchor>
           </li>
         ))}

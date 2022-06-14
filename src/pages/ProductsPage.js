@@ -10,7 +10,9 @@ import dmsguildProducts from '../data/dmsguild-products';
 import driveThruProducts from '../data/drivethru-products';
 
 const ProductsPage = () => {
-  const { fetchAllProducts, products, isLoading } = useContext(ShopContext);
+  const {
+    fetchAllProducts, products, isLoading, getIdNumber,
+  } = useContext(ShopContext);
 
   useEffect(() => {
     fetchAllProducts();
@@ -90,7 +92,7 @@ const ProductsPage = () => {
               <Row d="flex" flexDir={{ xs: 'column', md: 'row' }} flexWrap="wrap">
                 {[products[0], products[1], products[2]].map((product) => (
                   <Col key={product.id} size={{ xs: '12', md: '4' }}>
-                    <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
+                    <Link to={`/product/${getIdNumber(product.id)}`} style={{ textDecoration: 'none' }}>
                       <Div p="2rem">
                         <Div
                           h="20rem"
