@@ -7,7 +7,9 @@ import { ShopContext } from '../context/shopContext';
 import Loading from '../components/Loading';
 
 const IndieProductsPage = () => {
-  const { fetchAllProducts, products, isLoading } = useContext(ShopContext);
+  const {
+    fetchAllProducts, products, isLoading, getIdNumber,
+  } = useContext(ShopContext);
 
   useEffect(() => {
     fetchAllProducts();
@@ -31,7 +33,7 @@ const IndieProductsPage = () => {
         <Row d="flex" flexDir={{ xs: 'column', md: 'row' }} flexWrap="wrap">
           {products.map((product) => (
             <Col key={product.id} size={{ xs: '12', md: '4' }}>
-              <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
+              <Link to={`/product/${getIdNumber(product.id)}`} style={{ textDecoration: 'none' }}>
                 <Div p="2rem">
                   <Div
                     h="20rem"

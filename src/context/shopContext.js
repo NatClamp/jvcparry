@@ -49,7 +49,10 @@ class ShopProvider extends Component {
         quantity: parseInt(quantity, 10),
       },
     ];
+    // check that the checkout is actually here - sometimes doesn't appear?
+    // clear cache to bring back temporarily
     const { checkout } = this.state;
+    console.log(checkout.id);
     const chkout = await client.checkout.addLineItems(
       checkout.id,
       lineItemsToAdd,
@@ -85,8 +88,21 @@ class ShopProvider extends Component {
     this.setState({ products });
   };
 
+  convertIdToGid = (type, id) => {
+    if (!id) return null;
+    return btoa(`gid://shopify/${type}/${id}`);
+  }
+
+  encodeGid = (gid) => btoa(gid)
+
+  getIdNumber = (gid) => {
+    if (!gid) return null;
+    return gid.split('/').slice(-1)[0];
+  };
+
   fetchProductWithId = async (id) => {
-    const product = await client.product.fetch(id);
+    const gid = this.convertIdToGid('Product', id);
+    const product = await client.product.fetch(gid);
     this.setState({ product });
   };
 
@@ -102,6 +118,11 @@ class ShopProvider extends Component {
     this.setState({ variantIndex: index });
   }
 
+  setVariantTypesAvailable = (product) => {
+    const availableVariants = product?.variants?.map((variant) => variant.title) || [];
+    this.setState({ availableVariants });
+  };
+
   render() {
     const { children } = this.props;
     return (
@@ -116,7 +137,9 @@ class ShopProvider extends Component {
           addItemToCheckout: this.addItemToCheckout,
           updateItemToCheckout: this.updateItemToCheckout,
           setVariantIndex: this.setVariantIndex,
+          setVariantTypesAvailable: this.setVariantTypesAvailable,
           clearBasket: this.clearBasket,
+          getIdNumber: this.getIdNumber,
         }}
       >
         {children}
