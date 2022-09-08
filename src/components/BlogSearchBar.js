@@ -19,7 +19,7 @@ const BlogSearchBar = () => {
   };
 
   return (
-    <form onSubmit={submitChange} w="100%">
+    <form onSubmit={submitChange}>
       <Input
         placeholder="Search"
         value={searchValue}

@@ -37,7 +37,7 @@ const HireMeForm = () => {
   return (
     <>
       <Div d="flex" flexDir="column" w={{ xs: '100%', lg: '100%' }} justify="center" className="HireMeFormContainer">
-        <form onSubmit={handleSubmit(onSubmit)} w="100%">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Text tag="label" htmlFor="name" textSize="subheader">Name</Text>
           <Input
             {...register('name', { required: true })}
