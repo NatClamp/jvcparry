@@ -51,7 +51,7 @@ class PopUpModal extends React.Component {
           cursor="pointer"
         />
         <Div d="flex" flexDir="row" justify="center" align="center">
-          <img src={logo} alt="JVC Parry logo" textalign="center" style={{ maxHeight: '80px' }} />
+          <img src={logo} alt="JVC Parry logo" textAlign="center" style={{ maxHeight: '80px' }} />
         </Div>
         <Text
           p={{ l: '0.5rem', t: '0.25rem' }}
