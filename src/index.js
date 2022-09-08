@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Client as Styletron } from 'styletron-engine-atomic';
 import { Provider as StyletronProvider, DebugEngine } from 'styletron-react';
+import { StyleReset } from 'atomize';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Analytics from 'react-router-ga';
 
@@ -19,6 +20,7 @@ ReactDOM.render(
       <StyletronProvider value={engine} debug={debug} debugAfterHydration>
         <Router>
           <Analytics id="UA-191601925-1" debug>
+            <StyleReset />
             <App />
           </Analytics>
         </Router>
